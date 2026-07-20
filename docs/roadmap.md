@@ -23,6 +23,25 @@
 ## Sprint 3 – Database
 
 - [ ] Activity settings
+        Phase 1 – Settings
+            [x] Categories
+            [ ] Timing redesign
+            [ ] Attempts
+            [ ] Shuffle
+            [ ] Feedback
+        Phase 2 – Database
+            [ ] Save all settings
+            [ ] Load them correctly
+        Phase 3 – Student interface
+            [ ] Display categories
+            [ ] Display words
+            [ ] Drag-and-drop sorting
+            [ ] Timer
+        Phase 4 – Grading & reports
+            [ ] Calculate score
+            [ ] Record completion time
+            [ ] Gradebook integration
+            [ ] Teacher reports
 - [ ] Items table
 - [ ] Attempts table
 - [ ] Answers table
