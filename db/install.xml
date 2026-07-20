@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/wordsort/db"
+       VERSION="2026071600"
+       COMMENT="XMLDB file for mod_wordsort"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+
+    <TABLES>
+
+        <TABLE NAME="wordsort" COMMENT="Main table for Word Sort activities">
+
+            <FIELDS>
+
+                <FIELD NAME="id"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       SEQUENCE="true"/>
+
+                <FIELD NAME="course"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="name"
+                       TYPE="char"
+                       LENGTH="255"
+                       NOTNULL="true"
+                       DEFAULT=""/>
+
+                <FIELD NAME="intro"
+                       TYPE="text"
+                       NOTNULL="false"/>
+
+                <FIELD NAME="introformat"
+                       TYPE="int"
+                       LENGTH="4"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="category1"
+                       TYPE="char"
+                       LENGTH="100"
+                       NOTNULL="true"
+                       DEFAULT=""/>
+
+                <FIELD NAME="category2"
+                       TYPE="char"
+                       LENGTH="100"
+                       NOTNULL="true"
+                       DEFAULT=""/>
+
+                <FIELD NAME="timelimit"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="60"/>
+
+                <FIELD NAME="maxattempts"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="1"/>
+
+                <FIELD NAME="shuffleitems"
+                       TYPE="int"
+                       LENGTH="1"
+                       NOTNULL="true"
+                       DEFAULT="1"/>
+
+                <FIELD NAME="immediatefeedback"
+                       TYPE="int"
+                       LENGTH="1"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="timecreated"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+                <FIELD NAME="timemodified"
+                       TYPE="int"
+                       LENGTH="10"
+                       NOTNULL="true"
+                       DEFAULT="0"/>
+
+            </FIELDS>
+
+            <KEYS>
+                <KEY NAME="primary"
+                     TYPE="primary"
+                     FIELDS="id"/>
+            </KEYS>
+
+        </TABLE>
+
+    </TABLES>
+
+</XMLDB>
