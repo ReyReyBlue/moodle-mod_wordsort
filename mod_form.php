@@ -15,33 +15,68 @@ class mod_wordsort_mod_form extends moodleform_mod {
 
     $this->standard_intro_elements();
 
-    // Game settings.
-$mform->addElement('header', 'gamesettings', get_string('gamesettings', 'wordsort'));
+// Timing
+$mform->addElement('header', 'timingsettings',
+    get_string('timingsettings', 'wordsort'));
 
-// Category 1.
+    $timingoptions = [];
+
+    $timingoptions[] = $mform->createElement(
+    'radio',
+    'timingmode',
+    '',
+    get_string('notimer', 'wordsort'),
+    'none'
+);
+
+$timingoptions[] = $mform->createElement(
+    'radio',
+    'timingmode',
+    '',
+    get_string('countdown', 'wordsort'),
+    'countdown'
+);
+
+$timingoptions[] = $mform->createElement(
+    'radio',
+    'timingmode',
+    '',
+    get_string('stopwatch', 'wordsort'),
+    'stopwatch'
+);
+
+$mform->addGroup(
+    $timingoptions,
+    'timingmodegroup',
+    get_string('timingmode', 'wordsort'),
+    array('<br>'),
+    false
+);
+
+$mform->setDefault('timingmode', 'none');
+
 $mform->addElement(
     'text',
-    'category1',
-    get_string('category1', 'wordsort')
+    'timevalue',
+    get_string('timevalue', 'wordsort')
 );
-$mform->setType('category1', PARAM_TEXT);
 
-// Category 2.
-$mform->addElement(
-    'text',
-    'category2',
-    get_string('category2', 'wordsort')
-);
-$mform->setType('category2', PARAM_TEXT);
+$mform->setType('timevalue', PARAM_INT);
+$mform->setDefault('timevalue', 60);
 
-// Time limit.
-$mform->addElement(
-    'text',
-    'timelimit',
-    get_string('timelimit', 'wordsort')
+$mform->hideIf(
+    'timevalue',
+    'timingmode',
+    'eq',
+    'none'
 );
-$mform->setType('timelimit', PARAM_INT);
-$mform->setDefault('timelimit', 60);
+
+// Attempts.
+$mform->addElement(
+    'header',
+    'attemptsettings',
+    get_string('attemptsettings', 'wordsort')
+);
 
 // Maximum attempts.
 $mform->addElement(
@@ -52,21 +87,56 @@ $mform->addElement(
 $mform->setType('maxattempts', PARAM_INT);
 $mform->setDefault('maxattempts', 1);
 
+// Activity options.
+$mform->addElement(
+    'header',
+    'activityoptions',
+    get_string('activityoptions', 'wordsort')
+);
+
 // Shuffle items.
 $mform->addElement(
     'advcheckbox',
-    'shuffleitems',
-    get_string('shuffleitems', 'wordsort')
+    'shufflewords',
+    get_string('shufflewords', 'wordsort')
 );
-$mform->setDefault('shuffleitems', 1);
+$mform->setDefault('shufflewords', 1);
 
-// Immediate feedback.
-$mform->addElement(
-    'advcheckbox',
-    'immediatefeedback',
-    get_string('immediatefeedback', 'wordsort')
+// Feedback mode.
+$feedbackoptions = [];
+
+$feedbackoptions[] = $mform->createElement(
+    'radio',
+    'feedbackmode',
+    '',
+    get_string('feedbackeachmove', 'wordsort'),
+    'move'
 );
-$mform->setDefault('immediatefeedback', 1);
+
+$feedbackoptions[] = $mform->createElement(
+    'radio',
+    'feedbackmode',
+    '',
+    get_string('feedbacksubmit', 'wordsort'),
+    'submit'
+);
+
+$feedbackoptions[] = $mform->createElement(
+    'radio',
+    'feedbackmode',
+    '',
+    get_string('feedbacknone', 'wordsort'),
+    'none'
+);
+
+$mform->addGroup(
+    $feedbackoptions,
+    'feedbackgroup',
+    get_string('feedbackmode', 'wordsort'),
+    '<br>'
+);
+
+$mform->setDefault('feedbackmode', 'move');
 
     // Standard Moodle settings.
     $this->standard_coursemodule_elements();
