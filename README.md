@@ -33,4 +33,4 @@ Vaata kausta `docs`:
 
 ## Litsents
 
-Määratakse hiljem.
+Määratakse hiljem...
