@@ -1,0 +1,12 @@
+## limitations
+
+- category 1 and category 2 does not equal
+- set time limit to get a positive grade can´t be 0
+- word place cant be empty, when having a category
+- word can´t be wihout set category
+
+## design ideas
+
+- color: pastels 
+- icons: triangual shape pointing left and right. Mobile version the whole left or right side of the screen
+- text fonts and sizes are moodle default 
