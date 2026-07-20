@@ -1,0 +1,25 @@
+# =========================
+# Operating system files
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# PHP / Composer
+# =========================
+vendor/
+
+# PHPUnit cache
+.phpunit.result.cache
+
+# Node.js
+node_modules/
+
+# Logs
+*.log

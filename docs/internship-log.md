@@ -25,6 +25,6 @@ Created written and on paper visualitation how things would look like and thinki
 
 20 July 2026
 
-1 h
+3 h
 
-Moodle installed the first version of my plugin
+Moodle installed the first version of my plugin. Made first commit in github and invited my teacher and the instructor, so they can see my work. Comment, if needed. Readme file is only, that is in Estonian - my head hurts if i have to think and code in multible language.
