@@ -25,10 +25,10 @@
 - [ ] Activity settings
         Phase 1 – Settings
             [x] Categories
-            [ ] Timing redesign
-            [ ] Attempts
-            [ ] Shuffle
-            [ ] Feedback
+            [x] Timing redesign
+            [x] Attempts
+            [x] Shuffle
+            [x] Feedback
         Phase 2 – Database
             [ ] Save all settings
             [ ] Load them correctly

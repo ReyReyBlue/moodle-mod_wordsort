@@ -26,7 +26,7 @@ $mform->addElement('header', 'timingsettings',
     'timingmode',
     '',
     get_string('notimer', 'wordsort'),
-    'none'
+    0
 );
 
 $timingoptions[] = $mform->createElement(
@@ -34,7 +34,7 @@ $timingoptions[] = $mform->createElement(
     'timingmode',
     '',
     get_string('countdown', 'wordsort'),
-    'countdown'
+    1
 );
 
 $timingoptions[] = $mform->createElement(
@@ -42,7 +42,7 @@ $timingoptions[] = $mform->createElement(
     'timingmode',
     '',
     get_string('stopwatch', 'wordsort'),
-    'stopwatch'
+    2
 );
 
 $mform->addGroup(
@@ -53,7 +53,7 @@ $mform->addGroup(
     false
 );
 
-$mform->setDefault('timingmode', 'none');
+$mform->setDefault('timingmode', 0);
 
 $mform->addElement(
     'text',
@@ -68,7 +68,7 @@ $mform->hideIf(
     'timevalue',
     'timingmode',
     'eq',
-    'none'
+    0
 );
 
 // Attempts.
@@ -110,7 +110,7 @@ $feedbackoptions[] = $mform->createElement(
     'feedbackmode',
     '',
     get_string('feedbackeachmove', 'wordsort'),
-    'move'
+    0
 );
 
 $feedbackoptions[] = $mform->createElement(
@@ -118,7 +118,7 @@ $feedbackoptions[] = $mform->createElement(
     'feedbackmode',
     '',
     get_string('feedbacksubmit', 'wordsort'),
-    'submit'
+    1
 );
 
 $feedbackoptions[] = $mform->createElement(
@@ -126,17 +126,22 @@ $feedbackoptions[] = $mform->createElement(
     'feedbackmode',
     '',
     get_string('feedbacknone', 'wordsort'),
-    'none'
+    2
 );
 
 $mform->addGroup(
     $feedbackoptions,
     'feedbackgroup',
     get_string('feedbackmode', 'wordsort'),
-    '<br>'
+    array('<br>'),
+    false
 );
 
-$mform->setDefault('feedbackmode', 'move');
+$mform->setDefault(
+    'feedbackmode',
+    0
+);
+
 
     // Standard Moodle settings.
     $this->standard_coursemodule_elements();

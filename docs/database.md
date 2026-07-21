@@ -6,34 +6,34 @@
 
 Stores the activity settings.
 
-Fields:
+wordsort
+---------
+id
+course
+name
+intro
+timingmode
+timevalue
+maxattempts
+shufflewords
+feedbackmode
+...
 
-- id
-- course
-- name
-- intro
-- introformat
-- category1
-- category2
-- timelimit
-- maxattempts
-- shuffleitems
-- immediatefeedback
-- timecreated
-- timemodified
+wordsort_categories
+-------------------
+id
+wordsortid
+name
+description
+sortorder
 
----
-
-Fiels:
-
-- activity name
-- category labels
-- time limit
-- attempts
-- shuffle
-- feedback
-- created date
-- modified date
+wordsort_words
+--------------
+id
+wordsortid
+word
+categoryid
+sortorder
 
 ### wordsort_items
 
