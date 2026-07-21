@@ -1,6 +1,6 @@
 ## limitations
 
-- category 1 and category 2 does not equal
+✅ category 1 and category 2 does not equal
 - set time limit to get a positive grade can´t be 0
 - word place cant be empty, when having a category
 - word can´t be wihout set category

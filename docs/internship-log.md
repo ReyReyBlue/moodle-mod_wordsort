@@ -33,3 +33,7 @@ Complete activity settings form (branch: feature/mod-form-settings)
 ______________________________________________________________________
 
 21 July 2026
+
+5,5 h
+
+Redesigned activity settings stored in the database. Timing settings. Maximum attempts. Shuffle words option. Feedback mode. Left and right category fields. Validation for required categories. Validation that categories cannot be the same (ignoring case and surrounding spaces). Activity installs and saves correctly.

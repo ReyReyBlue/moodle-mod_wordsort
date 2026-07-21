@@ -9,11 +9,41 @@ class mod_wordsort_mod_form extends moodleform_mod {
     public function definition() {
     $mform = $this->_form;
 
-    // General.
-    $mform->addElement('text', 'name', get_string('name'));
-    $mform->setType('name', PARAM_TEXT);
+// General.
+$mform->addElement('text', 'name', get_string('name'));
+$mform->setType('name', PARAM_TEXT);
 
-    $this->standard_intro_elements();
+$this->standard_intro_elements();
+
+// Categories.
+$mform->addElement(
+    'text',
+    'categoryleft',
+    get_string('categoryleft', 'wordsort')
+);
+$mform->setType('categoryleft', PARAM_TEXT);
+$mform->addRule(
+    'categoryleft',
+    null,
+    'required',
+    null,
+    'client');
+
+$mform->setType('categoryleft', PARAM_TEXT);
+
+$mform->addElement(
+    'text',
+    'categoryright',
+    get_string('categoryright', 'wordsort'));
+$mform->setType('categoryright', PARAM_TEXT);
+$mform->addRule(
+    'categoryright',
+    null,
+    'required',
+    null,
+    'client');
+
+$mform->setType('categoryright', PARAM_TEXT);
 
 // Timing
 $mform->addElement('header', 'timingsettings',
@@ -26,16 +56,14 @@ $mform->addElement('header', 'timingsettings',
     'timingmode',
     '',
     get_string('notimer', 'wordsort'),
-    0
-);
+    0);
 
 $timingoptions[] = $mform->createElement(
     'radio',
     'timingmode',
     '',
     get_string('countdown', 'wordsort'),
-    1
-);
+    1);
 
 $timingoptions[] = $mform->createElement(
     'radio',
@@ -149,4 +177,28 @@ $mform->setDefault(
     // Save / Cancel buttons.
     $this->add_action_buttons();
     }
+
+    public function validation($data, $files) {
+    $errors = parent::validation($data, $files);
+
+    $left = trim(core_text::strtolower($data['categoryleft']));
+    $right = trim(core_text::strtolower($data['categoryright']));
+
+    if ($left === '') {
+        $errors['categoryleft'] =
+            get_string('errorcategoryleftrequired', 'wordsort');
+    }
+
+    if ($right === '') {
+        $errors['categoryright'] =
+            get_string('errorcategoryrightrequired', 'wordsort');
+    }
+
+    if ($left !== '' && $right !== '' && $left === $right) {
+        $errors['categoryright'] =
+            get_string('errorcategoriesequal', 'wordsort');
+    }
+
+    return $errors;
+}
 }
