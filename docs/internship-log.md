@@ -38,6 +38,6 @@ ______________________________________________________________________
 
 Redesigned activity settings stored in the database. Timing settings. Maximum attempts. Shuffle words option. Feedback mode. Left and right category fields. Validation for required categories. Validation that categories cannot be the same (ignoring case and surrounding spaces). Activity installs and saves correctly.
 
-19:30 - 
+4 h 
 
 Everything related to creating, editing, deleting and ordering the words that belong to a Word Sort activity.

@@ -32,3 +32,7 @@ $string['categoryright'] = 'Right category';
 $string['errorcategoryleftrequired'] = 'Left category is required.';
 $string['errorcategoryrightrequired'] = 'Right category is required.';
 $string['errorcategoriesequal'] = 'Left and right categories must be different.';
+$string['word'] = 'Word';
+$string['category'] = 'Category';
+$string['addword'] = 'Add word';
+$string['wordsaved'] = 'Word saved successfully.';
