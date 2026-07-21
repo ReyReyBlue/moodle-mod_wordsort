@@ -1,121 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="mod/wordsort/db"
-       VERSION="2026072100"
-       COMMENT="XMLDB file for mod_wordsort"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+<XMLDB PATH="mod/wordsort/db" VERSION="20260721" COMMENT="XMLDB file for mod_wordsort"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="wordsort" COMMENT="Main table for Word Sort activities">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="categoryleft" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="categoryright" TYPE="char" LENGTH="100" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timingmode" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timevalue" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="maxattempts" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="shufflewords" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="feedbackmode" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+       </FIELDS>
+       <KEYS>
+              <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+       </KEYS>
+       </TABLE>
 
-    <TABLES>
+     <TABLE NAME="wordsort_words" COMMENT="Stores the words for each Word Sort activity">
+       <FIELDS>
+              <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+              <FIELD NAME="wordsortid" TYPE="int" LENGTH="10" NOTNULL="true"/>
+              <FIELD NAME="word" TYPE="char" LENGTH="255" NOTNULL="true"/>
+              <FIELD NAME="correctside" TYPE="int" LENGTH="1" NOTNULL="true"/>
+              <FIELD NAME="sortorder" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+       </FIELDS>
 
-        <TABLE NAME="wordsort" COMMENT="Main table for Word Sort activities">
-
-            <FIELDS>
-
-                <FIELD NAME="id"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       SEQUENCE="true"/>
-
-                <FIELD NAME="course"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="name"
-                       TYPE="char"
-                       LENGTH="255"
-                       NOTNULL="true"
-                       DEFAULT=""
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="intro"
-                       TYPE="text"
-                       NOTNULL="false"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="introformat"
-                       TYPE="int"
-                       LENGTH="4"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="categoryleft"
-                       TYPE="char"
-                       LENGTH="100"
-                       NOTNULL="true"
-                       DEFAULT=""
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="categoryright"
-                       TYPE="char"
-                       LENGTH="100"
-                       NOTNULL="true"
-                       DEFAULT=""
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="timingmode"
-                       TYPE="int"
-                       LENGTH="1"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="timevalue"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-                 <FIELD NAME="maxattempts"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       DEFAULT="1"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="shufflewords"
-                       TYPE="int"
-                       LENGTH="1"
-                       NOTNULL="true"
-                       DEFAULT="1"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="feedbackmode"
-                       TYPE="int"
-                       LENGTH="1"
-                       NOTNULL="true"
-                       DEFAULT="1"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="timecreated"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-                <FIELD NAME="timemodified"
-                       TYPE="int"
-                       LENGTH="10"
-                       NOTNULL="true"
-                       DEFAULT="0"
-                       SEQUENCE="false"/>
-
-            </FIELDS>
-
-            <KEYS>
-                <KEY NAME="primary"
-                     TYPE="primary"
-                     FIELDS="id"/>
-            </KEYS>
-
-        </TABLE>
-
-    </TABLES>
-
+       <KEYS>
+              <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+              <KEY NAME="wordsortid_fk"
+                     TYPE="foreign"
+                     FIELDS="wordsortid"
+                     REFTABLE="wordsort"
+                     REFFIELDS="id"/>
+       </KEYS>
+       <INDEXES>
+              <INDEX NAME="wordsortid_idx"
+                     UNIQUE="false"
+                     FIELDS="wordsortid"/>
+       </INDEXES>
+       </TABLE>  
+  </TABLES>
 </XMLDB>

@@ -31,7 +31,7 @@
             [x] Feedback
         Phase 2 – Database
             [ ] Save all settings
-            [ ] Load them correctly
+            [ ] Load them correctly 
         Phase 3 – Student interface
             [ ] Display categories
             [ ] Display words
