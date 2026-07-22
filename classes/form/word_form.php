@@ -13,9 +13,9 @@ class word_form extends \moodleform {
         $customdata = $this->_customdata;
 
         // Course module id.
-        $mform->addElement('hidden', 'id');
-        $mform->setType('id', PARAM_INT);
-        $mform->setDefault('id', $customdata['cmid']);
+        $mform->addElement('hidden', 'cmid');
+        $mform->setType('cmid', PARAM_INT);
+        $mform->setDefault('cmid', $customdata['cmid']);
 
         // Word.
         $mform->addElement(

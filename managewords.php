@@ -3,9 +3,28 @@
 require('../../config.php');
 require_once($CFG->dirroot . '/mod/wordsort/lib.php');
 
-$id = required_param('id', PARAM_INT);
+$id = optional_param('id', 0, PARAM_INT);
+
+if (!$id) {
+    throw new moodle_exception('missingparam', '', '', 'id');
+}
+
+$wordid = optional_param('wordid', 0, PARAM_INT);
 
 $cm = get_coursemodule_from_id('wordsort', $id, 0, false, MUST_EXIST);
+$wordrecord = null;
+
+if ($wordid) {
+    $wordrecord = $DB->get_record(
+        'wordsort_words',
+        [
+            'id' => $wordid,
+            'wordsortid' => $wordsort->id
+        ],
+        '*',
+        MUST_EXIST
+    );
+}
 $course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
 $wordsort = $DB->get_record('wordsort', ['id' => $cm->instance], '*', MUST_EXIST);
 
@@ -20,7 +39,17 @@ $PAGE->set_heading(format_string($course->fullname));
 
 echo $OUTPUT->header();
 
-echo $OUTPUT->heading('Manage words');
+echo $OUTPUT->heading(get_string('managewords', 'wordsort'));
+
+$addwordurl = new moodle_url('/mod/wordsort/editword.php', [
+    'id' => $cm->id
+]);
+
+echo $OUTPUT->single_button(
+    $addwordurl,
+    get_string('addword', 'wordsort'),
+    'get'
+);
 
 echo html_writer::tag('p', '<strong>Left category:</strong> ' . s($wordsort->categoryleft));
 echo html_writer::tag('p', '<strong>Right category:</strong> ' . s($wordsort->categoryright));
@@ -39,11 +68,31 @@ else {
     $table = new html_table();
 
     $table->head = [
-        get_string('word', 'wordsort'),
-        get_string('category', 'wordsort')
-    ];
+    get_string('word', 'wordsort'),
+    get_string('category', 'wordsort'),
+    get_string('actions')
+];
 
     foreach ($words as $word) {
+        $editurl = new moodle_url('/mod/wordsort/editword.php', [
+    'id' => $cm->id,
+    'wordid' => $word->id
+]);
+
+    $deleteurl = new moodle_url('/mod/wordsort/editword.php', [
+        'id' => $cm->id,
+        'wordid' => $word->id
+    ]);
+
+$actions =
+    $OUTPUT->action_icon(
+        $editurl,
+        new pix_icon('t/edit', get_string('edit'))
+    ) . ' ' .
+    $OUTPUT->action_icon(
+        $deleteurl,
+        new pix_icon('t/delete', get_string('delete'))
+    );
 
         $category = ($word->correctside == 0)
             ? $wordsort->categoryleft
@@ -51,7 +100,8 @@ else {
 
         $table->data[] = [
             format_string($word->word),
-            format_string($category)
+            format_string($category),
+            $actions
         ];
     }
 

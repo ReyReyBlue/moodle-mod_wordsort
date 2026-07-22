@@ -30,8 +30,16 @@
             [x] Shuffle
             [x] Feedback
         Phase 2 – Database
-            [ ] Save all settings
-            [ ] Load them correctly 
+            [x] Save all settings
+            [x] Load them correctly 
+            [x] Add word button
+            [x] Actions column
+            [x] Edit work
+            [ ] Delete work
+            [ ] confirmation messages
+            [ ] better spacing
+            [ ] empty-state message
+            [ ] nicer table
         Phase 3 – Student interface
             [ ] Display categories
             [ ] Display words

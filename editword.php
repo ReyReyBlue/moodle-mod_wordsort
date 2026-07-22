@@ -12,9 +12,24 @@ if (!$id) {
     throw new moodle_exception('missingparam', '', '', 'id');
 }
 
+$wordid = optional_param('wordid', 0, PARAM_INT);
+
 $cm = get_coursemodule_from_id('wordsort', $id, 0, false, MUST_EXIST);
 $course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
 $wordsort = $DB->get_record('wordsort', ['id' => $cm->instance], '*', MUST_EXIST);
+$wordrecord = null;
+
+if ($wordid) {
+    $wordrecord = $DB->get_record(
+        'wordsort_words',
+        [
+            'id' => $wordid,
+            'wordsortid' => $wordsort->id
+        ],
+        '*',
+        MUST_EXIST
+    );
+}
 
 require_login($course, true, $cm);
 
@@ -26,13 +41,21 @@ $PAGE->set_title(get_string('word', 'wordsort'));
 $PAGE->set_heading(format_string($course->fullname));
 
 $form = new word_form(
-    new moodle_url('/mod/wordsort/editword.php', ['id' => $cm->id]),
+    new moodle_url('/mod/wordsort/editword.php', [
+    'id' => $cm->id,
+    'wordid' => $wordid
+]),
     [
         'cmid' => $cm->id,
         'categoryleft' => $wordsort->categoryleft,
         'categoryright' => $wordsort->categoryright
     ]
 );
+
+if ($wordrecord) {
+    $wordrecord->id = $cm->id;
+    $form->set_data($wordrecord);
+}
 
 if ($form->is_cancelled()) {
     redirect(new moodle_url('/mod/wordsort/managewords.php', [
@@ -43,12 +66,24 @@ if ($form->is_cancelled()) {
 if ($data = $form->get_data()) {
 
     $record = new stdClass();
-    $record->wordsortid = $wordsort->id;
-    $record->word = trim($data->word);
-    $record->correctside = $data->correctside;
-    $record->sortorder = 0;
 
+if ($wordid) {
+    // Update existing word.
+    $record->id = $wordid;
+} else {
+    // Create new word.
+    $record->wordsortid = $wordsort->id;
+    $record->sortorder = 0;
+}
+
+$record->word = trim($data->word);
+$record->correctside = $data->correctside;
+
+if ($wordid) {
+    $DB->update_record('wordsort_words', $record);
+} else {
     $DB->insert_record('wordsort_words', $record);
+}
 
     redirect(
         new moodle_url('/mod/wordsort/managewords.php', [

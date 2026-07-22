@@ -2,8 +2,7 @@
 
 2.5 h
 
-Activity
-Created the initial Moodle activity module structure.
+Created the initial Moodle activity module structure. 
 Implemented the first plugin files.
 Created the English language pack.
 Prepared project documentation.
@@ -17,9 +16,8 @@ ________________________________________________________________________________
 
 3 h
 
-Activity
 Created written and on paper visualitation how things would look like and thinking what parameters are needed.
-____________________________________________________________________________________________
+___________________________________________________________________________________________
 
 20 July 2026
 
@@ -30,7 +28,7 @@ Moodle installed the first version of my plugin. Made first commit in github and
 2 h
 
 Complete activity settings form (branch: feature/mod-form-settings)
-______________________________________________________________________
+___________________________________________________________________________________________
 
 21 July 2026
 
@@ -41,3 +39,10 @@ Redesigned activity settings stored in the database. Timing settings. Maximum at
 4 h 
 
 Everything related to creating, editing, deleting and ordering the words that belong to a Word Sort activity.
+___________________________________________________________________________________________
+
+22 July 2026
+
+07:30-
+
+Added a "Add word" button, actions column, edit button works.

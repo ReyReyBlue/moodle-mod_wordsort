@@ -36,3 +36,4 @@ $string['word'] = 'Word';
 $string['category'] = 'Category';
 $string['addword'] = 'Add word';
 $string['wordsaved'] = 'Word saved successfully.';
+$string['managewords'] = 'Manage words';
