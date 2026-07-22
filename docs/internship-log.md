@@ -43,6 +43,6 @@ ________________________________________________________________________________
 
 22 July 2026
 
-07:30-
+6,5 h
 
-Added a "Add word" button, actions column, edit button works.
+Added a "Add word" button, actions column, edit button works. Up/down buttons and functions. Bulk add words

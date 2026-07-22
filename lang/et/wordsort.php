@@ -45,3 +45,5 @@ $string['confirmdeleteword'] = 'Are you sure you want to delete the word "{$a}"?
 $string['worddeleted'] = 'Word deleted.';
 $string['moveup'] = 'Move up';
 $string['movedown'] = 'Move down';
+$string['bulkaddwords'] = 'Bulk add words';
+$string['bulkwordsadded'] = '{$a} words were added.';

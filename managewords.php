@@ -40,6 +40,16 @@ echo $OUTPUT->single_button(
     'get'
 );
 
+$bulkaddurl = new moodle_url('/mod/wordsort/bulkadd.php', [
+    'id' => $cm->id
+]);
+
+echo $OUTPUT->single_button(
+    $bulkaddurl,
+    get_string('bulkaddwords', 'wordsort'),
+    'get'
+);
+
 echo html_writer::tag('p', '<strong>Left category:</strong> ' . s($wordsort->categoryleft));
 echo html_writer::tag('p', '<strong>Right category:</strong> ' . s($wordsort->categoryright));
 

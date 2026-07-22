@@ -37,8 +37,9 @@
             [x] Edit work
             [x] Delete work
             [x] confirmation messages
-            [ ] word ordering
-            [ ] nicer table
+            [x] word ordering
+            [x] nicer table
+            [x] Bulk add words
         Phase 3 – Student interface
             [ ] Display categories
             [ ] Display words
