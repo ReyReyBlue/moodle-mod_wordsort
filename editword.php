@@ -73,7 +73,17 @@ if ($wordid) {
 } else {
     // Create new word.
     $record->wordsortid = $wordsort->id;
-    $record->sortorder = 0;
+    $maxsortorder = $DB->get_field_sql(
+    "SELECT MAX(sortorder)
+       FROM {wordsort_words}
+      WHERE wordsortid = ?",
+    [$wordsort->id]
+);
+
+echo '<pre>';
+echo 'Max sortorder: ';
+
+$record->sortorder = is_null($maxsortorder) ? 0 : $maxsortorder + 1;
 }
 
 $record->word = trim($data->word);

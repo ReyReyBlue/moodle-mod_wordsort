@@ -35,10 +35,9 @@
             [x] Add word button
             [x] Actions column
             [x] Edit work
-            [ ] Delete work
-            [ ] confirmation messages
-            [ ] better spacing
-            [ ] empty-state message
+            [x] Delete work
+            [x] confirmation messages
+            [ ] word ordering
             [ ] nicer table
         Phase 3 – Student interface
             [ ] Display categories

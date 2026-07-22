@@ -43,3 +43,5 @@ $string['confirmdeleteword'] =
 $string['deleteword'] = 'Delete word';
 $string['confirmdeleteword'] = 'Are you sure you want to delete the word "{$a}"?';
 $string['worddeleted'] = 'Word deleted.';
+$string['moveup'] = 'Move up';
+$string['movedown'] = 'Move down';
