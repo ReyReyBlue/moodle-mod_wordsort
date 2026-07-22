@@ -79,10 +79,10 @@ else {
     'wordid' => $word->id
 ]);
 
-    $deleteurl = new moodle_url('/mod/wordsort/editword.php', [
-        'id' => $cm->id,
-        'wordid' => $word->id
-    ]);
+    $deleteurl = new moodle_url('/mod/wordsort/deleteword.php', [
+    'id' => $cm->id,
+    'wordid' => $word->id
+]);
 
 $actions =
     $OUTPUT->action_icon(

@@ -37,3 +37,9 @@ $string['category'] = 'Category';
 $string['addword'] = 'Add word';
 $string['wordsaved'] = 'Word saved successfully.';
 $string['managewords'] = 'Manage words';
+$string['worddeleted'] = 'Word deleted.';
+$string['confirmdeleteword'] = 
+    'Are you sure you want to delete the word "{$a}"?';
+$string['deleteword'] = 'Delete word';
+$string['confirmdeleteword'] = 'Are you sure you want to delete the word "{$a}"?';
+$string['worddeleted'] = 'Word deleted.';
