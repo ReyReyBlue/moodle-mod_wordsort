@@ -37,7 +37,7 @@ if (has_capability('moodle/course:manageactivities', $context)) {
         4
     );
 
-    echo html_writer::start_div('wordsort-teacher-toolbar mb-3');
+    echo html_writer::start_div('wordsort-teacher-toolbar mb-4');
 
     // Buttons will go here.
     echo html_writer::link(
@@ -65,12 +65,60 @@ echo html_writer::link(
 );
 
     echo html_writer::end_div();
+    echo html_writer::empty_tag('hr');
 }
 
 //--------------------------------------------------
 // Start screen
 //--------------------------------------------------
 
+echo html_writer::start_div('wordsort-start-screen mt-4');
+
+echo html_writer::start_div('card');
+
+echo html_writer::start_div('card-body');
+
+// Activity information.
+
+echo html_writer::div(
+    get_string('attemptslabel', 'wordsort') .
+    ': ' .
+    $wordsort->maxattempts,
+    'mb-3'
+);
+
+if ($wordsort->timingmode != 0) {
+
+    echo html_writer::div(
+        get_string('timelimitlabel', 'wordsort') .
+        ': ' .
+        $wordsort->timevalue .
+        ' ' .
+        get_string('seconds'),
+        'mb-4'
+    );
+}
+
+// Start button.
+
+echo html_writer::start_div('text-center');
+
+echo html_writer::tag(
+    'button',
+    get_string('start', 'wordsort'),
+    [
+        'id' => 'wordsort-start',
+        'class' => 'btn btn-primary px-4 py-2'
+    ]
+);
+
+echo html_writer::end_div(); // text-center
+
+echo html_writer::end_div(); // card-body
+
+echo html_writer::end_div(); // card
+
+echo html_writer::end_div(); // wordsort-start-screen
 
 //--------------------------------------------------
 // Activity screen

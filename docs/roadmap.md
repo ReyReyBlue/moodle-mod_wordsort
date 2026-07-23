@@ -42,7 +42,7 @@
             [x] Bulk add words
         Phase 3 – Teacher/Student interface
             [x] Teacher toolbar
-            [ ] Display the Start screen
+            [x] Display the Start screen
             [ ] Show one word
             [ ] Add the left/right arrows 
             [ ] Animate the word

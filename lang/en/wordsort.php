@@ -53,3 +53,7 @@ $string['timelimit'] = 'Time limit';
 $string['finished'] = 'Finished';
 $string['score'] = 'Score';
 $string['teachertools'] = 'Teacher tools';
+$string['attempts'] = 'Attempts';
+$string['attemptslabel'] = 'Attempts';
+$string['timelimitlabel'] = 'Time limit';
+$string['notimelimit'] = 'No time limit';
