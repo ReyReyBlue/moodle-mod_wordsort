@@ -72,7 +72,12 @@ echo html_writer::link(
 // Start screen
 //--------------------------------------------------
 
-echo html_writer::start_div('wordsort-start-screen mt-4');
+echo html_writer::start_div(
+    'wordsort-start-screen mt-4',
+    [
+        'id' => 'wordsort-start-screen'
+    ]
+);
 
 echo html_writer::start_div('card');
 
@@ -124,9 +129,39 @@ echo html_writer::end_div(); // wordsort-start-screen
 // Activity screen
 //--------------------------------------------------
 
+echo html_writer::start_div(
+    'wordsort-activity-screen',
+    [
+        'id' => 'wordsort-activity-screen',
+        'style' => 'display:none;'
+    ]
+);
+
+echo html_writer::start_div('card');
+
+echo html_writer::start_div('card-body text-center');
+
+// Temporary placeholder.
+
+echo $OUTPUT->heading('Activity screen', 3);
+
+echo html_writer::div(
+    'The first word will appear here.',
+    'mt-3'
+);
+
+echo html_writer::end_div(); // card-body
+
+echo html_writer::end_div(); // card
+
+echo html_writer::end_div(); // activity-screen
 
 //--------------------------------------------------
 // Finish screen
 //--------------------------------------------------
+$PAGE->requires->js_call_amd(
+    'mod_wordsort/view',
+    'init'
+);
 
 echo $OUTPUT->footer();
