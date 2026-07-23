@@ -40,8 +40,7 @@
             [x] word ordering
             [x] nicer table
             [x] Bulk add words
-        Phase 3 – Teacher/Student interface
-            [x] Teacher toolbar
+        Phase 3 – Student interface
             [x] Display the Start screen
             [ ] Show one word
             [ ] Add the left/right arrows 
@@ -63,10 +62,10 @@
 
 ## Sprint 4 – Teacher Interface
 
-- [ ] Activity settings
-- [ ] Add words
-- [ ] Edit words
-- [ ] Delete words
+- [x] Activity settings
+- [x] Add words
+- [x] Edit words
+- [x] Delete words
 
 ---
 

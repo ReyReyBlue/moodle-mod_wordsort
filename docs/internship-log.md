@@ -52,9 +52,9 @@ ________________________________________________________________________________
 
 23 July 2026
 
-3 h
+10 h
 
 Teacher toolbar added: Teacher-only toolbar displayed on the activity page. Direct access to Add word, Bulk add, Manage words, and Edit settings. Uses standard Moodle buttons and capability checks. Integrated into view.php without affecting the student view.
 Start screen
 
-17:00 - Activity screen, connecting moodle with AMD module
+Activity screen, connecting moodle with AMD module. 
