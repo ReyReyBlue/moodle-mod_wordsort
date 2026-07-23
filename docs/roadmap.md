@@ -40,11 +40,16 @@
             [x] word ordering
             [x] nicer table
             [x] Bulk add words
-        Phase 3 – Student interface
-            [ ] Display categories
-            [ ] Display words
-            [ ] Drag-and-drop sorting
-            [ ] Timer
+        Phase 3 – Teacher/Student interface
+            [x] Teacher toolbar
+            [ ] Display the Start screen
+            [ ] Show one word
+            [ ] Add the left/right arrows 
+            [ ] Animate the word
+            [ ] Load the next word
+            [ ] Finish screen
+            [ ] Store attempts
+            [ ] Grading
         Phase 4 – Grading & reports
             [ ] Calculate score
             [ ] Record completion time

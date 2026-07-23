@@ -43,6 +43,15 @@ ________________________________________________________________________________
 
 22 July 2026
 
-6,5 h
+10 h
 
 Added a "Add word" button, actions column, edit button works. Up/down buttons and functions. Bulk add words
+
+started feature/student-interface, found an error in teacher interface.
+___________________________________________________________________________________________
+
+23 July 2026
+
+13:00-
+
+Teacher toolbar added: Teacher-only toolbar displayed on the activity page. Direct access to Add word, Bulk add, Manage words, and Edit settings. Uses standard Moodle buttons and capability checks. Integrated into view.php without affecting the student view.
