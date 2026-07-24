@@ -17,6 +17,17 @@ $words = $DB->get_records(
     ['wordsortid' => $wordsort->id],
     'sortorder ASC'
 );
+
+// Prepare words for JavaScript.
+$jswords = [];
+
+foreach ($words as $word) {
+    $jswords[] = [
+    'word' => $word->word,
+    'correctside' => (int)$word->correctside,
+];
+}
+
 $firstword = reset($words);
 
 
@@ -37,7 +48,8 @@ $PAGE->set_heading(format_string($course->fullname));
 // JavaScript.
 $PAGE->requires->js_call_amd(
     'mod_wordsort/view',
-    'init'
+    'init',
+    [$jswords]
 );
 
 echo $OUTPUT->header();
@@ -177,12 +189,8 @@ echo html_writer::start_div(
     ]
 );
 
-$displayword = $firstword
-    ? format_string($firstword->word)
-    : get_string('nowords', 'wordsort');
-
 echo html_writer::div(
-    $displayword,
+    '',
     'wordsort-word',
     [
         'id' => 'wordsort-word'

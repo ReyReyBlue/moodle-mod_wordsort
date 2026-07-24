@@ -45,7 +45,7 @@
             [x] Show one word
             [x] Add the left/right arrows 
             [ ] Animate the word
-            [ ] Load the next word
+            [x] Load the next word
             [ ] Finish screen
             [ ] Store attempts
             [ ] Grading

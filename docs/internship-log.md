@@ -61,8 +61,7 @@ Activity screen, connecting moodle with AMD module.
 
 24 July 2026
 
-7:00-9:30 - 2.5h
-10:00-
+7:00-15:00 - 8h
 
 Arrow buttons for student interface. 
 
