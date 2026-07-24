@@ -11,6 +11,15 @@ $cm = get_coursemodule_from_id('wordsort', $id, 0, false, MUST_EXIST);
 $course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
 $wordsort = $DB->get_record('wordsort', ['id' => $cm->instance], '*', MUST_EXIST);
 
+// Get words for this activity.
+$words = $DB->get_records(
+    'wordsort_words',
+    ['wordsortid' => $wordsort->id],
+    'sortorder ASC'
+);
+$firstword = reset($words);
+
+
 require_login($course, true, $cm);
 
 $context = context_module::instance($cm->id);
@@ -168,9 +177,12 @@ echo html_writer::start_div(
     ]
 );
 
-// Word (temporary placeholder).
+$displayword = $firstword
+    ? format_string($firstword->word)
+    : get_string('nowords', 'wordsort');
+
 echo html_writer::div(
-    'Apple',
+    $displayword,
     'wordsort-word',
     [
         'id' => 'wordsort-word'

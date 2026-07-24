@@ -64,5 +64,5 @@ Activity screen, connecting moodle with AMD module.
 7:00-9:30 - 2.5h
 10:00-
 
-Arrow buttons for student interface
+Arrow buttons for student interface. 
 
