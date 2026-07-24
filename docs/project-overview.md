@@ -52,6 +52,7 @@ Current milestone:
 - Initial plugin structure created
 - Requirements documented
 - Database design in progress
+- Test is playable for one attempt
 
 ---
 

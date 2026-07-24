@@ -47,7 +47,7 @@
             [ ] Animate the word
             [x] Load the next word
             [ ] Finish screen
-            [ ] Store attempts
+            [x] Store attempts
             [ ] Grading
         Phase 4 – Grading & reports
             [ ] Calculate score
@@ -72,6 +72,7 @@
 ## Sprint 5 – Student Interface
 
 - [ ] Timer
+- [ ] Feedback
 - [ ] Start screen
 - [ ] Game screen
 - [ ] Finish screen
