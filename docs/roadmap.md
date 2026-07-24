@@ -43,7 +43,7 @@
         Phase 3 – Student interface
             [x] Display the Start screen
             [ ] Show one word
-            [ ] Add the left/right arrows 
+            [x] Add the left/right arrows 
             [ ] Animate the word
             [ ] Load the next word
             [ ] Finish screen

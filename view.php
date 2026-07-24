@@ -157,14 +157,27 @@ echo html_writer::start_div('card');
 
 echo html_writer::start_div('card-body text-center');
 
-// Word.
+//--------------------------------------------------
+// Item
+//--------------------------------------------------
+
+echo html_writer::start_div(
+    'wordsort-item',
+    [
+        'id' => 'wordsort-item'
+    ]
+);
+
+// Word (temporary placeholder).
 echo html_writer::div(
     'Apple',
-    'wordsort-word mb-5',
+    'wordsort-word',
     [
         'id' => 'wordsort-word'
     ]
 );
+
+echo html_writer::end_div(); // wordsort-item
 
 // Category buttons.
 echo html_writer::start_div('wordsort-choices mt-4');
