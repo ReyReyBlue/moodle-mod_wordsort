@@ -69,10 +69,14 @@ ________________________________________________________________________________
 
 25 July 2026
 
-7:00 -
+10h
+
+Refactored the game flow into clear functions. Added a dedicated results screen. Moved the layout into view.php instead of building HTML in JavaScript. Implemented a working stopwatch lifecycle (start → stop → display). Cleaned up the DOM handling by storing element references.
+___________________________________________________________________________________________
+
+
 Up Next: 
 
-Timer support
 Attempt limits
 Saving results to Moodle
 Optional immediate feedback

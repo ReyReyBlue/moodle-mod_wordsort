@@ -251,7 +251,27 @@ echo html_writer::end_div(); // activity-screen
 // Finish screen
 //--------------------------------------------------
 
-// TODO: Implement finish screen.
+echo html_writer::start_div(
+    'wordsort-results-screen',
+    [
+        'id' => 'wordsort-results-screen',
+        'style' => 'display:none;'
+    ]
+);
+
+echo html_writer::tag('h2', get_string('finished', 'mod_wordsort'));
+
+echo html_writer::div('', 'wordsort-result-score', [
+    'id' => 'wordsort-result-score'
+]);
+
+echo html_writer::div('', 'wordsort-result-time', [
+    'id' => 'wordsort-result-time'
+]);
+
+echo html_writer::div('', 'wordsort-result-buttons', [
+    'id' => 'wordsort-result-buttons'
+]);
 
 echo html_writer::end_div(); // wordsort-game
 

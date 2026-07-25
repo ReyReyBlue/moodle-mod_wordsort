@@ -4,14 +4,23 @@ export const init = (words, timingmode, timevalue) => {
     let correctAnswers = 0;
     let wrongAnswers = 0;
     let timerInterval;
+    let elapsed = 0;
+
+    const startScreen = document.getElementById('wordsort-start-screen');
+    const activityScreen = document.getElementById('wordsort-activity-screen');
+    const resultsScreen = document.getElementById('wordsort-results-screen');
+    const resultScore = document.getElementById('wordsort-result-score');
+    const resultTime = document.getElementById('wordsort-result-time');
+    const resultButtons = document.getElementById('wordsort-result-buttons');
 
     const wordElement = document.getElementById('wordsort-word');
-    const leftButton = document.querySelector('.wordsort-choice-left');
-    const rightButton = document.querySelector('.wordsort-choice-right');
     const timerElement = document.getElementById('wordsort-timer');
 
-    //temp change to show timer value on start screen
+    const leftButton = document.querySelector('.wordsort-choice-left');
+    const rightButton = document.querySelector('.wordsort-choice-right');
 
+    const startButton = document.getElementById('wordsort-start');
+    
     const mode = Number(timingmode);
 
     if (mode === 1) {
@@ -51,51 +60,64 @@ function nextWord() {
     currentIndex++;
 
     if (currentIndex >= words.length) {
-
-        clearInterval(timerInterval);
-
-        wordElement.textContent =
-            `Finished! ${correctAnswers}/${words.length} correct`;
-
-        return;
-    }
-
+    finishGame();
+    return;
+}
         showWord();
     }
 
-    const startButton = document.getElementById('wordsort-start');
+function finishGame() {
 
+    clearInterval(timerInterval);
+
+    activityScreen.style.display = 'none';
+    resultsScreen.style.display = 'block';
+
+    resultScore.textContent =
+    `Score: ${correctAnswers}/${words.length}`;
+
+    resultTime.textContent =
+    `Time: ${elapsed} seconds`;
+}
+    
     if (!startButton) {
         return;
     }
 
     startButton.addEventListener('click', () => {
 
-        document.getElementById('wordsort-start-screen').style.display = 'none';
-        document.getElementById('wordsort-activity-screen').style.display = 'block';
+        startScreen.style.display = 'none';
+        activityScreen.style.display = 'block';
 
         if (mode === 1) {
 
             // Countdown will go here later.
 
-        } else if (mode === 2) {
+} else if (mode === 2) {
 
-             let elapsed = 0;
+    clearInterval(timerInterval);
 
-             timerInterval = setInterval(() => {
-                elapsed++;
-                timerElement.textContent = `Stopwatch: ${elapsed}`;
-             }, 1000);
-        }
+    elapsed = 0;
+    timerElement.textContent = 'Stopwatch: 0';
+
+    timerInterval = setInterval(() => {
+        elapsed++;
+        timerElement.textContent = `Stopwatch: ${elapsed}`;
+    }, 1000);
+}
         showWord();
     });
 
-leftButton.addEventListener('click', () => {
-    checkAnswer(0);
-});
+if (leftButton) {
+    leftButton.addEventListener('click', () => {
+        checkAnswer(0);
+    });
+}
 
-rightButton.addEventListener('click', () => {
-    checkAnswer(1);
-});
+if (rightButton) {
+    rightButton.addEventListener('click', () => {
+        checkAnswer(1);
+    });
+}
 
 };

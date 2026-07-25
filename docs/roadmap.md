@@ -56,6 +56,7 @@
             [ ] Teacher reports
 - [ ] Items table
 - [ ] Attempts table
+- [ ] Scoring rules
 - [ ] Answers table
 
 ---
@@ -71,10 +72,10 @@
 
 ## Sprint 5 – Student Interface
 
-- [ ] Timer
+- [x] Timer
 - [ ] Feedback
-- [ ] Start screen
-- [ ] Game screen
+- [x] Start screen
+- [x] Game screen
 - [ ] Finish screen
 
 ---

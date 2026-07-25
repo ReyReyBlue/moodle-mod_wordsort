@@ -62,3 +62,30 @@ Scoring
 ○ Correct answers only
 ○ Correct answers + completion time
 ○ Time bonus
+
+## Attempts and grading
+
+Students may retry the activity until they submit their result or until the maximum number of attempts has been reached. Practice attempts are not stored in the gradebook. When the result is submitted, the plugin records only the best attempt achieved during that session.
+
+two options:
+
+Attempts allowed: 3
+
+Scoring rules:
+• Only your best attempt will be submitted.
+• You may submit your result at any time.
+• If attempts remain, you can choose to try again.
+• After your final attempt, the best result will be submitted.
+
+[ Start ]
+
+OR
+
+Attempts allowed: Unlimited
+
+Scoring rules:
+• Only your best attempt will be submitted.
+• You may practice as many times as you like.
+• Submit your result when you are satisfied.
+
+[ Start ]

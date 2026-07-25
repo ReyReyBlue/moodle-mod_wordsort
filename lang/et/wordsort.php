@@ -58,3 +58,7 @@ $string['attemptslabel'] = 'Attempts';
 $string['timelimitlabel'] = 'Time limit';
 $string['notimelimit'] = 'No time limit';
 $string['nowords'] = 'No words have been added yet.';
+$string['tryagain'] = 'Try again';
+$string['submit'] = 'Submit';
+$string['score'] = 'Score';
+$string['time'] = 'Time';
