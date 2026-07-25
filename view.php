@@ -49,7 +49,11 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->requires->js_call_amd(
     'mod_wordsort/view',
     'init',
-    [$jswords]
+    [
+        $jswords,
+        $wordsort->timingmode,
+        $wordsort->timevalue
+    ]
 );
 
 echo $OUTPUT->header();
@@ -181,6 +185,14 @@ echo html_writer::start_div('card-body text-center');
 //--------------------------------------------------
 // Item
 //--------------------------------------------------
+
+echo html_writer::div(
+    '',
+    'wordsort-timer',
+    [
+        'id' => 'wordsort-timer'
+    ]
+);
 
 echo html_writer::start_div(
     'wordsort-item',
