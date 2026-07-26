@@ -10,7 +10,9 @@ export const init = (words, timingmode, timevalue) => {
 
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
+
     const resultsScreen = document.getElementById('wordsort-results-screen');
+    const resultAttempts = document.getElementById('wordsort-result-attempts');
     const resultScore = document.getElementById('wordsort-result-score');
     const resultTime = document.getElementById('wordsort-result-time');
     const resultButtons = document.getElementById('wordsort-result-buttons');
@@ -127,12 +129,11 @@ function finishGame() {
 
     activityScreen.style.display = 'none';
     resultsScreen.style.display = 'block';
+    resultAttempts.textContent = `Attempts completed: ${attempts.length}`;
 
-    resultScore.textContent =
-        `Score: ${correctAnswers}/${words.length}`;
+    resultScore.textContent = `Score: ${correctAnswers}/${words.length}`;
 
-    resultTime.textContent =
-        `Time: ${elapsed} seconds`;
+    resultTime.textContent = `Time: ${elapsed} seconds`;
 }
     
 if (!startButton) {

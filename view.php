@@ -261,6 +261,10 @@ echo html_writer::start_div(
 
 echo html_writer::tag('h2', get_string('finished', 'mod_wordsort'));
 
+echo html_writer::div('', 'wordsort-result-attempts', [
+    'id' => 'wordsort-result-attempts'
+]);
+
 echo html_writer::div('', 'wordsort-result-score', [
     'id' => 'wordsort-result-score'
 ]);
