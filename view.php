@@ -269,10 +269,19 @@ echo html_writer::div('', 'wordsort-result-time', [
     'id' => 'wordsort-result-time'
 ]);
 
-echo html_writer::div('', 'wordsort-result-buttons', [
+echo html_writer::start_div('wordsort-result-buttons', [
     'id' => 'wordsort-result-buttons'
 ]);
 
-echo html_writer::end_div(); // wordsort-game
+echo html_writer::tag(
+    'button',
+    get_string('tryagain', 'mod_wordsort'),
+    [
+        'id' => 'wordsort-tryagain',
+        'type' => 'button'
+    ]
+);
+
+echo html_writer::end_div();
 
 echo $OUTPUT->footer();

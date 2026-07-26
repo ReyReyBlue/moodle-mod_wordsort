@@ -89,3 +89,35 @@ Scoring rules:
 • Submit your result when you are satisfied.
 
 [ Start ]
+
+## Activity lifecycle
+
+Open activity
+      │
+      ▼
+Start
+      │
+      ▼
+Attempt becomes ACTIVE
+      │
+      ├───────────────┐
+      │               │
+Finish normally    Leave activity
+      │          (F5, close tab,
+      │           browser crash,
+      │           navigate away)
+      │               │
+      ▼               ▼
+Results screen    Attempt ABANDONED
+      │               │
+      ├───────────────┘
+      ▼
+Submit best completed result
+
+## Storing Data
+
+Situation	                Status	        Score
+______________________________________________________
+Finished normally	        Completed	    12/15
+Timer reached 0	            Timed out	    9/15
+Refresh / closed browser	Abandoned	    2/15
