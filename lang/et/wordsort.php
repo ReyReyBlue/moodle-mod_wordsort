@@ -62,8 +62,30 @@ $string['tryagain'] = 'Try again';
 $string['submit'] = 'Submit';
 $string['score'] = 'Score';
 $string['time'] = 'Time';
-$string['nowordsadded'] = 'No words have been added yet. This activity is not ready to play.';
+$string['nowordsadded'] = 'No words have been added yet.';
 $string['finishedaddingwords'] = 'Finished adding words?';
 $string['previewactivity'] = 'Preview activity';
 $string['previewactivitydesc'] =
     'Preview the activity exactly as your students will see it.';
+$string['activitysetup'] =
+    'Word Sort setup';
+
+$string['activitysetupdesc'] =
+    'This activity is not ready for students yet. Complete the remaining setup steps below.';
+
+$string['categoriesconfigured'] =
+    'Categories configured';
+
+$string['wordsnotadded'] =
+    'Words have not been added yet
+    
+    Add your first word to begin building the activity.';
+
+$string['activitysetupnext'] =
+    'Next step: add at least one word.';
+$string['categories'] = 'Categories';
+$string['words'] = 'Words';
+$string['leftcategory'] = 'Left category';
+$string['rightcategory'] = 'Right category';
+$string['nextstep'] = 'Next step';
+$string['addfirstword'] = 'Add your first word to begin building the activity.';

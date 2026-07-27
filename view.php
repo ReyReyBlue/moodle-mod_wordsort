@@ -64,9 +64,33 @@ echo $OUTPUT->header();
 
 if (!$activityready) {
 
-    echo $OUTPUT->notification(
-        get_string('nowordsadded', 'mod_wordsort'),
-        'warning'
+    echo html_writer::start_div('card mt-4');
+
+    echo html_writer::start_div('card-body');
+
+    echo $OUTPUT->heading(
+        get_string('activitysetup', 'mod_wordsort'),
+        2
+    );
+
+    echo html_writer::div(
+        get_string('activitysetupdesc', 'mod_wordsort'),
+        'mb-4'
+    );
+
+    echo html_writer::div(
+        '✓ ' . get_string('categoriesconfigured', 'mod_wordsort'),
+        'mb-2'
+    );
+
+    echo html_writer::div(
+        '✗ ' . get_string('wordsnotadded', 'mod_wordsort'),
+        'mb-4'
+    );
+
+    echo html_writer::div(
+        get_string('activitysetupnext', 'mod_wordsort'),
+        'mb-3'
     );
 
     echo html_writer::link(
@@ -76,6 +100,9 @@ if (!$activityready) {
         get_string('managewords', 'mod_wordsort'),
         ['class' => 'btn btn-primary']
     );
+
+    echo html_writer::end_div(); // card-body
+    echo html_writer::end_div(); // card
 
     echo $OUTPUT->footer();
     exit;

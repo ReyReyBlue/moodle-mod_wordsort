@@ -83,7 +83,10 @@ ________________________________________________________________________________
 
 27 July 2026
 
-07:00-
+8 h
+
+Activity readiness check in view.php. Teacher guidance when no words exist. Preview Activity button in managewords.php. Attempt progress (1 / 5) on the results screen. Best score on the results screen. Improve manage words page layout and teacher workflow
+___________________________________________________________________________________________
 
 Up Next: 
 
