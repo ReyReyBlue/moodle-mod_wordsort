@@ -62,3 +62,8 @@ $string['tryagain'] = 'Try again';
 $string['submit'] = 'Submit';
 $string['score'] = 'Score';
 $string['time'] = 'Time';
+$string['nowordsadded'] = 'No words have been added yet. This activity is not ready to play.';
+$string['finishedaddingwords'] = 'Finished adding words?';
+$string['previewactivity'] = 'Preview activity';
+$string['previewactivitydesc'] =
+    'Preview the activity exactly as your students will see it.';

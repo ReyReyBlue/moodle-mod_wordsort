@@ -141,4 +141,24 @@ if ($word->sortorder < $maxsortorder) {
     echo html_writer::table($table);
 }
 
+echo html_writer::empty_tag('hr');
+
+echo html_writer::tag(
+    'h4',
+    get_string('finishedaddingwords', 'mod_wordsort')
+);
+
+echo html_writer::div(
+    get_string('previewactivitydesc', 'mod_wordsort'),
+    'mb-3'
+);
+
+echo html_writer::link(
+    new moodle_url('/mod/wordsort/view.php', [
+        'id' => $cm->id
+    ]),
+    get_string('previewactivity', 'mod_wordsort'),
+    ['class' => 'btn btn-primary']
+);
+
 echo $OUTPUT->footer();

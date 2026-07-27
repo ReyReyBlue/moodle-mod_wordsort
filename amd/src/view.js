@@ -1,4 +1,4 @@
-export const init = (words, timingmode, timevalue) => {
+export const init = (words, timingmode, timevalue, maxAttempts) => {
 
     let currentIndex = 0;
     let correctAnswers = 0;
@@ -13,6 +13,8 @@ export const init = (words, timingmode, timevalue) => {
 
     const resultsScreen = document.getElementById('wordsort-results-screen');
     const resultAttempts = document.getElementById('wordsort-result-attempts');
+    const resultAttempt = document.getElementById('wordsort-result-attempt');
+    const resultBestScore = document.getElementById('wordsort-result-bestscore');
     const resultScore = document.getElementById('wordsort-result-score');
     const resultTime = document.getElementById('wordsort-result-time');
     const resultButtons = document.getElementById('wordsort-result-buttons');
@@ -113,6 +115,24 @@ function saveAttempt(status) {
     currentAttempt++;
 }    
 
+function getBestAttempt() {
+
+    if (attempts.length === 0) {
+        return null;
+    }
+
+    let bestAttempt = attempts[0];
+
+    for (let i = 1; i < attempts.length; i++) {
+
+        if (attempts[i].correct > bestAttempt.correct) {
+            bestAttempt = attempts[i];
+        }
+    }
+
+    return bestAttempt;
+}
+
 function resetGame() {
 
     resultsScreen.style.display = 'none';
@@ -129,11 +149,22 @@ function finishGame() {
 
     activityScreen.style.display = 'none';
     resultsScreen.style.display = 'block';
-    resultAttempts.textContent = `Attempts completed: ${attempts.length}`;
 
-    resultScore.textContent = `Score: ${correctAnswers}/${words.length}`;
+    resultAttempt.textContent =
+    `Attempt: ${currentAttempt - 1} / ${maxAttempts}`;
 
-    resultTime.textContent = `Time: ${elapsed} seconds`;
+    resultScore.textContent =
+        `Score: ${correctAnswers}/${words.length}`;
+
+    const bestAttempt = getBestAttempt();
+
+    if (bestAttempt) {
+        resultBestScore.textContent =
+            `Best score: ${bestAttempt.correct}/${words.length}`;
+    }
+
+    resultTime.textContent =
+        `Time: ${elapsed} seconds`;
 }
     
 if (!startButton) {

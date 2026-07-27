@@ -74,6 +74,16 @@ ________________________________________________________________________________
 Refactored the game flow into clear functions. Added a dedicated results screen. Moved the layout into view.php instead of building HTML in JavaScript. Implemented a working stopwatch lifecycle (start → stop → display). Cleaned up the DOM handling by storing element references.
 ___________________________________________________________________________________________
 
+26 July 2026
+
+3 h 
+
+We can see now multible attempts.
+___________________________________________________________________________________________
+
+27 July 2026
+
+07:00-
 
 Up Next: 
 

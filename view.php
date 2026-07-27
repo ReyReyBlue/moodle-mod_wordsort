@@ -18,6 +18,9 @@ $words = $DB->get_records(
     'sortorder ASC'
 );
 
+// Check if the activity is ready.
+$activityready = !empty($words);
+
 // Prepare words for JavaScript.
 $jswords = [];
 
@@ -52,11 +55,31 @@ $PAGE->requires->js_call_amd(
     [
         $jswords,
         $wordsort->timingmode,
-        $wordsort->timevalue
+        $wordsort->timevalue,
+        $wordsort->maxattempts
     ]
 );
 
 echo $OUTPUT->header();
+
+if (!$activityready) {
+
+    echo $OUTPUT->notification(
+        get_string('nowordsadded', 'mod_wordsort'),
+        'warning'
+    );
+
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/managewords.php', [
+            'id' => $cm->id
+        ]),
+        get_string('managewords', 'mod_wordsort'),
+        ['class' => 'btn btn-primary']
+    );
+
+    echo $OUTPUT->footer();
+    exit;
+}
 
 //--------------------------------------------------
 // Teacher toolbar
@@ -261,12 +284,20 @@ echo html_writer::start_div(
 
 echo html_writer::tag('h2', get_string('finished', 'mod_wordsort'));
 
+echo html_writer::div('', 'wordsort-result-attempt', [
+    'id' => 'wordsort-result-attempt'
+]);
+
 echo html_writer::div('', 'wordsort-result-attempts', [
     'id' => 'wordsort-result-attempts'
 ]);
 
 echo html_writer::div('', 'wordsort-result-score', [
     'id' => 'wordsort-result-score'
+]);
+
+echo html_writer::div('', 'wordsort-result-bestscore', [
+    'id' => 'wordsort-result-bestscore'
 ]);
 
 echo html_writer::div('', 'wordsort-result-time', [
@@ -286,6 +317,8 @@ echo html_writer::tag(
     ]
 );
 
-echo html_writer::end_div();
+echo html_writer::end_div(); // wordsort-result-buttons
+
+echo html_writer::end_div(); // wordsort-results-screen
 
 echo $OUTPUT->footer();
