@@ -44,7 +44,6 @@
             [x] Display the Start screen
             [x] Show one word
             [x] Add the left/right arrows 
-            [ ] Animate the word
             [x] Load the next word
             [x] Finish screen
             [x] Store attempts
@@ -73,7 +72,7 @@
 ## Sprint 5 – Student Interface
 
 - [x] Timer
-- [ ] Feedback
+- [x] Feedback
 - [x] Start screen
 - [x] Game screen
 - [ ] Finish screen

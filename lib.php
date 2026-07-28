@@ -12,9 +12,9 @@ defined('MOODLE_INTERNAL') || die();
 define('WORDSORT_NOTIMER', 0);
 define('WORDSORT_COUNTDOWN', 1);
 define('WORDSORT_STOPWATCH', 2);
-define('WORDSORT_FEEDBACKEACHMOVE', 0);
-define('WORDSORT_FEEDBACKSUBMIT', 1);
-define('WORDSORT_FEEDBACKNONE', 2);
+define('WORDSORT_FEEDBACKNONE', 0);
+define('WORDSORT_FEEDBACKEACHMOVE', 1);
+define('WORDSORT_FEEDBACKSUBMIT', 2);
 
 /**
  * Creates a new Word Sort activity.
@@ -39,6 +39,7 @@ function wordsort_add_instance($data, $mform = null) {
  * @param mod_wordsort_mod_form|null $mform
  * @return bool
  */
+
 function wordsort_update_instance($data, $mform = null) {
     global $DB;
 

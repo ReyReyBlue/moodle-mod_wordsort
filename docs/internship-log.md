@@ -90,16 +90,14 @@ ________________________________________________________________________________
 
 28 July 2026
 
-3 h + 2h
+12h
 
-Shuffle setting works. Shuffles on every new attempt. No page refresh required. 
+Shuffle setting works. Shuffles on every new attempt. No page refresh required. Feedback after every choice is nor available. A lot of time went to debugging to find and implement the JavaScript logic to display feedback under the given words.
 ___________________________________________________________________________________________
 
 Up Next: 
 
-Attempt limits
 Saving results to Moodle
-Optional immediate feedback
 Animations and polish
 
 

@@ -22,14 +22,9 @@
 /* Item */
 
 .wordsort-item {
-    min-height: 220px;
-
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-
-    margin-top: 2rem;
-    margin-bottom: 3rem;
 }
 
 /* Current word */
@@ -42,6 +37,16 @@
     transition:
         transform .2s ease,
         opacity .2s ease;
+}
+
+/* Feedback */
+
+.wordsort-feedback {
+    min-height: 2rem;
+    margin-top: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* Category buttons */

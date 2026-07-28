@@ -3,7 +3,8 @@ export const init = (
     timingmode,
     timevalue,
     maxAttempts,
-    shuffleEnabled
+    shuffleEnabled,
+    feedbackMode
 ) => {
 
     let currentIndex = 0;
@@ -14,10 +15,10 @@ export const init = (
     let attempts = [];
     let currentAttempt = 1;
     let currentWords = [];
+    let currentAnswers = [];
 
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
-
     const resultsScreen = document.getElementById('wordsort-results-screen');
     const resultAttempts = document.getElementById('wordsort-result-attempts');
     const resultAttempt = document.getElementById('wordsort-result-attempt');
@@ -25,19 +26,18 @@ export const init = (
     const resultScore = document.getElementById('wordsort-result-score');
     const resultTime = document.getElementById('wordsort-result-time');
     const resultButtons = document.getElementById('wordsort-result-buttons');
-
     const tryAgainButton = document.getElementById('wordsort-tryagain');
-
     const wordElement = document.getElementById('wordsort-word');
     const timerElement = document.getElementById('wordsort-timer');
-
     const leftButton = document.querySelector('.wordsort-choice-left');
     const rightButton = document.querySelector('.wordsort-choice-right');
-
     const startButton = document.getElementById('wordsort-start');
-    
+    const feedbackElement = document.getElementById('wordsort-feedback');
+        
     const mode = Number(timingmode);
-
+    
+    const feedback = Number(feedbackMode);
+    
     if (mode === 1) {
         timerElement.textContent = `Countdown: ${timevalue}`;
     } else if (mode === 2) {
@@ -72,6 +72,7 @@ export const init = (
         currentIndex = 0;
         correctAnswers = 0;
         wrongAnswers = 0;
+        currentAnswers = [];
 
         clearInterval(timerInterval);
 
@@ -122,6 +123,12 @@ export const init = (
             return;
         }
 
+        currentAnswers.push({
+            word: words[currentIndex].word,
+            selected: selectedSide,
+            correct: Number(words[currentIndex].correctside)
+        });
+
         const correct = Number(words[currentIndex].correctside);
 
         if (selectedSide === correct) {
@@ -130,7 +137,24 @@ export const init = (
             wrongAnswers++;
         }
 
-        nextWord();
+        if (feedback === 1) {
+           showFeedback(selectedSide === correct);
+        } else {
+            nextWord();
+        }
+    }
+
+    function showFeedback(isCorrect) {
+
+        feedbackElement.textContent =
+            isCorrect ? "✅ Correct" : "❌ Incorrect";
+
+        setTimeout(() => {
+
+            feedbackElement.textContent = "";
+            nextWord();
+
+        }, 1000);
     }
 
     function nextWord() {
@@ -145,18 +169,19 @@ export const init = (
     }
 
     function saveAttempt(status) {
-
+        
         attempts.push({
             number: currentAttempt,
             correct: correctAnswers,
             wrong: wrongAnswers,
             unanswered: words.length - (correctAnswers + wrongAnswers),
             time: elapsed,
-            status: status
+            status: status,
+            answers: [...currentAnswers]
         });
 
         currentAttempt++;
-    }    
+    }
 
     function getBestAttempt() {
 

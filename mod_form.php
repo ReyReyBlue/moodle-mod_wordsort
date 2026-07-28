@@ -137,7 +137,7 @@ $feedbackoptions[] = $mform->createElement(
     'radio',
     'feedbackmode',
     '',
-    get_string('feedbackeachmove', 'wordsort'),
+    get_string('feedbacknone', 'wordsort'),
     0
 );
 
@@ -145,7 +145,7 @@ $feedbackoptions[] = $mform->createElement(
     'radio',
     'feedbackmode',
     '',
-    get_string('feedbacksubmit', 'wordsort'),
+    get_string('feedbackeachmove', 'wordsort'),
     1
 );
 
@@ -153,7 +153,7 @@ $feedbackoptions[] = $mform->createElement(
     'radio',
     'feedbackmode',
     '',
-    get_string('feedbacknone', 'wordsort'),
+    get_string('feedbacksubmit', 'wordsort'),
     2
 );
 
@@ -161,17 +161,13 @@ $mform->addGroup(
     $feedbackoptions,
     'feedbackgroup',
     get_string('feedbackmode', 'wordsort'),
-    array('<br>'),
+    ['<br>'],
     false
 );
 
-$mform->setDefault(
-    'feedbackmode',
-    0
-);
+$mform->setDefault('feedbackmode', 0);
 
-
-    // Standard Moodle settings.
+// Standard Moodle settings.
     $this->standard_coursemodule_elements();
 
     // Save / Cancel buttons.

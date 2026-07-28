@@ -33,7 +33,6 @@ foreach ($words as $word) {
 
 $firstword = reset($words);
 
-
 require_login($course, true, $cm);
 
 $context = context_module::instance($cm->id);
@@ -57,7 +56,8 @@ $PAGE->requires->js_call_amd(
         $wordsort->timingmode,
         $wordsort->timevalue,
         $wordsort->maxattempts,
-        $wordsort->shufflewords
+        $wordsort->shufflewords,
+        $wordsort->feedbackmode
     ]
 );
 
@@ -227,6 +227,7 @@ echo html_writer::start_div(
     [
         'id' => 'wordsort-activity-screen'
     ]
+
 );
 
 echo html_writer::start_div('card');
@@ -257,6 +258,14 @@ echo html_writer::div(
     'wordsort-word',
     [
         'id' => 'wordsort-word'
+    ]
+);
+
+echo html_writer::div(
+    '',
+    'wordsort-feedback',
+    [
+        'id' => 'wordsort-feedback'
     ]
 );
 
