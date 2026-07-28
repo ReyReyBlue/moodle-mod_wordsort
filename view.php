@@ -18,13 +18,6 @@ $words = $DB->get_records(
     'sortorder ASC'
 );
 
-// Shuffle if enabled.
-echo '<pre>';
-foreach ($words as $word) {
-    echo $word->word . PHP_EOL;
-}
-echo '</pre>';
-
 // Check if the activity is ready.
 $activityready = !empty($words);
 

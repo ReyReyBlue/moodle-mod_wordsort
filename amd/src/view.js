@@ -79,15 +79,37 @@ export const init = (
 
         if (mode === 1) {
 
-            // Countdown will go here later.
+            // Countdown.
+            elapsed = timevalue;
+
+            timerElement.textContent = `Countdown: ${elapsed}`;
+
+            timerInterval = setInterval(() => {
+
+                elapsed--;
+
+                timerElement.textContent = `Countdown: ${elapsed}`;
+
+                if (elapsed <= 0) {
+
+                    clearInterval(timerInterval);
+
+                    finishGame();
+                }
+
+            }, 1000);
 
         } else if (mode === 2) {
 
+            // Stopwatch.
             timerElement.textContent = 'Stopwatch: 0';
 
             timerInterval = setInterval(() => {
+
                 elapsed++;
+
                 timerElement.textContent = `Stopwatch: ${elapsed}`;
+
             }, 1000);
         }
 
@@ -174,6 +196,12 @@ export const init = (
         resultAttempt.textContent =
         `Attempt: ${currentAttempt - 1} / ${maxAttempts}`;
 
+        if (currentAttempt > maxAttempts) {
+            tryAgainButton.style.display = 'none';
+        } else {
+            tryAgainButton.style.display = 'inline-block';
+        }
+
         resultScore.textContent =
             `Score: ${correctAnswers}/${words.length}`;
 
@@ -184,8 +212,24 @@ export const init = (
                 `Best score: ${bestAttempt.correct}/${words.length}`;
         }
 
-        resultTime.textContent =
-            `Time: ${elapsed} seconds`;
+        if (mode === 0) {
+            resultTime.style.display = 'none';
+        } else {
+            resultTime.style.display = 'block';
+
+            if (mode === 1) {
+
+                // Countdown: show time used.
+                const timeused = timevalue - elapsed;
+
+                resultTime.textContent = `Time: ${timeused} seconds`;
+
+            } else if (mode === 2) {
+
+                // Stopwatch: show elapsed time.
+                resultTime.textContent = `Time: ${elapsed} seconds`;
+            }
+        }
     }
         
     if (!startButton) {
