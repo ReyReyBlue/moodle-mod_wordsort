@@ -1,4 +1,10 @@
-export const init = (words, timingmode, timevalue, maxAttempts) => {
+export const init = (
+    words,
+    timingmode,
+    timevalue,
+    maxAttempts,
+    shuffleEnabled
+) => {
 
     let currentIndex = 0;
     let correctAnswers = 0;
@@ -7,6 +13,7 @@ export const init = (words, timingmode, timevalue, maxAttempts) => {
     let elapsed = 0;
     let attempts = [];
     let currentAttempt = 1;
+    let currentWords = [];
 
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
@@ -37,161 +44,175 @@ export const init = (words, timingmode, timevalue, maxAttempts) => {
         timerElement.textContent = `Stopwatch: 0`;
     }
 
-function showWord() {
+    function shuffleWords(array) {
 
-    if (!words.length) {
-        return;
-    }
+        for (let i = array.length - 1; i > 0; i--) {
 
-    wordElement.textContent = words[currentIndex].word;
-}
+            const j = Math.floor(Math.random() * (i + 1));
 
-function startAttempt() {
-
-    currentIndex = 0;
-    correctAnswers = 0;
-    wrongAnswers = 0;
-
-    clearInterval(timerInterval);
-
-    elapsed = 0;
-
-    if (mode === 1) {
-
-        // Countdown will go here later.
-
-    } else if (mode === 2) {
-
-        timerElement.textContent = 'Stopwatch: 0';
-
-        timerInterval = setInterval(() => {
-            elapsed++;
-            timerElement.textContent = `Stopwatch: ${elapsed}`;
-        }, 1000);
-    }
-
-    showWord();
-}
-
-function checkAnswer(selectedSide) {
-
-    if (currentIndex >= words.length) {
-        return;
-    }
-
-    const correct = Number(words[currentIndex].correctside);
-
-    if (selectedSide === correct) {
-        correctAnswers++;
-    } else {
-        wrongAnswers++;
-    }
-
-    nextWord();
-}
-
-function nextWord() {
-
-    currentIndex++;
-
-    if (currentIndex >= words.length) {
-    finishGame();
-    return;
-}
-        showWord();
-    }
-
-function saveAttempt(status) {
-
-    attempts.push({
-        number: currentAttempt,
-        correct: correctAnswers,
-        wrong: wrongAnswers,
-        unanswered: words.length - (correctAnswers + wrongAnswers),
-        time: elapsed,
-        status: status
-    });
-
-    currentAttempt++;
-}    
-
-function getBestAttempt() {
-
-    if (attempts.length === 0) {
-        return null;
-    }
-
-    let bestAttempt = attempts[0];
-
-    for (let i = 1; i < attempts.length; i++) {
-
-        if (attempts[i].correct > bestAttempt.correct) {
-            bestAttempt = attempts[i];
+            [array[i], array[j]] = [array[j], array[i]];
         }
     }
 
-    return bestAttempt;
-}
+    function showWord() {
 
-function resetGame() {
+        if (!words.length) {
+            return;
+        }
 
-    resultsScreen.style.display = 'none';
-    activityScreen.style.display = 'block';
-
-    startAttempt();
-}
-
-function finishGame() {
-
-    clearInterval(timerInterval);
-
-    saveAttempt('completed');
-
-    activityScreen.style.display = 'none';
-    resultsScreen.style.display = 'block';
-
-    resultAttempt.textContent =
-    `Attempt: ${currentAttempt - 1} / ${maxAttempts}`;
-
-    resultScore.textContent =
-        `Score: ${correctAnswers}/${words.length}`;
-
-    const bestAttempt = getBestAttempt();
-
-    if (bestAttempt) {
-        resultBestScore.textContent =
-            `Best score: ${bestAttempt.correct}/${words.length}`;
+        wordElement.textContent = words[currentIndex].word;
     }
 
-    resultTime.textContent =
-        `Time: ${elapsed} seconds`;
-}
-    
-if (!startButton) {
+    function startAttempt() {
+
+        if (shuffleEnabled) {
+            shuffleWords(words);
+        }
+
+        currentIndex = 0;
+        correctAnswers = 0;
+        wrongAnswers = 0;
+
+        clearInterval(timerInterval);
+
+        elapsed = 0;
+
+        if (mode === 1) {
+
+            // Countdown will go here later.
+
+        } else if (mode === 2) {
+
+            timerElement.textContent = 'Stopwatch: 0';
+
+            timerInterval = setInterval(() => {
+                elapsed++;
+                timerElement.textContent = `Stopwatch: ${elapsed}`;
+            }, 1000);
+        }
+
+        showWord();
+    }
+
+    function checkAnswer(selectedSide) {
+
+        if (currentIndex >= words.length) {
+            return;
+        }
+
+        const correct = Number(words[currentIndex].correctside);
+
+        if (selectedSide === correct) {
+            correctAnswers++;
+        } else {
+            wrongAnswers++;
+        }
+
+        nextWord();
+    }
+
+    function nextWord() {
+
+        currentIndex++;
+
+        if (currentIndex >= words.length) {
+        finishGame();
         return;
+        }
+            showWord();
     }
-    startButton.addEventListener('click', () => {
 
-        startScreen.style.display = 'none';
+    function saveAttempt(status) {
+
+        attempts.push({
+            number: currentAttempt,
+            correct: correctAnswers,
+            wrong: wrongAnswers,
+            unanswered: words.length - (correctAnswers + wrongAnswers),
+            time: elapsed,
+            status: status
+        });
+
+        currentAttempt++;
+    }    
+
+    function getBestAttempt() {
+
+        if (attempts.length === 0) {
+            return null;
+        }
+
+        let bestAttempt = attempts[0];
+
+        for (let i = 1; i < attempts.length; i++) {
+
+            if (attempts[i].correct > bestAttempt.correct) {
+                bestAttempt = attempts[i];
+            }
+        }
+
+        return bestAttempt;
+    }
+
+    function resetGame() {
+
+        resultsScreen.style.display = 'none';
         activityScreen.style.display = 'block';
-    startAttempt();    });
 
-if (leftButton) {
-    leftButton.addEventListener('click', () => {
-        checkAnswer(0);
-    });
-}
+        startAttempt();
+    }
 
-if (rightButton) {
-    rightButton.addEventListener('click', () => {
-        checkAnswer(1);
-    });
-}
+    function finishGame() {
 
-if (tryAgainButton) {
-    tryAgainButton.addEventListener('click', () => {
-        resetGame();
-    });
-}
+        clearInterval(timerInterval);
+
+        saveAttempt('completed');
+
+        activityScreen.style.display = 'none';
+        resultsScreen.style.display = 'block';
+
+        resultAttempt.textContent =
+        `Attempt: ${currentAttempt - 1} / ${maxAttempts}`;
+
+        resultScore.textContent =
+            `Score: ${correctAnswers}/${words.length}`;
+
+        const bestAttempt = getBestAttempt();
+
+        if (bestAttempt) {
+            resultBestScore.textContent =
+                `Best score: ${bestAttempt.correct}/${words.length}`;
+        }
+
+        resultTime.textContent =
+            `Time: ${elapsed} seconds`;
+    }
+        
+    if (!startButton) {
+            return;
+        }
+        startButton.addEventListener('click', () => {
+
+            startScreen.style.display = 'none';
+            activityScreen.style.display = 'block';
+        startAttempt();    });
+
+    if (leftButton) {
+        leftButton.addEventListener('click', () => {
+            checkAnswer(0);
+        });
+    }
+
+    if (rightButton) {
+        rightButton.addEventListener('click', () => {
+            checkAnswer(1);
+        });
+    }
+
+    if (tryAgainButton) {
+        tryAgainButton.addEventListener('click', () => {
+            resetGame();
+        });
+    }
 
 };

@@ -18,6 +18,13 @@ $words = $DB->get_records(
     'sortorder ASC'
 );
 
+// Shuffle if enabled.
+echo '<pre>';
+foreach ($words as $word) {
+    echo $word->word . PHP_EOL;
+}
+echo '</pre>';
+
 // Check if the activity is ready.
 $activityready = !empty($words);
 
@@ -56,7 +63,8 @@ $PAGE->requires->js_call_amd(
         $jswords,
         $wordsort->timingmode,
         $wordsort->timevalue,
-        $wordsort->maxattempts
+        $wordsort->maxattempts,
+        $wordsort->shufflewords
     ]
 );
 

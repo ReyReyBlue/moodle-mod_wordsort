@@ -46,7 +46,7 @@
             [x] Add the left/right arrows 
             [ ] Animate the word
             [x] Load the next word
-            [ ] Finish screen
+            [x] Finish screen
             [x] Store attempts
             [ ] Grading
         Phase 4 – Grading & reports

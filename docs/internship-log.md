@@ -83,9 +83,16 @@ ________________________________________________________________________________
 
 27 July 2026
 
-8 h
+10 h
 
-Activity readiness check in view.php. Teacher guidance when no words exist. Preview Activity button in managewords.php. Attempt progress (1 / 5) on the results screen. Best score on the results screen. Improve manage words page layout and teacher workflow
+Activity readiness check in view.php. Teacher guidance when no words exist. Preview Activity button in managewords.php. Attempt progress (1 / 5) on the results screen. Best score on the results screen. Improve manage words page layout and teacher workflow. Extra 2h for trying to move out of localhost to view my moodple paige on an better computer.
+___________________________________________________________________________________________
+
+28 July 2026
+
+2 h
+
+Shuffle setting works. Shuffles on every new attempt. No page refresh required. 
 ___________________________________________________________________________________________
 
 Up Next: 
