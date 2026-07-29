@@ -350,12 +350,58 @@ echo html_writer::tag(
     get_string('tryagain', 'mod_wordsort'),
     [
         'id' => 'wordsort-tryagain',
-        'type' => 'button'
+        'type' => 'button',
+        'class' => 'btn btn-secondary'
+    ]
+);
+
+echo html_writer::tag(
+    'button',
+    get_string('submit', 'mod_wordsort'),
+    [
+        'id' => 'wordsort-submit',
+        'type' => 'button',
+        'class' => 'btn btn-primary'
     ]
 );
 
 echo html_writer::end_div(); // wordsort-result-buttons
 
 echo html_writer::end_div(); // wordsort-results-screen
+
+//--------------------------------------------------
+// Submission review screen
+//--------------------------------------------------
+
+echo html_writer::start_div(
+    'wordsort-submission-screen',
+    [
+        'id' => 'wordsort-submission-screen',
+        'style' => 'display:none;'
+    ]
+);
+
+echo html_writer::tag(
+    'h2',
+    get_string('submissionsummary', 'mod_wordsort')
+);
+
+echo html_writer::div('', 'wordsort-submission-bestscore', [
+    'id' => 'wordsort-submission-bestscore'
+]);
+
+echo html_writer::div('', 'wordsort-submission-attempts', [
+    'id' => 'wordsort-submission-attempts'
+]);
+
+echo html_writer::div('', 'wordsort-submission-time', [
+    'id' => 'wordsort-submission-time'
+]);
+
+echo html_writer::end_div(); // wordsort-submission-screen
+
+echo html_writer::div('', 'wordsort-submission-answers', [
+    'id' => 'wordsort-submission-answers'
+]);
 
 echo $OUTPUT->footer();

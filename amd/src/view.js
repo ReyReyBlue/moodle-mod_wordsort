@@ -27,15 +27,21 @@ export const init = (
     const resultTime = document.getElementById('wordsort-result-time');
     const resultButtons = document.getElementById('wordsort-result-buttons');
     const tryAgainButton = document.getElementById('wordsort-tryagain');
+    const submitButton = document.getElementById('wordsort-submit');
     const wordElement = document.getElementById('wordsort-word');
     const timerElement = document.getElementById('wordsort-timer');
     const leftButton = document.querySelector('.wordsort-choice-left');
     const rightButton = document.querySelector('.wordsort-choice-right');
     const startButton = document.getElementById('wordsort-start');
     const feedbackElement = document.getElementById('wordsort-feedback');
-        
-    const mode = Number(timingmode);
     
+    const submissionScreen = document.getElementById('wordsort-submission-screen');
+    const submissionBestScore = document.getElementById('wordsort-submission-bestscore');
+    const submissionAttempts = document.getElementById('wordsort-submission-attempts');
+    const submissionTime = document.getElementById('wordsort-submission-time');
+    const submissionAnswers = document.getElementById('wordsort-submission-answers');
+            
+    const mode = Number(timingmode);    
     const feedback = Number(feedbackMode);
     
     if (mode === 1) {
@@ -84,17 +90,12 @@ export const init = (
             elapsed = timevalue;
 
             timerElement.textContent = `Countdown: ${elapsed}`;
-
             timerInterval = setInterval(() => {
-
                 elapsed--;
-
                 timerElement.textContent = `Countdown: ${elapsed}`;
 
                 if (elapsed <= 0) {
-
                     clearInterval(timerInterval);
-
                     finishGame();
                 }
 
@@ -104,13 +105,9 @@ export const init = (
 
             // Stopwatch.
             timerElement.textContent = 'Stopwatch: 0';
-
             timerInterval = setInterval(() => {
-
                 elapsed++;
-
                 timerElement.textContent = `Stopwatch: ${elapsed}`;
-
             }, 1000);
         }
 
@@ -256,32 +253,71 @@ export const init = (
             }
         }
     }
+
+    // ----------------------
+    // Submission
+    // ----------------------
+
+    function submitActivity() {
+
+      }
+
+    function showSubmissionSummary(bestAttempt) { 
+
+     }
+
+    function renderSubmissionAnswers(answers) { 
         
-    if (!startButton) {
-            return;
+     }
+
+    // ----------------------
+    // Event listeners
+    // ----------------------
+        
+        if (!startButton) {
+                return;
+            }
+            startButton.addEventListener('click', () => {
+
+                startScreen.style.display = 'none';
+                activityScreen.style.display = 'block';
+            startAttempt();    });
+
+        if (leftButton) {
+            leftButton.addEventListener('click', () => {
+                checkAnswer(0);
+            });
         }
-        startButton.addEventListener('click', () => {
 
-            startScreen.style.display = 'none';
-            activityScreen.style.display = 'block';
-        startAttempt();    });
+        if (rightButton) {
+            rightButton.addEventListener('click', () => {
+                checkAnswer(1);
+            });
+        }
 
-    if (leftButton) {
-        leftButton.addEventListener('click', () => {
-            checkAnswer(0);
-        });
-    }
+        if (tryAgainButton) {
+            tryAgainButton.addEventListener('click', () => {
+                resetGame();
+            });
+        }
 
-    if (rightButton) {
-        rightButton.addEventListener('click', () => {
-            checkAnswer(1);
-        });
-    }
+        if (submitButton) {
+            submitButton.addEventListener('click', () => {
+                submitActivity();
+            });
+        }
 
-    if (tryAgainButton) {
-        tryAgainButton.addEventListener('click', () => {
-            resetGame();
-        });
-    }
+        function submitActivity() {
+            const bestAttempt = getBestAttempt();
 
+            // Fill summary fields.
+            showSubmissionSummary(bestAttempt);
+
+            // Render the detailed answers.
+            renderSubmissionAnswers(bestAttempt.answers);
+
+            // Show submission screen.
+            resultsScreen.style.display = 'none';
+            submissionScreen.style.display = 'block';
+        }
 };

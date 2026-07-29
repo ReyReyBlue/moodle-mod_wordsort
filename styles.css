@@ -87,6 +87,15 @@
     background-image: url([[pix:mod_wordsort|arrow-right]]);
 }
 
+#wordsort-result-buttons {
+    display: flex;
+    gap: 0.75rem;         /* 12px */
+    margin-top: 1rem;
+}
+
+#wordsort-tryagain {
+    margin-right: 0.5rem;
+}
 
 
 /* Phones */

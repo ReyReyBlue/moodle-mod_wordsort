@@ -47,9 +47,9 @@
             [x] Load the next word
             [x] Finish screen
             [x] Store attempts
-            [ ] Grading
         Phase 4 – Grading & reports
             [ ] Calculate score
+            [ ] Grading
             [ ] Record completion time
             [ ] Gradebook integration
             [ ] Teacher reports
@@ -75,7 +75,7 @@
 - [x] Feedback
 - [x] Start screen
 - [x] Game screen
-- [ ] Finish screen
+- [x] Finish screen
 
 ---
 

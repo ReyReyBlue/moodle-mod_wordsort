@@ -95,9 +95,23 @@ ________________________________________________________________________________
 Shuffle setting works. Shuffles on every new attempt. No page refresh required. Feedback after every choice is nor available. A lot of time went to debugging to find and implement the JavaScript logic to display feedback under the given words.
 ___________________________________________________________________________________________
 
+29 July 2026
+
+- h
+
+...
+___________________________________________________________________________________________
+
+
 Up Next: 
 
+Implement the Submit action.
+Create the submission summary/report.
+Respect the teacher's Feedback mode setting:
+No feedback → no per-word review.
+After each move → immediate feedback while playing.
+Review answers after submission → detailed report only after submitting.
+Reuse the same report structure for the teacher's grading/report view where appropriate.
 Saving results to Moodle
-Animations and polish
 
 
