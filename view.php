@@ -394,6 +394,10 @@ echo html_writer::div('', 'wordsort-submission-attempts', [
     'id' => 'wordsort-submission-attempts'
 ]);
 
+echo html_writer::div('', 'wordsort-submission-bestattempt', [
+    'id' => 'wordsort-submission-bestattempt'
+]);
+
 echo html_writer::div('', 'wordsort-submission-time', [
     'id' => 'wordsort-submission-time'
 ]);

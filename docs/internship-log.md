@@ -97,15 +97,14 @@ ________________________________________________________________________________
 
 29 July 2026
 
-- h
+5.5 h +
 
-...
+Implement the Submit action. 
 ___________________________________________________________________________________________
 
 
 Up Next: 
 
-Implement the Submit action.
 Create the submission summary/report.
 Respect the teacher's Feedback mode setting:
 No feedback → no per-word review.

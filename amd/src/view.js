@@ -40,6 +40,7 @@ export const init = (
     const submissionAttempts = document.getElementById('wordsort-submission-attempts');
     const submissionTime = document.getElementById('wordsort-submission-time');
     const submissionAnswers = document.getElementById('wordsort-submission-answers');
+    const submissionBestAttempt = document.getElementById('wordsort-submission-bestattempt');
             
     const mode = Number(timingmode);    
     const feedback = Number(feedbackMode);
@@ -259,15 +260,31 @@ export const init = (
     // ----------------------
 
     function submitActivity() {
+        const bestAttempt = getBestAttempt();
 
-      }
+        showSubmissionSummary(bestAttempt);
 
-    function showSubmissionSummary(bestAttempt) { 
+        resultsScreen.style.display = 'none';
+        submissionScreen.style.display = 'block';
+    }
 
-     }
+    function showSubmissionSummary(bestAttempt) {
+
+        submissionBestScore.textContent =
+            `Best score: ${bestAttempt.correct}/${words.length}`;
+
+        submissionAttempts.textContent =
+            `Attempts used: ${attempts.length}/${maxAttempts}`;
+        
+        submissionBestAttempt.textContent =
+            `Best attempt: ${bestAttempt.number}/${attempts.length}`;
+
+        submissionTime.textContent =
+            `Time: ${bestAttempt.time} seconds`;
+    }
 
     function renderSubmissionAnswers(answers) { 
-        
+
      }
 
     // ----------------------
