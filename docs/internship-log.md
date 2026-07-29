@@ -97,19 +97,16 @@ ________________________________________________________________________________
 
 29 July 2026
 
-5.5 h +
+10 h 
 
-Implement the Submit action. 
+Implement the Submit action. Create the submission summary/report. Review answers after submission → detailed report only after submitting.
 ___________________________________________________________________________________________
 
 
 Up Next: 
 
-Create the submission summary/report.
 Respect the teacher's Feedback mode setting:
 No feedback → no per-word review.
-After each move → immediate feedback while playing.
-Review answers after submission → detailed report only after submitting.
 Reuse the same report structure for the teacher's grading/report view where appropriate.
 Saving results to Moodle
 

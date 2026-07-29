@@ -283,9 +283,25 @@ export const init = (
             `Time: ${bestAttempt.time} seconds`;
     }
 
-    function renderSubmissionAnswers(answers) { 
+    function renderSubmissionAnswers(answers) {
 
-     }
+        submissionAnswers.innerHTML = '';
+
+        answers.forEach(answer => {
+
+            const result = answer.selected === answer.correct ? '✅' : '❌';
+
+            submissionAnswers.innerHTML += `
+                <div>
+                    ${result} ${answer.word} —
+                    selected: ${answer.selected},
+                    correct: ${answer.correct}
+                </div>
+            `;
+
+        });
+    }
+        
 
     // ----------------------
     // Event listeners
@@ -337,4 +353,4 @@ export const init = (
             resultsScreen.style.display = 'none';
             submissionScreen.style.display = 'block';
         }
-};
+}
