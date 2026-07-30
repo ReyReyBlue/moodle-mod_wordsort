@@ -102,6 +102,13 @@ ________________________________________________________________________________
 Implement the Submit action. Create the submission summary/report. Review answers after submission → detailed report only after submitting.
 ___________________________________________________________________________________________
 
+30 July 2026
+
+2 h
+
+Improved submission review layout
+___________________________________________________________________________________________
+
 
 Up Next: 
 

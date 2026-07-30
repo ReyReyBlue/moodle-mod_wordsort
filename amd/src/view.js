@@ -1,5 +1,7 @@
 export const init = (
     words,
+    categoryLeft,
+    categoryRight,
     timingmode,
     timevalue,
     maxAttempts,
@@ -279,27 +281,56 @@ export const init = (
         submissionBestAttempt.textContent =
             `Best attempt: ${bestAttempt.number}/${attempts.length}`;
 
-        submissionTime.textContent =
-            `Time: ${bestAttempt.time} seconds`;
+        if (Number(timingmode) === 0) {
+            submissionTime.style.display = 'none';
+        } else {
+            submissionTime.style.display = '';
+            submissionTime.textContent =
+                `Time: ${bestAttempt.time} seconds`;
+        }
     }
 
     function renderSubmissionAnswers(answers) {
 
-        submissionAnswers.innerHTML = '';
+        let html = `
+            <table class="generaltable wordsort-review-table">
+                <thead>
+                    <tr>
+                        <th>Result</th>
+                        <th>Word</th>
+                        <th>Your answer</th>
+                        <th>Correct answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
 
         answers.forEach(answer => {
 
-            const result = answer.selected === answer.correct ? '✅' : '❌';
+            const result =
+                answer.selected === answer.correct ? '✅' : '❌';
+            const selectedText =
+                Number(answer.selected) === 0 ? categoryLeft : categoryRight;
 
-            submissionAnswers.innerHTML += `
-                <div>
-                    ${result} ${answer.word} —
-                    selected: ${answer.selected},
-                    correct: ${answer.correct}
-                </div>
+            const correctText =
+                Number(answer.correct) === 0 ? categoryLeft : categoryRight;
+                
+            html += `
+                <tr>
+                    <td>${result}</td>
+                    <td>${answer.word}</td>
+                    <td>${selectedText}</td>
+                    <td>${correctText}</td>
+                </tr>
             `;
-
         });
+
+        html += `
+                </tbody>
+            </table>
+        `;
+
+        submissionAnswers.innerHTML = html;
     }
         
 

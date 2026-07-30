@@ -53,6 +53,8 @@ $PAGE->requires->js_call_amd(
     'init',
     [
         $jswords,
+        $wordsort->categoryleft,
+        $wordsort->categoryright,
         $wordsort->timingmode,
         $wordsort->timevalue,
         $wordsort->maxattempts,
@@ -402,10 +404,10 @@ echo html_writer::div('', 'wordsort-submission-time', [
     'id' => 'wordsort-submission-time'
 ]);
 
-echo html_writer::end_div(); // wordsort-submission-screen
-
 echo html_writer::div('', 'wordsort-submission-answers', [
     'id' => 'wordsort-submission-answers'
 ]);
+
+echo html_writer::end_div(); // wordsort-submission-screen
 
 echo $OUTPUT->footer();
