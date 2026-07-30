@@ -6,7 +6,12 @@ export const init = (
     timevalue,
     maxAttempts,
     shuffleEnabled,
-    feedbackMode
+    feedbackMode,
+
+    resultString,
+    wordString,
+    yourAnswerString,
+    correctAnswerString
 ) => {
 
     let currentIndex = 0;
@@ -264,10 +269,15 @@ export const init = (
     function submitActivity() {
         const bestAttempt = getBestAttempt();
 
-        showSubmissionSummary(bestAttempt);
+        if (Number(feedbackMode) === 2) {
+            showSubmissionSummary(bestAttempt);
+            renderSubmissionAnswers(bestAttempt.answers);
 
-        resultsScreen.style.display = 'none';
-        submissionScreen.style.display = 'block';
+            resultsScreen.style.display = 'none';
+            submissionScreen.style.display = 'block';
+        } else {
+            // Finish activity without submission review.
+        }
     }
 
     function showSubmissionSummary(bestAttempt) {
@@ -296,10 +306,10 @@ export const init = (
             <table class="generaltable wordsort-review-table">
                 <thead>
                     <tr>
-                        <th>Result</th>
-                        <th>Word</th>
-                        <th>Your answer</th>
-                        <th>Correct answer</th>
+                        <th>${resultString}</th>
+                        <th>${wordString}</th>
+                        <th>${yourAnswerString}</th>
+                        <th>${correctAnswerString}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -314,7 +324,7 @@ export const init = (
 
             const correctText =
                 Number(answer.correct) === 0 ? categoryLeft : categoryRight;
-                
+
             html += `
                 <tr>
                     <td>${result}</td>
@@ -369,19 +379,5 @@ export const init = (
             submitButton.addEventListener('click', () => {
                 submitActivity();
             });
-        }
-
-        function submitActivity() {
-            const bestAttempt = getBestAttempt();
-
-            // Fill summary fields.
-            showSubmissionSummary(bestAttempt);
-
-            // Render the detailed answers.
-            renderSubmissionAnswers(bestAttempt.answers);
-
-            // Show submission screen.
-            resultsScreen.style.display = 'none';
-            submissionScreen.style.display = 'block';
         }
 }

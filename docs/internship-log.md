@@ -104,16 +104,15 @@ ________________________________________________________________________________
 
 30 July 2026
 
-2 h
+4 h
 
-Improved submission review layout
+Improved submission review layout. Feedback works. Respect the teacher's Feedback mode setting: No feedback → no per-word review.
+
 ___________________________________________________________________________________________
 
 
 Up Next: 
 
-Respect the teacher's Feedback mode setting:
-No feedback → no per-word review.
 Reuse the same report structure for the teacher's grading/report view where appropriate.
 Saving results to Moodle
 

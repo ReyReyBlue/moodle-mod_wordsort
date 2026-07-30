@@ -59,7 +59,12 @@ $PAGE->requires->js_call_amd(
         $wordsort->timevalue,
         $wordsort->maxattempts,
         $wordsort->shufflewords,
-        $wordsort->feedbackmode
+        $wordsort->feedbackmode,
+
+        get_string('result', 'mod_wordsort'),
+        get_string('word', 'mod_wordsort'),
+        get_string('youranswer', 'mod_wordsort'),
+        get_string('correctanswer', 'mod_wordsort')
     ]
 );
 
