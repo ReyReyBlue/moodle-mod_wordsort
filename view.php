@@ -52,6 +52,7 @@ $PAGE->requires->js_call_amd(
     'mod_wordsort/view',
     'init',
     [
+        $wordsort->id,
         $jswords,
         $wordsort->categoryleft,
         $wordsort->categoryright,

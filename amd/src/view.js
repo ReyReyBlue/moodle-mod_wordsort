@@ -1,4 +1,7 @@
+import Ajax from 'core/ajax';
+
 export const init = (
+    wordsortid,
     words,
     categoryLeft,
     categoryRight,
@@ -13,6 +16,9 @@ export const init = (
     yourAnswerString,
     correctAnswerString
 ) => {
+
+    console.log('wordsortid:', wordsortid);
+    console.log('words:', words);
 
     let currentIndex = 0;
     let correctAnswers = 0;
@@ -69,6 +75,8 @@ export const init = (
     }
 
     function showWord() {
+        console.log('words:', words);
+        console.log('words.length:', words.length);
 
         if (!words.length) {
             return;
@@ -267,7 +275,26 @@ export const init = (
     // ----------------------
 
     function submitActivity() {
+        submitButton.disabled = true;
         const bestAttempt = getBestAttempt();
+
+        Ajax.call([{
+            methodname: 'mod_wordsort_save_attempt',
+            args: {
+                wordsortid: wordsortid,
+                score: bestAttempt.correct,
+                totalwords: words.length,
+                percentage: (bestAttempt.correct / words.length) * 100,
+                timeused: bestAttempt.time,
+                attempt: bestAttempt.number
+            }
+        }])[0]
+        .then(result => {
+            console.log('Save successful:', result);
+        })
+        .catch(error => {
+            console.error('Save failed:', error);
+        });
 
         if (Number(feedbackMode) === 2) {
             showSubmissionSummary(bestAttempt);

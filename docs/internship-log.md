@@ -110,10 +110,28 @@ Improved submission review layout. Feedback works. Respect the teacher's Feedbac
 
 ___________________________________________________________________________________________
 
+31 July 2026
 
-Up Next: 
+10 h
+
+Implement attempt saving via AJAX web service
+___________________________________________________________________________________________
+
+Gradebook implementation
+
 
 Reuse the same report structure for the teacher's grading/report view where appropriate.
 Saving results to Moodle
+
+Feature	                Quiz	Word Sort	   Action
+Availability	        ✅      	❌	        Add
+Timer	                ✅	    ✅	        Keep current implementation
+Multiple attempts	    ✅	    ✅	        Keep
+Grading method	        ✅	    ❌	        Add
+Gradebook	            ✅	    ❌	        Fix
+Results page	        ✅	    ❌	        Implement
+Settings	            ✅	    ✅	        Polish
+Review after submission	✅	    ✅	        Already implemented
+___________________________________________________________________________________________
 
 
