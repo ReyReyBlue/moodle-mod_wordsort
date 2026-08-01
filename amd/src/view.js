@@ -286,7 +286,6 @@ export const init = (
                 totalwords: words.length,
                 percentage: (bestAttempt.correct / words.length) * 100,
                 timeused: bestAttempt.time,
-                attempt: bestAttempt.number
             }
         }])[0]
         .then(result => {

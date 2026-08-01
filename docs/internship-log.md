@@ -119,9 +119,9 @@ ________________________________________________________________________________
 
 1 August 2026
 
-- h
+4 h
 
-Teacher report page that lists every attempt.
+Teacher report permissions. Teacher report page that lists every attempt. Gradebook integration
 ___________________________________________________________________________________________
 
 

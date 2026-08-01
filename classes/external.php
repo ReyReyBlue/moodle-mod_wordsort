@@ -37,7 +37,6 @@ class external extends external_api {
             'totalwords' => new external_value(PARAM_INT, 'Total number of words'),
             'percentage' => new external_value(PARAM_FLOAT, 'Percentage score'),
             'timeused' => new external_value(PARAM_INT, 'Time used in seconds'),
-            'attempt' => new external_value(PARAM_INT, 'Attempt number'),
         ]);
     }
 
@@ -70,14 +69,18 @@ class external extends external_api {
                 'totalwords' => $totalwords,
                 'percentage' => $percentage,
                 'timeused' => $timeused,
-                'attempt' => $attempt,
             ]
         );
 
         $record = new \stdClass();
         $record->wordsortid = $params['wordsortid'];
         $record->userid = $USER->id;
-        $record->attempt = $params['attempt'];
+        $attemptcount = $DB->count_records('wordsort_attempts', [
+            'wordsortid' => $params['wordsortid'],
+            'userid' => $USER->id,
+        ]);
+
+        $record->attempt = $attemptcount + 1;
         $record->score = $params['score'];
         $record->totalwords = $params['totalwords'];
         $record->percentage = $params['percentage'];

@@ -22,9 +22,11 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->heading(get_string('attemptsreport', 'mod_wordsort'));
 
-$attempts = $DB->get_records('wordsort_attempts', [
-    'wordsortid' => $wordsort->id
-]);
+$attempts = $DB->get_records(
+    'wordsort_attempts',
+    ['wordsortid' => $wordsort->id],
+    'timecreated DESC'
+);
 
 $table = new html_table();
 
