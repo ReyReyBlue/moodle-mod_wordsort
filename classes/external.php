@@ -13,6 +13,7 @@ namespace mod_wordsort;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/externallib.php');
+require_once($CFG->dirroot . '/mod/wordsort/lib.php');
 
 use external_api;
 use external_function_parameters;
@@ -84,6 +85,16 @@ class external extends external_api {
         $record->timecreated = time();
 
         $DB->insert_record('wordsort_attempts', $record);
+
+        $wordsort = $DB->get_record('wordsort', [
+            'id' => $params['wordsortid']
+        ], '*', MUST_EXIST);
+
+        wordsort_update_grades(
+            $wordsort,
+            $USER->id,
+            $params['percentage']
+        );
 
         return [
             'success' => true,

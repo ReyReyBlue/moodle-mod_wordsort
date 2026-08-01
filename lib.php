@@ -29,7 +29,11 @@ function wordsort_add_instance($data, $mform = null) {
     $data->timecreated = time();
     $data->timemodified = time();
 
-    return $DB->insert_record('wordsort', $data);
+    $data->id = $DB->insert_record('wordsort', $data);
+
+    wordsort_grade_item_update($data);
+
+    return $data->id;
 }
 
 /**
@@ -46,7 +50,11 @@ function wordsort_update_instance($data, $mform = null) {
     $data->id = $data->instance;
     $data->timemodified = time();
 
-    return $DB->update_record('wordsort', $data);
+    $DB->update_record('wordsort', $data);
+
+    wordsort_grade_item_update($data);
+
+    return true;
 }
 
 /**
@@ -65,4 +73,85 @@ function wordsort_delete_instance($id) {
     $DB->delete_records('wordsort', ['id' => $wordsort->id]);
 
     return true;
+}
+
+/**
+ * Indicates which Moodle features Word Sort supports.
+ *
+ * @param string $feature
+ * @return mixed
+ */
+function wordsort_supports($feature) {
+    switch ($feature) {
+
+        case FEATURE_MOD_INTRO:
+            return true;
+
+        case FEATURE_COMPLETION_TRACKS_VIEWS:
+            return true;
+
+        case FEATURE_GRADE_HAS_GRADE:
+            return true;
+
+        default:
+            return null;
+    }
+}
+
+require_once($CFG->libdir . '/gradelib.php');
+
+/**
+ * Creates or updates the grade item.
+ *
+ * @param stdClass $wordsort
+ * @return int
+ */
+function wordsort_grade_item_update($wordsort) {
+
+    $gradeitem = [];
+
+    $gradeitem['itemname'] = clean_param($wordsort->name, PARAM_NOTAGS);
+    $gradeitem['gradetype'] = GRADE_TYPE_VALUE;
+    $gradeitem['grademax'] = 100;
+    $gradeitem['grademin'] = 0;
+
+    return grade_update(
+        'mod/wordsort',
+        $wordsort->course,
+        'mod',
+        'wordsort',
+        $wordsort->id,
+        0,
+        null,
+        $gradeitem
+    );
+}
+
+/**
+ * Updates a student's grade in the gradebook.
+ *
+ * @param stdClass $wordsort
+ * @param int $userid
+ * @param float $grade
+ * @return int
+ */
+function wordsort_update_grades($wordsort, $userid, $grade) {
+
+    $grades = [];
+
+    $student = new stdClass();
+    $student->userid = $userid;
+    $student->rawgrade = $grade;
+
+    $grades[$userid] = $student;
+
+    return grade_update(
+        'mod/wordsort',
+        $wordsort->course,
+        'mod',
+        'wordsort',
+        $wordsort->id,
+        0,
+        $grades
+    );
 }
