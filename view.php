@@ -157,7 +157,14 @@ if (has_capability('moodle/course:manageactivities', $context)) {
     echo html_writer::link(
         new moodle_url('/course/modedit.php', ['update' => $cm->id]),
         get_string('editsettings'),
-        ['class' => 'btn btn-secondary']
+        ['class' => 'btn btn-secondary me-2']
+    );
+
+    // Attempts.
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/report.php', ['id' => $cm->id]),
+        get_string('viewattempts', 'mod_wordsort'),
+        ['class' => 'btn btn-secondary me-2']
     );
 
     echo html_writer::end_div();

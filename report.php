@@ -11,6 +11,8 @@ require_login($course, true, $cm);
 
 $context = context_module::instance($cm->id);
 
+require_capability('mod/wordsort:viewreports', $context);
+
 $PAGE->set_url('/mod/wordsort/report.php', ['id' => $cm->id]);
 $PAGE->set_context($context);
 $PAGE->set_title(format_string($wordsort->name));
@@ -18,7 +20,7 @@ $PAGE->set_heading(format_string($course->fullname));
 
 echo $OUTPUT->header();
 
-echo $OUTPUT->heading('Word Sort Attempts');
+echo $OUTPUT->heading(get_string('attemptsreport', 'mod_wordsort'));
 
 $attempts = $DB->get_records('wordsort_attempts', [
     'wordsortid' => $wordsort->id

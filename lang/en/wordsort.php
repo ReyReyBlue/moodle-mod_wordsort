@@ -97,3 +97,6 @@ $string['word'] = 'Word';
 $string['result'] = 'Result';
 $string['correct'] = 'Correct';
 $string['incorrect'] = 'Incorrect';
+$string['viewattempts'] = 'View attempts';
+$string['attemptsreport'] = 'Student attempts';
+$string['wordsort:viewreports'] = 'View Word Sort reports';
