@@ -1,4 +1,5 @@
 import Ajax from 'core/ajax';
+import Notification from 'core/notification';
 
 export const init = (
     wordsortid,
@@ -29,6 +30,7 @@ export const init = (
     let currentAttempt = 1;
     let currentWords = [];
     let currentAnswers = [];
+    let currentAttemptId = null;
 
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
@@ -279,10 +281,13 @@ export const init = (
         const bestAttempt = getBestAttempt();
 
         console.log('Answers:', JSON.stringify(bestAttempt.answers));
+        console.log('Submitting attempt ID:', currentAttemptId);
+        console.log('Best attempt:', bestAttempt);
 
         Ajax.call([{
             methodname: 'mod_wordsort_save_attempt',
             args: {
+                attemptid: currentAttemptId,
                 wordsortid: wordsortid,
                 score: bestAttempt.correct,
                 totalwords: words.length,
@@ -290,8 +295,7 @@ export const init = (
                 timeused: bestAttempt.time,
                 answers: JSON.stringify(bestAttempt.answers)
             }
-        }])[0]
-        .then(result => {
+        }])[0].then(result => {
             console.log('Save successful:', result);
         })
         .catch(error => {
@@ -376,15 +380,31 @@ export const init = (
     // ----------------------
     // Event listeners
     // ----------------------
-        
+                
         if (!startButton) {
-                return;
-            }
-            startButton.addEventListener('click', () => {
+            return;
+        }
+
+        startButton.addEventListener('click', () => {
+
+            Ajax.call([{
+                methodname: 'mod_wordsort_start_attempt',
+                args: {
+                    wordsortid: wordsortid
+                }
+            }])[0].then(result => {
+
+                currentAttemptId = result.attemptid;
+                currentAttempt = result.attemptnumber;
 
                 startScreen.style.display = 'none';
                 activityScreen.style.display = 'block';
-            startAttempt();    });
+
+                startAttempt();
+
+            }).catch(Notification.exception);
+
+        });
 
         if (leftButton) {
             leftButton.addEventListener('click', () => {

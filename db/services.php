@@ -11,6 +11,15 @@
 defined('MOODLE_INTERNAL') || die();
 
 $functions = [
+
+    'mod_wordsort_start_attempt' => [
+        'classname'   => 'mod_wordsort\external',
+        'methodname'  => 'start_attempt',
+        'description' => 'Start a Word Sort attempt.',
+        'type'        => 'write',
+        'ajax'        => true,
+],
+
     'mod_wordsort_save_attempt' => [
         'classname'   => 'mod_wordsort\external',
         'methodname'  => 'save_attempt',
@@ -19,3 +28,4 @@ $functions = [
         'ajax'        => true,
     ],
 ];
+
