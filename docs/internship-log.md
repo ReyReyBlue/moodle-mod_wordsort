@@ -124,6 +124,13 @@ ________________________________________________________________________________
 Teacher report permissions. Teacher report page that lists every attempt. Gradebook integration
 ___________________________________________________________________________________________
 
+2 August 2026
+
+5 h
+
+Added status field for attempt lifecycle
+___________________________________________________________________________________________
+
 
 Gradebook implementation
 

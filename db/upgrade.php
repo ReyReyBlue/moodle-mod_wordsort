@@ -21,12 +21,11 @@ function xmldb_wordsort_upgrade($oldversion) {
 
     $dbman = $DB->get_manager();
 
-    if ($oldversion < 2026072700) {
+    // Create wordsort_attempts table.
+    if ($oldversion < 2026072900) {
 
-        // Define table wordsort_attempts.
         $table = new xmldb_table('wordsort_attempts');
 
-        // Define fields.
         $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
         $table->add_field('wordsortid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
         $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
@@ -37,19 +36,62 @@ function xmldb_wordsort_upgrade($oldversion) {
         $table->add_field('timeused', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
         $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
 
-        // Define keys.
         $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
         $table->add_key('wordsort_fk', XMLDB_KEY_FOREIGN, ['wordsortid'], 'wordsort', ['id']);
 
-        // Define indexes.
         $table->add_index('userid_idx', XMLDB_INDEX_NOTUNIQUE, ['userid']);
 
-        // Create table if it does not exist.
         if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
         }
 
-        upgrade_mod_savepoint(true, 2026072700, 'wordsort');
+        upgrade_mod_savepoint(true, 2026072900, 'wordsort');
+    }
+
+    // Add answers field.
+    if ($oldversion < 2026072901) {
+
+        $table = new xmldb_table('wordsort_attempts');
+
+        $field = new xmldb_field(
+            'answers',
+            XMLDB_TYPE_TEXT,
+            null,
+            null,
+            null,
+            null,
+            null,
+            'timecreated'
+        );
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026072901, 'wordsort');
+    }
+
+    // Add status field.
+    if ($oldversion < 2026072902) {
+
+        $table = new xmldb_table('wordsort_attempts');
+
+        $field = new xmldb_field(
+            'status',
+            XMLDB_TYPE_CHAR,
+            '20',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            'inprogress',
+            'answers'
+        );
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026072902, 'wordsort');
     }
 
     return true;

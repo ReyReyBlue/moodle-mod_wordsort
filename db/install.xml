@@ -61,6 +61,8 @@
                      <FIELD NAME="percentage" TYPE="number" LENGTH="5" DECIMALS="2" NOTNULL="true" DEFAULT="0"/>
                      <FIELD NAME="timeused" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                      <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+                     <FIELD NAME="answers" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+                     <FIELD NAME="status" TYPE="char" LENGTH="20" NOTNULL="true" DEFAULT="inprogress" SEQUENCE="false"/>
               </FIELDS>
 
               <KEYS>

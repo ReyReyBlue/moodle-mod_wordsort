@@ -278,6 +278,8 @@ export const init = (
         submitButton.disabled = true;
         const bestAttempt = getBestAttempt();
 
+        console.log('Answers:', JSON.stringify(bestAttempt.answers));
+
         Ajax.call([{
             methodname: 'mod_wordsort_save_attempt',
             args: {
@@ -286,6 +288,7 @@ export const init = (
                 totalwords: words.length,
                 percentage: (bestAttempt.correct / words.length) * 100,
                 timeused: bestAttempt.time,
+                answers: JSON.stringify(bestAttempt.answers)
             }
         }])[0]
         .then(result => {

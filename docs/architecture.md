@@ -121,3 +121,17 @@ ______________________________________________________
 Finished normally	        Completed	    12/15
 Timer reached 0	            Timed out	    9/15
 Refresh / closed browser	Abandoned	    2/15
+
+## Final testing
+
+Test things like:
+
+Start → Refresh
+Start → Close browser
+Start → Open activity in another tab
+Start → Logout
+Timed attempt expires
+Unlimited attempts
+One allowed attempt
+Three allowed attempts
+Two browser tabs at the same time

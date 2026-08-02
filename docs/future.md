@@ -29,3 +29,5 @@ Activity ends when
 ○ Student clicks Finish
 ○ Time expires
 ○ AND I need to implement the occation, when student abandonds the test, for some reasons.
+
+## export categoryleft and categoryright
