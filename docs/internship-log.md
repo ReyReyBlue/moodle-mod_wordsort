@@ -126,9 +126,9 @@ ________________________________________________________________________________
 
 2 August 2026
 
-5 h
+8 h
 
-Added status field for attempt lifecycle
+Added status field for attempt lifecycle. Create attempts on start and update on submission
 ___________________________________________________________________________________________
 
 

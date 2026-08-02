@@ -100,3 +100,7 @@ $string['incorrect'] = 'Incorrect';
 $string['viewattempts'] = 'View attempts';
 $string['attemptsreport'] = 'Student attempts';
 $string['wordsort:viewreports'] = 'View Word Sort reports';
+$string['status'] = 'Status';
+$string['status_inprogress'] = 'In progress';
+$string['status_submitted'] = 'Submitted';
+$string['status_abandoned'] = 'Abandoned';

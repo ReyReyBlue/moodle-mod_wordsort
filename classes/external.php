@@ -53,6 +53,22 @@ class external extends external_api {
             ]
         );
 
+        // Mark any previous in-progress attempts as abandoned.
+        $inprogressattempts = $DB->get_records(
+            'wordsort_attempts',
+            [
+                'wordsortid' => $params['wordsortid'],
+                'userid' => $USER->id,
+                'status' => 'inprogress',
+            ]
+        );
+
+        foreach ($inprogressattempts as $attempt) {
+            $attempt->status = 'abandoned';
+            $DB->update_record('wordsort_attempts', $attempt);
+        }
+
+
         // Count previous attempts for this student in this activity.
         $attemptcount = $DB->count_records('wordsort_attempts', [
             'wordsortid' => $params['wordsortid'],

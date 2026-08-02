@@ -31,12 +31,13 @@ $attempts = $DB->get_records(
 $table = new html_table();
 
 $table->head = [
-    'Student',
-    'Attempt',
-    'Score',
-    'Percentage',
-    'Time',
-    'Submitted'
+    get_string('student', 'mod_wordsort'),
+    get_string('attempt', 'mod_wordsort'),
+    get_string('status', 'mod_wordsort'),
+    get_string('score', 'mod_wordsort'),
+    get_string('percentage', 'mod_wordsort'),
+    get_string('time', 'mod_wordsort'),
+    get_string('submitted', 'mod_wordsort'),
 ];
 
 foreach ($attempts as $attempt) {
@@ -46,6 +47,7 @@ foreach ($attempts as $attempt) {
     $table->data[] = [
         fullname($user),
         $attempt->attempt,
+        get_string('status' . $attempt->status, 'mod_wordsort'),
         $attempt->score . '/' . $attempt->totalwords,
         round($attempt->percentage, 1) . '%',
         $attempt->timeused . ' s',
