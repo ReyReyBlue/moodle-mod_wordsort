@@ -48,15 +48,15 @@
             [x] Finish screen
             [x] Store attempts
         Phase 4 – Grading & reports
-            [ ] Calculate score
-            [ ] Grading
-            [ ] Record completion time
-            [ ] Gradebook integration
-            [ ] Teacher reports
-- [ ] Items table
-- [ ] Attempts table
-- [ ] Scoring rules
-- [ ] Answers table
+            [x] Calculate score
+            [x] Grading
+            [x] Record completion time
+            [x] Gradebook integration
+            [x] Teacher reports
+- [x] Items table
+- [x] Attempts table
+- [x] Scoring rules
+- [x] Answers table
 
 ---
 
@@ -81,8 +81,8 @@
 
 ## Sprint 6 – Reports
 
-- [ ] Teacher reports
-- [ ] Gradebook integration
+- [x] Teacher reports
+- [x] Gradebook integration
 
 ---
 
@@ -91,3 +91,89 @@
 - [ ] Functional testing
 - [ ] Bug fixes
 - [ ] Final documentation
+
+______________________________________
+Teacher: 
+Create Word Sort activity
+        │
+        ▼
+Configure settings
+• Categories
+• Timer
+• Attempts
+• Feedback
+        │
+        ▼
+Add words
+        │
+        ▼
+Students complete activity
+        │
+        ▼
+Teacher report
+        │
+        ├── Attempt overview
+        │       • Student
+        │       • Status
+        │       • Score
+        │
+        ▼
+Review attempt✅
+        │
+        ▼
+Detailed answers✅
+• Word
+• Correct category
+• Student answer
+• Result
+__________________
+Student:
+Open activity
+      │
+      ▼
+Start screen
+      │
+      ▼
+Play game
+      │
+      ▼
+Results
+      │
+      ├── Try again
+      │
+      └── Submit
+               │
+               ▼
+Grade saved
+________________________
+attempt lifecycle: 
+Start
+   │
+   ▼
+In progress
+   │
+   ├──────────────► New attempt started
+   │                    │
+   │                    ▼
+   │               Abandoned
+   │
+   └──────────────► Submit
+                        │
+                        ▼
+                  Submitted
+
+Architecture:
+Teacher
+    │
+    ▼
+Word Sort Activity
+    │
+    ├── Settings
+    ├── Words
+    ├── Attempts
+    │
+    ▼
+Database
+    │
+    ▼
+Teacher Reports

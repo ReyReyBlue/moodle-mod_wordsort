@@ -38,6 +38,7 @@ $table->head = [
     get_string('percentage', 'mod_wordsort'),
     get_string('time', 'mod_wordsort'),
     get_string('submitted', 'mod_wordsort'),
+    get_string('review', 'mod_wordsort'),
 ];
 
 foreach ($attempts as $attempt) {
@@ -51,7 +52,17 @@ foreach ($attempts as $attempt) {
         $attempt->score . '/' . $attempt->totalwords,
         round($attempt->percentage, 1) . '%',
         $attempt->timeused . ' s',
-        userdate($attempt->timecreated)
+        userdate($attempt->timecreated),
+        html_writer::link(
+            new moodle_url(
+                '/mod/wordsort/review.php',
+                [
+                    'id' => $cm->id,
+                    'attemptid' => $attempt->id
+                ]
+            ),
+            get_string('viewanswers', 'mod_wordsort')
+        )
     ];
 }
 

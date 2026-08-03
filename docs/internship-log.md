@@ -131,6 +131,24 @@ ________________________________________________________________________________
 Added status field for attempt lifecycle. Create attempts on start and update on submission
 ___________________________________________________________________________________________
 
+3 August 2026
+
+6 h
+
+Review page is READY.
+___________________________________________________________________________________________
+
+DO-DO List:
+
+Improve attempt counter on the start screen.
+Prevent starting when no attempts remain.
+Teacher review of submitted answers.
+Import / Export word sets.
+Use Moodle core language strings where appropriate.
+Mobile polish.
+UI polish.
+Documentation.
+Final testing.
 
 Gradebook implementation
 
@@ -144,7 +162,7 @@ Timer	                ✅	    ✅	        Keep current implementation
 Multiple attempts	    ✅	    ✅	        Keep
 Grading method	        ✅	    ❌	        Add
 Gradebook	            ✅	    ❌	        Fix
-Results page	        ✅	    ❌	        Implement
+Results page	        ✅	    ✅	        Implement
 Settings	            ✅	    ✅	        Polish
 Review after submission	✅	    ✅	        Already implemented
 ___________________________________________________________________________________________
