@@ -204,7 +204,7 @@ $details .= html_writer::start_tag('tbody');
             ) . ' ' . get_string('submitted', 'mod_wordsort');
         } else {
             $status = $OUTPUT->pix_icon(
-                'i/incomplete',
+                'i/completion-auto-fail',
                 get_string('statusabandoned', 'mod_wordsort')
             ) . ' ' . get_string('statusabandoned', 'mod_wordsort');
         }

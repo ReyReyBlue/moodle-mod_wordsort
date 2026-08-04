@@ -143,7 +143,7 @@ ________________________________________________________________________________
 
 11 h
 
-Report page valmis, kuid vajab lihvimist. Esines palju probleeme ja jamasid, et moodle gradebookist hinne "passed" saada.
+Report page valmis. Esines palju probleeme ja jamasid, et moodle gradebookist hinne "passed" saada.
 ___________________________________________________________________________________________
 
 
