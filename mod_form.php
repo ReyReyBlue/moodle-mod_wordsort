@@ -168,6 +168,7 @@ $mform->addGroup(
 $mform->setDefault('feedbackmode', 0);
 
 // Standard Moodle settings.
+    $this->standard_grading_coursemodule_elements();
     $this->standard_coursemodule_elements();
 
     // Save / Cancel buttons.

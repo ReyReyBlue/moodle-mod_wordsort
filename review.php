@@ -19,6 +19,7 @@ $PAGE->set_url('/mod/wordsort/review.php', [
 $PAGE->set_context($context);
 $PAGE->set_title(get_string('review', 'mod_wordsort'));
 $PAGE->set_heading(format_string($course->fullname));
+$PAGE->requires->css('/mod/wordsort/styles.css');
 
 echo $OUTPUT->header();
 

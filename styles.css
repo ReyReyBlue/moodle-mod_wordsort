@@ -87,6 +87,35 @@
     background-image: url([[pix:mod_wordsort|arrow-right]]);
 }
 
+.wordsort-details-button {
+    width: 100%;
+    max-width: 50px;
+    }
+
+.wordsort-report th:nth-child(2),
+.wordsort-report td:nth-child(2),
+.wordsort-report th:nth-child(3),
+.wordsort-report td:nth-child(3),
+.wordsort-report th:nth-child(4),
+.wordsort-report td:nth-child(4),
+.wordsort-report th:nth-child(6),
+.wordsort-report td:nth-child(6) {
+    text-align: center;
+}
+
+.wordsort-details-button .icon {
+    margin: 0;
+}
+
+.wordsort-details-row {
+    display: none;
+}
+
+.wordsort-details-row table {
+    margin: 0;
+    background: #fafafa;
+}
+
 #wordsort-result-buttons {
     display: flex;
     gap: 0.75rem;         /* 12px */

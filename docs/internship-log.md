@@ -133,16 +133,24 @@ ________________________________________________________________________________
 
 3 August 2026
 
-6 h
+10 h
 
 Review page is READY.
 ___________________________________________________________________________________________
+
+
+4 August 2026
+
+11 h
+
+Report page valmis, kuid vajab lihvimist. Esines palju probleeme ja jamasid, et moodle gradebookist hinne "passed" saada.
+___________________________________________________________________________________________
+
 
 DO-DO List:
 
 Improve attempt counter on the start screen.
 Prevent starting when no attempts remain.
-Teacher review of submitted answers.
 Import / Export word sets.
 Use Moodle core language strings where appropriate.
 Mobile polish.

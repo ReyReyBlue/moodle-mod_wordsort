@@ -104,76 +104,54 @@ Configure settings
 • Feedback
         │
         ▼
-Add words
+    Add words
         │
-        ▼
-Students complete activity
-        │
-        ▼
-Teacher report
-        │
-        ├── Attempt overview
-        │       • Student
-        │       • Status
-        │       • Score
-        │
-        ▼
-Review attempt✅
-        │
-        ▼
-Detailed answers✅
-• Word
-• Correct category
-• Student answer
-• Result
-__________________
-Student:
-Open activity
-      │
-      ▼
-Start screen
-      │
-      ▼
-Play game
-      │
-      ▼
-Results
-      │
-      ├── Try again
-      │
-      └── Submit
-               │
-               ▼
-Grade saved
-________________________
-attempt lifecycle: 
-Start
-   │
-   ▼
-In progress
-   │
-   ├──────────────► New attempt started
-   │                    │
-   │                    ▼
-   │               Abandoned
-   │
-   └──────────────► Submit
-                        │
-                        ▼
-                  Submitted
+        └───────▼
+            Student:
+            Open activity
+                │
+                ▼
+            Start screen
+                │
+                ▼
+            Play game
+                │
+                ▼
 
-Architecture:
-Teacher
-    │
-    ▼
-Word Sort Activity
-    │
-    ├── Settings
-    ├── Words
-    ├── Attempts
-    │
-    ▼
-Database
-    │
-    ▼
-Teacher Reports
+                attempt lifecycle: 
+                Start
+                │
+                ▼
+                In progress
+                │
+                ├──────────────► New attempt started
+                │                    │
+                │                    ▼
+                │               Abandoned
+                │
+                └──────────────► Submit
+                                  │
+                                  ▼
+                             Submitted            
+                                │
+                                ▼
+                        Grade saved
+                            │
+                            ▼
+                    Teacher report✅
+                            │
+                            ├── Attempt overview✅
+                            │       • Student
+                            │       • Status
+                            │       • Score
+                            │
+                            ▼
+                    Review attempt✅
+                            │
+                            ▼
+                    Detailed answers✅
+                    • Word
+                    • Correct category
+                    • Student answer
+                    • Result
+                    __________________
