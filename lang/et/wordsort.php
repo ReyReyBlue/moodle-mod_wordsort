@@ -128,3 +128,6 @@ $string['details'] = 'Details';
 $string['grade'] = 'Grade';
 $string['exportwords'] = 'Export';
 $string['importwords'] = 'Import';
+$string['csvfile'] = 'CSV file';
+$string['invalidcategory'] =
+    'Invalid category "{$a}" found in the CSV file.';

@@ -149,9 +149,9 @@ ________________________________________________________________________________
 
 5 August 2026
 
-5 h
+10 h
 
-Import/export - for easy re-using already added words/categories.  
+Import/export - for easy re-using already added words/categories. Export works, import reads file, but is not complete and ready 
 ___________________________________________________________________________________________
 
 
