@@ -121,6 +121,12 @@ if (empty($words)) {
         ['class' => 'btn btn-secondary me-3 mb-3']
     );
 
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/import.php', ['id' => $cm->id]),
+        get_string('importwords', 'mod_wordsort'),
+        ['class' => 'btn btn-secondary me-3 mb-3']
+    );
+
     $table = new html_table();
 
     $table->head = [
