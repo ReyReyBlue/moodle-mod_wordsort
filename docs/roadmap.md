@@ -98,7 +98,10 @@ Create Word Sort activity
         │
         ▼
 Configure settings
-• Categories
+• Categories 
+        │
+        ▼
+        import/export✅
 • Timer
 • Attempts
 • Feedback

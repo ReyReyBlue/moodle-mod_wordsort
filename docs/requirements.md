@@ -89,6 +89,24 @@ Each activity shall allow configuration of:
 - Shuffle items
 - Immediate feedback
 
+- CSV import/export
+
+            Word Sort CSV Format
+
+            Columns:
+
+            Left category
+            Right category
+            Word
+            Correct
+
+            Example:
+
+            Left category,Right category,Word,Correct
+            Fruit,Vegetable,Apple,Fruit
+            Fruit,Vegetable,Pear,Fruit
+            Fruit,Vegetable,Carrot,Vegetable
+
 ---
 
 # 5. Student Workflow
@@ -127,16 +145,8 @@ Possible future improvements include:
 
 - Image support
 - Audio support
-- CSV import
-- More than two categories
-- Question statistics
-- Difficulty levels
-- Random item selection
-- Progress bar
-- Keyboard shortcuts
-
 
 ---
-Document Version: 0.1
+Document Version: 0.2
 
-Last Updated: 2026-07-16
+Last Updated: 2026-08-05

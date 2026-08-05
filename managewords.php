@@ -103,16 +103,22 @@ if (empty($words)) {
 
 } else {
 
-    echo $OUTPUT->single_button(
-        $addwordurl,
-        get_string('addword', 'wordsort'),
-        'get'
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/editword.php', ['id' => $cm->id]),
+        get_string('addword', 'mod_wordsort'),
+        ['class' => 'btn btn-secondary me-3 mb-3']
     );
 
-    echo $OUTPUT->single_button(
-        $bulkaddurl,
-        get_string('bulkaddwords', 'wordsort'),
-        'get'
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/bulkadd.php', ['id' => $cm->id]),
+        get_string('bulkaddwords', 'mod_wordsort'),
+        ['class' => 'btn btn-secondary me-3 mb-3']
+    );
+
+    echo html_writer::link(
+        new moodle_url('/mod/wordsort/export.php', ['id' => $cm->id]),
+        get_string('exportwords', 'mod_wordsort'),
+        ['class' => 'btn btn-secondary me-3 mb-3']
     );
 
     $table = new html_table();

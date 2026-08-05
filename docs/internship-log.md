@@ -147,6 +147,14 @@ Report page valmis. Esines palju probleeme ja jamasid, et moodle gradebookist hi
 ___________________________________________________________________________________________
 
 
+5 August 2026
+
+5 h
+
+Import/export - for easy re-using already added words/categories.  
+___________________________________________________________________________________________
+
+
 DO-DO List:
 
 Improve attempt counter on the start screen.

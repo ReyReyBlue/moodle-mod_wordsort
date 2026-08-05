@@ -126,3 +126,5 @@ $string['notpassed'] = 'Not passed';
 $string['bestscore'] = 'Best score';
 $string['details'] = 'Details';
 $string['grade'] = 'Grade';
+$string['exportwords'] = 'Export';
+$string['importwords'] = 'Import';
