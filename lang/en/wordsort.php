@@ -133,3 +133,5 @@ $string['invalidcategory'] = 'Invalid category "{$a}" found in the CSV file.';
 $string['invalidcsv'] = 'Invalid CSV file.';
 $string['cannotreadcsv'] = 'Could not read the uploaded CSV file.';
 $string['importsuccess'] = 'Words imported successfully.';
+$string['importsummary'] =
+    'Imported {$a->imported} words. Skipped {$a->skipped} duplicates.';

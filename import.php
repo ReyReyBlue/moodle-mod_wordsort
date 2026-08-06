@@ -34,92 +34,106 @@ $form = new \mod_wordsort\form\import_form(
 
         if ($data) {
 
-            $content = $form->get_file_content('csvfile');
-            $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
+                $content = $form->get_file_content('csvfile');
+                $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
 
-            if ($content === false) {
-                throw new moodle_exception(
-                    'cannotreadcsv',
-                    'mod_wordsort'
+                if ($content === false) {
+                    throw new moodle_exception(
+                        'cannotreadcsv',
+                        'mod_wordsort'
+                    );
+                }
+
+                $handle = fopen('php://temp', 'r+');
+                fwrite($handle, $content);
+                rewind($handle);
+
+                $header = fgetcsv($handle, 0, ',');
+
+                    if (count($header) !== 4) {
+                        throw new moodle_exception(
+                            'invalidcsv',
+                            'mod_wordsort'
+                        );
+                    }
+
+                $sortorder = $DB->get_field_sql(
+                    "SELECT COALESCE(MAX(sortorder), -1)
+                        FROM {wordsort_words}
+                        WHERE wordsortid = ?",
+                        [$wordsort->id]
+                    );
+
+                $imported = 0;
+                $skipped = 0;
+
+                while (($row = fgetcsv($handle, 0, ',')) !== false) {
+
+                    if (count($row) < 4) {
+                        continue;
+                    }
+
+                    $leftcategory = trim($row[0]);
+                    $rightcategory = trim($row[1]);
+                    $word = trim($row[2]);
+                    $correct = trim($row[3]);
+
+                    if ($correct !== $leftcategory && $correct !== $rightcategory) {
+                        throw new moodle_exception(
+                            'invalidcategory',
+                            'mod_wordsort',
+                            '',
+                            $correct
+                        );
+                    }
+
+                    $correctside = ($correct === $leftcategory) ? 0 : 1;
+
+                    $exists = $DB->record_exists(
+                        'wordsort_words',
+                        [
+                            'wordsortid' => $wordsort->id,
+                            'word' => $word,
+                            'correctside' => $correctside,
+                        ]
+                    );
+
+                    if ($exists) {
+                        $skipped++;
+                        continue;
+                    }
+
+                    $sortorder++;
+
+                    $record = new stdClass();
+
+                    $record->wordsortid = $wordsort->id;
+                    $record->word = $word;
+                    $record->correctside = $correctside;
+                    $record->sortorder = $sortorder;
+
+                    $DB->insert_record('wordsort_words', $record);
+                    $imported++;
+                }
+
+                fclose($handle);
+
+                $message = get_string(
+                    'importsummary',
+                    'mod_wordsort',
+                    [
+                        'imported' => $imported,
+                        'skipped' => $skipped,
+                    ]
                 );
-            }
 
-            $handle = fopen('php://temp', 'r+');
-            fwrite($handle, $content);
-            rewind($handle);
-
-    $header = fgetcsv($handle, 0, ',');
-
-        if (count($header) !== 4) {
-            throw new moodle_exception(
-                'invalidcsv',
-                'mod_wordsort'
-            );
-        }
-
-        $sortorder = $DB->get_field_sql(
-            "SELECT COALESCE(MAX(sortorder), -1)
-                FROM {wordsort_words}
-                WHERE wordsortid = ?",
-                [$wordsort->id]
-            );
-
-    while (($row = fgetcsv($handle, 0, ',')) !== false) {
-
-        if (count($row) < 4) {
-            continue;
-        }
-
-        $leftcategory = trim($row[0]);
-        $rightcategory = trim($row[1]);
-        $word = trim($row[2]);
-        $correct = trim($row[3]);
-
-        if ($correct !== $leftcategory && $correct !== $rightcategory) {
-            throw new moodle_exception(
-                'invalidcategory',
-                'mod_wordsort',
-                '',
-                $correct
-            );
-        }
-
-        $correctside = ($correct === $leftcategory) ? 0 : 1;
-
-        $exists = $DB->record_exists(
-            'wordsort_words',
-            [
-                'wordsortid' => $wordsort->id,
-                'word' => $word,
-                'correctside' => $correctside,
-            ]
-        );
-
-        if ($exists) {
-            continue;
-        }
-
-        $sortorder++;
-
-        $record = new stdClass();
-
-        $record->wordsortid = $wordsort->id;
-        $record->word = $word;
-        $record->correctside = $correctside;
-        $record->sortorder = $sortorder;
-
-        $DB->insert_record('wordsort_words', $record);
-    }
-
-    fclose($handle);
-
-    redirect(
-        new moodle_url('/mod/wordsort/managewords.php', [
-            'id' => $cm->id
-        ]),
-        get_string('importsuccess', 'mod_wordsort')
-    );
-}
+                redirect(
+                    new moodle_url('/mod/wordsort/managewords.php', [
+                        'id' => $cm->id
+                    ]),
+                    $message
+                );
+         }
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading(get_string('importwords', 'mod_wordsort'));

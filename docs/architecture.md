@@ -30,6 +30,7 @@ The teacher creates a new activity and configures:
 - Immediate feedback
 
 The teacher then adds words or phrases and assigns the correct category.
+OR exports words with categories from already made activity and imports them to a new one. csv format.
 
 ---
 
