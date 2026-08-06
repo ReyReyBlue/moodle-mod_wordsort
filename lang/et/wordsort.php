@@ -131,3 +131,4 @@ $string['importwords'] = 'Import';
 $string['csvfile'] = 'CSV file';
 $string['invalidcategory'] =
     'Invalid category "{$a}" found in the CSV file.';
+$string['cannotreadcsv'] = 'Could not read the uploaded CSV file.';

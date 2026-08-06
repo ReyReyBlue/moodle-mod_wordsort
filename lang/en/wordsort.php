@@ -129,5 +129,7 @@ $string['grade'] = 'Grade';
 $string['exportwords'] = 'Export';
 $string['importwords'] = 'Import';
 $string['csvfile'] = 'CSV file';
-$string['invalidcategory'] =
-    'Invalid category "{$a}" found in the CSV file.';
+$string['invalidcategory'] = 'Invalid category "{$a}" found in the CSV file.';
+$string['invalidcsv'] = 'Invalid CSV file.';
+$string['cannotreadcsv'] = 'Could not read the uploaded CSV file.';
+$string['importsuccess'] = 'Words imported successfully.';

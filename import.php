@@ -18,55 +18,57 @@ $PAGE->set_context($context);
 $PAGE->set_title(get_string('importwords', 'mod_wordsort'));
 $PAGE->set_heading(format_string($course->fullname));
 
-echo $OUTPUT->header();
-
-echo $OUTPUT->heading(get_string('importwords', 'mod_wordsort'));
-
 $form = new \mod_wordsort\form\import_form(
     new moodle_url('/mod/wordsort/import.php', [
         'id' => $cm->id
     ]),
     );
 
-if ($form->is_cancelled()) {
-    redirect(new moodle_url('/mod/wordsort/manage.php', [
-        'id' => $cm->id
-    ]));
-}
+        if ($form->is_cancelled()) {
+            redirect(new moodle_url('/mod/wordsort/managewords.php', [
+                'id' => $cm->id
+            ]));
+        }
 
-if ($data = $form->get_data()) {
+        $data = $form->get_data();
 
-    $draftitemid = $data->csvfile;
+        if ($data) {
 
-    $usercontext = context_user::instance($USER->id);
+            $content = $form->get_file_content('csvfile');
+            $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
 
-    $fs = get_file_storage();
+            if ($content === false) {
+                throw new moodle_exception(
+                    'cannotreadcsv',
+                    'mod_wordsort'
+                );
+            }
 
-    $files = $fs->get_area_files(
-        $usercontext->id,
-        'user',
-        'draft',
-        $draftitemid,
-        'id',
-        false
-    );
+            $handle = fopen('php://temp', 'r+');
+            fwrite($handle, $content);
+            rewind($handle);
 
-    $file = reset($files);
-
-    $content = $file->get_content();
-
-    $handle = fopen('php://temp', 'r+');
-    fwrite($handle, $content);
-    rewind($handle);
-
-    // Read and discard the header.
     $header = fgetcsv($handle, 0, ',');
 
+        if (count($header) !== 4) {
+            throw new moodle_exception(
+                'invalidcsv',
+                'mod_wordsort'
+            );
+        }
+
+        $sortorder = $DB->get_field_sql(
+            "SELECT COALESCE(MAX(sortorder), -1)
+                FROM {wordsort_words}
+                WHERE wordsortid = ?",
+                [$wordsort->id]
+            );
+
     while (($row = fgetcsv($handle, 0, ',')) !== false) {
-        echo '<pre>';
-        var_dump($row);
-        echo '</pre>';
-        exit;
+
+        if (count($row) < 4) {
+            continue;
+        }
 
         $leftcategory = trim($row[0]);
         $rightcategory = trim($row[1]);
@@ -82,31 +84,45 @@ if ($data = $form->get_data()) {
             );
         }
 
-    $correctside = ($correct === $leftcategory) ? 0 : 1;
+        $correctside = ($correct === $leftcategory) ? 0 : 1;
 
-    $exists = $DB->record_exists(
-        'wordsort_words',
-        [
-            'wordsortid' => $wordsort->id,
-            'word' => $word,
-            'correctside' => $correctside,
-        ]
+        $exists = $DB->record_exists(
+            'wordsort_words',
+            [
+                'wordsortid' => $wordsort->id,
+                'word' => $word,
+                'correctside' => $correctside,
+            ]
+        );
+
+        if ($exists) {
+            continue;
+        }
+
+        $sortorder++;
+
+        $record = new stdClass();
+
+        $record->wordsortid = $wordsort->id;
+        $record->word = $word;
+        $record->correctside = $correctside;
+        $record->sortorder = $sortorder;
+
+        $DB->insert_record('wordsort_words', $record);
+    }
+
+    fclose($handle);
+
+    redirect(
+        new moodle_url('/mod/wordsort/managewords.php', [
+            'id' => $cm->id
+        ]),
+        get_string('importsuccess', 'mod_wordsort')
     );
-
-    if ($exists) {
-        echo "<br>Skipping duplicate: {$word}";
-        continue;
-    }
-
-        echo "<br>";
-        echo $word . " -> " . $correct;
-    }
-
-//    echo '<pre>';
-//    echo htmlspecialchars($content);
-//    echo '</pre>';
-
 }
+
+echo $OUTPUT->header();
+echo $OUTPUT->heading(get_string('importwords', 'mod_wordsort'));
 
 $form->display();
 
