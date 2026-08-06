@@ -22,28 +22,11 @@ echo $OUTPUT->header();
 
 echo $OUTPUT->heading(get_string('importwords', 'mod_wordsort'));
 
-$draftitemid = file_get_submitted_draft_itemid('csvfile');
-
-    file_prepare_draft_area(
-        $draftitemid,
-        $context->id,
-        'mod_wordsort',
-        'import',
-        0,
-        [
-            'subdirs' => 0,
-            'maxfiles' => 1,
-        ]
-    );
-
 $form = new \mod_wordsort\form\import_form(
     new moodle_url('/mod/wordsort/import.php', [
         'id' => $cm->id
     ]),
-    [
-        'draftitemid' => $draftitemid,
-    ]
-);
+    );
 
 if ($form->is_cancelled()) {
     redirect(new moodle_url('/mod/wordsort/manage.php', [
@@ -80,6 +63,10 @@ if ($data = $form->get_data()) {
     $header = fgetcsv($handle, 0, ',');
 
     while (($row = fgetcsv($handle, 0, ',')) !== false) {
+        echo '<pre>';
+        var_dump($row);
+        echo '</pre>';
+        exit;
 
         $leftcategory = trim($row[0]);
         $rightcategory = trim($row[1]);
@@ -94,6 +81,22 @@ if ($data = $form->get_data()) {
                 $correct
             );
         }
+
+    $correctside = ($correct === $leftcategory) ? 0 : 1;
+
+    $exists = $DB->record_exists(
+        'wordsort_words',
+        [
+            'wordsortid' => $wordsort->id,
+            'word' => $word,
+            'correctside' => $correctside,
+        ]
+    );
+
+    if ($exists) {
+        echo "<br>Skipping duplicate: {$word}";
+        continue;
+    }
 
         echo "<br>";
         echo $word . " -> " . $correct;

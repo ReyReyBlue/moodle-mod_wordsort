@@ -138,14 +138,12 @@ ________________________________________________________________________________
 Review page is READY.
 ___________________________________________________________________________________________
 
-
 4 August 2026
 
 11 h
 
 Report page valmis. Esines palju probleeme ja jamasid, et moodle gradebookist hinne "passed" saada.
 ___________________________________________________________________________________________
-
 
 5 August 2026
 
@@ -154,10 +152,18 @@ ________________________________________________________________________________
 Import/export - for easy re-using already added words/categories. Export works, import reads file, but is not complete and ready 
 ___________________________________________________________________________________________
 
+6 August 2026
+
+- h
+
+Import -  
+___________________________________________________________________________________________
+
 
 DO-DO List:
 
 Improve attempt counter on the start screen.
+Check text limit on title screen
 Prevent starting when no attempts remain.
 Import / Export word sets.
 Use Moodle core language strings where appropriate.
