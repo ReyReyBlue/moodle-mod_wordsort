@@ -13,6 +13,7 @@ The plugin is intended for educational use in higher education but can also be u
 
 - Two configurable categories
 - Teacher-defined words or phrases
+- Teacher can import and export words with categories between wordsort activites
 - Configurable timer
 - Multiple attempts
 - Optional random order
