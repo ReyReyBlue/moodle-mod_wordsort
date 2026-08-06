@@ -33,6 +33,10 @@ $previewurl = new moodle_url('/mod/wordsort/view.php', [
     'id' => $cm->id
 ]);
 
+$importurl = new moodle_url('/mod/wordsort/import.php', [
+    'id' => $cm->id
+]);
+
 /*
  * Words
  */
@@ -98,6 +102,12 @@ if (empty($words)) {
     echo $OUTPUT->single_button(
         $bulkaddurl,
         get_string('bulkaddwords', 'wordsort'),
+        'get'
+    );
+
+    echo $OUTPUT->single_button(
+        $importurl,
+        get_string('importwords', 'mod_wordsort'),
         'get'
     );
 
