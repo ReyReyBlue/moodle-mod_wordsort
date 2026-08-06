@@ -118,53 +118,33 @@ if (!$activityready) {
 }
 
 //--------------------------------------------------
-// Teacher toolbar
+// Teacher tools
 //--------------------------------------------------
 
 if (has_capability('moodle/course:manageactivities', $context)) {
-
-    echo $OUTPUT->heading(
-        get_string('teachertools', 'wordsort'),
-        4
-    );
 
     echo html_writer::start_div(
         'wordsort-teacher-toolbar mb-4'
     );
 
-    // Add word.
-    echo html_writer::link(
-        new moodle_url('/mod/wordsort/editword.php', ['id' => $cm->id]),
-        get_string('addword', 'wordsort'),
-        ['class' => 'btn btn-secondary me-2']
-    );
-
-    // Bulk add.
-    echo html_writer::link(
-        new moodle_url('/mod/wordsort/bulkadd.php', ['id' => $cm->id]),
-        get_string('bulkaddwords', 'wordsort'),
-        ['class' => 'btn btn-secondary me-2']
+    echo html_writer::tag(
+        'strong',
+        get_string('teachertools', 'mod_wordsort') . ': ',
+        ['class' => 'me-2']
     );
 
     // Manage words.
     echo html_writer::link(
         new moodle_url('/mod/wordsort/managewords.php', ['id' => $cm->id]),
-        get_string('managewords', 'wordsort'),
-        ['class' => 'btn btn-secondary me-2']
+        get_string('managewords', 'mod_wordsort'),
+        ['class' => 'me-3']
     );
 
-    // Edit settings.
-    echo html_writer::link(
-        new moodle_url('/course/modedit.php', ['update' => $cm->id]),
-        get_string('editsettings'),
-        ['class' => 'btn btn-secondary me-2']
-    );
-
-    // Attempts.
+    // Reports.
     echo html_writer::link(
         new moodle_url('/mod/wordsort/report.php', ['id' => $cm->id]),
         get_string('viewattempts', 'mod_wordsort'),
-        ['class' => 'btn btn-secondary me-2']
+        ['class' => 'me-3']
     );
 
     echo html_writer::end_div();
