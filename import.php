@@ -34,7 +34,9 @@ $form = new \mod_wordsort\form\import_form(
 
         if ($data) {
 
+        // Read uploaded CSV.
                 $content = $form->get_file_content('csvfile');
+        // Remove UTF-8 BOM if present.
                 $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
 
                 if ($content === false) {
@@ -47,15 +49,22 @@ $form = new \mod_wordsort\form\import_form(
                 $handle = fopen('php://temp', 'r+');
                 fwrite($handle, $content);
                 rewind($handle);
-
+        // Skip the CSV header.
                 $header = fgetcsv($handle, 0, ',');
 
-                    if (count($header) !== 4) {
-                        throw new moodle_exception(
-                            'invalidcsv',
-                            'mod_wordsort'
-                        );
-                    }
+                $expected = [
+                    'Left category',
+                    'Right category',
+                    'Word',
+                    'Correct'
+                ];
+
+                if ($header !== $expected) {
+                    throw new moodle_exception(
+                        'invalidcsv',
+                        'mod_wordsort'
+                    );
+                }
 
                 $sortorder = $DB->get_field_sql(
                     "SELECT COALESCE(MAX(sortorder), -1)
@@ -66,7 +75,7 @@ $form = new \mod_wordsort\form\import_form(
 
                 $imported = 0;
                 $skipped = 0;
-
+        // Import each word.
                 while (($row = fgetcsv($handle, 0, ',')) !== false) {
 
                     if (count($row) < 4) {
