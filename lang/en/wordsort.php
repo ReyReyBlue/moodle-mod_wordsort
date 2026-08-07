@@ -136,3 +136,5 @@ $string['importsuccess'] = 'Words imported successfully.';
 $string['importsummary'] =
     'Imported {$a->imported} words. Skipped {$a->skipped} duplicates.';
 $string['nomoreattempts'] = 'You have used all available attempts.';
+$string['categorymismatch'] =
+'Import failed. The CSV categories do not match the categories configured for this activity.';

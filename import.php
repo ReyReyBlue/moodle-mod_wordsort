@@ -40,9 +40,13 @@ $form = new \mod_wordsort\form\import_form(
                 $content = preg_replace('/^\xEF\xBB\xBF/', '', $content);
 
                 if ($content === false) {
-                    throw new moodle_exception(
-                        'cannotreadcsv',
-                        'mod_wordsort'
+                    redirect(
+                        new moodle_url('/mod/wordsort/import.php', [
+                            'id' => $cm->id
+                        ]),
+                        get_string('categorymismatch', 'mod_wordsort'),
+                        null,
+                        \core\output\notification::NOTIFY_ERROR
                     );
                 }
 
@@ -82,12 +86,29 @@ $form = new \mod_wordsort\form\import_form(
                         continue;
                     }
 
-                    $leftcategory = trim($row[0]);
-                    $rightcategory = trim($row[1]);
+                    $csvleftcategory = trim($row[0]);
+                    $csvrightcategory = trim($row[1]);
                     $word = trim($row[2]);
                     $correct = trim($row[3]);
 
-                    if ($correct !== $leftcategory && $correct !== $rightcategory) {
+                    // Validate that the CSV belongs to this activity.
+                        if (
+                            $csvleftcategory !== $wordsort->categoryleft ||
+                            $csvrightcategory !== $wordsort->categoryright
+                        ) {
+                            redirect(
+                            new moodle_url('/mod/wordsort/import.php', [
+                                'id' => $cm->id
+                            ]),
+                            get_string('categorymismatch', 'mod_wordsort'),
+                            null,
+                            \core\output\notification::NOTIFY_ERROR
+                        );
+
+                        return;
+
+                    }
+                    if ($correct !== $csvleftcategory && $correct !== $csvrightcategory) {
                         throw new moodle_exception(
                             'invalidcategory',
                             'mod_wordsort',
@@ -96,7 +117,7 @@ $form = new \mod_wordsort\form\import_form(
                         );
                     }
 
-                    $correctside = ($correct === $leftcategory) ? 0 : 1;
+                    $correctside = ($correct === $csvleftcategory) ? 0 : 1;
 
                     $exists = $DB->record_exists(
                         'wordsort_words',

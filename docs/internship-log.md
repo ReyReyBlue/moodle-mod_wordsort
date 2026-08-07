@@ -161,37 +161,18 @@ ________________________________________________________________________________
 
 7 August 2026
 
-3 h
+5 h +
 
-Check text limit on title screen (done), Edit setting page is nicer to look at. 
+Check text limit on title screen (done), Edit setting page is nicer to look at. Improve attempt counter on the start screen. Prevent starting when no attempts remain (done).
 ___________________________________________________________________________________________
 
 
 DO-DO List:
 
-Improve attempt counter on the start screen.
-Prevent starting when no attempts remain.
 Use Moodle core language strings where appropriate.
 Mobile polish.
-UI polish.
 Documentation.
 Final testing.
-
-Gradebook implementation
-
-
-Reuse the same report structure for the teacher's grading/report view where appropriate.
-Saving results to Moodle
-
-Feature	                Quiz	Word Sort	   Action
-Availability	        ✅      	❌	        Add
-Timer	                ✅	    ✅	        Keep current implementation
-Multiple attempts	    ✅	    ✅	        Keep
-Grading method	        ✅	    ❌	        Add
-Gradebook	            ✅	    ❌	        Fix
-Results page	        ✅	    ✅	        Implement
-Settings	            ✅	    ✅	        Polish
-Review after submission	✅	    ✅	        Already implemented
 ___________________________________________________________________________________________
 
 
