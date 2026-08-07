@@ -159,11 +159,17 @@ ________________________________________________________________________________
 Import - is working and takes in .csv files that are exported from wordsort module. Starting clean-up and polishes. Ended up finding an bigger issue and will deal with it with a clear mind tomorrow.  
 ___________________________________________________________________________________________
 
+7 August 2026
+
+- h
+
+Check text limit on title screen (done), 
+___________________________________________________________________________________________
+
 
 DO-DO List:
 
 Improve attempt counter on the start screen.
-Check text limit on title screen
 Prevent starting when no attempts remain.
 Use Moodle core language strings where appropriate.
 Mobile polish.

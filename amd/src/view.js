@@ -3,7 +3,6 @@ import Notification from 'core/notification';
 
 export const init = (
     wordsortid,
-    words,
     categoryLeft,
     categoryRight,
     timingmode,
@@ -18,8 +17,9 @@ export const init = (
     correctAnswerString
 ) => {
 
-    console.log('wordsortid:', wordsortid);
-    console.log('words:', words);
+    const rawWords = document.getElementById('wordsort-data').dataset.words;
+
+    const words = JSON.parse(rawWords);
 
     let currentIndex = 0;
     let correctAnswers = 0;
@@ -77,8 +77,6 @@ export const init = (
     }
 
     function showWord() {
-        console.log('words:', words);
-        console.log('words.length:', words.length);
 
         if (!words.length) {
             return;
@@ -101,6 +99,7 @@ export const init = (
         clearInterval(timerInterval);
 
         elapsed = 0;
+        timerElement.classList.remove('text-danger');
 
         if (mode === 1) {
 
@@ -112,11 +111,16 @@ export const init = (
                 elapsed--;
                 timerElement.textContent = `Countdown: ${elapsed}`;
 
+                if (elapsed <= 10) {
+                    timerElement.classList.add('text-danger');
+                } else {
+                    timerElement.classList.remove('text-danger');
+                }
+
                 if (elapsed <= 0) {
                     clearInterval(timerInterval);
                     finishGame();
                 }
-
             }, 1000);
 
         } else if (mode === 2) {
@@ -126,6 +130,12 @@ export const init = (
             timerInterval = setInterval(() => {
                 elapsed++;
                 timerElement.textContent = `Stopwatch: ${elapsed}`;
+
+                if (elapsed > timevalue) {
+                    timerElement.classList.add('text-danger');
+                } else {
+                    timerElement.classList.remove('text-danger');
+                }
             }, 1000);
         }
 
@@ -280,10 +290,6 @@ export const init = (
         submitButton.disabled = true;
         const bestAttempt = getBestAttempt();
 
-        console.log('Answers:', JSON.stringify(bestAttempt.answers));
-        console.log('Submitting attempt ID:', currentAttemptId);
-        console.log('Best attempt:', bestAttempt);
-
         Ajax.call([{
             methodname: 'mod_wordsort_save_attempt',
             args: {
@@ -296,10 +302,8 @@ export const init = (
                 answers: JSON.stringify(bestAttempt.answers)
             }
         }])[0].then(result => {
-            console.log('Save successful:', result);
         })
         .catch(error => {
-            console.error('Save failed:', error);
         });
 
         if (Number(feedbackMode) === 2) {

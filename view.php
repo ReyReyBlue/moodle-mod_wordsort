@@ -53,7 +53,6 @@ $PAGE->requires->js_call_amd(
     'init',
     [
         $wordsort->id,
-        $jswords,
         $wordsort->categoryleft,
         $wordsort->categoryright,
         $wordsort->timingmode,
@@ -66,6 +65,16 @@ $PAGE->requires->js_call_amd(
         get_string('word', 'mod_wordsort'),
         get_string('youranswer', 'mod_wordsort'),
         get_string('correctanswer', 'mod_wordsort')
+    ]
+);
+
+echo html_writer::tag(
+    'div',
+    '',
+    [
+        'id' => 'wordsort-data',
+        'data-words' => json_encode($jswords),
+        'style' => 'display:none;'
     ]
 );
 
