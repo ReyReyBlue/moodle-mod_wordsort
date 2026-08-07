@@ -135,3 +135,4 @@ $string['cannotreadcsv'] = 'Could not read the uploaded CSV file.';
 $string['importsuccess'] = 'Words imported successfully.';
 $string['importsummary'] =
     'Imported {$a->imported} words. Skipped {$a->skipped} duplicates.';
+$string['nomoreattempts'] = 'You have used all available attempts.';

@@ -161,9 +161,9 @@ ________________________________________________________________________________
 
 7 August 2026
 
-- h
+3 h
 
-Check text limit on title screen (done), 
+Check text limit on title screen (done), Edit setting page is nicer to look at. 
 ___________________________________________________________________________________________
 
 

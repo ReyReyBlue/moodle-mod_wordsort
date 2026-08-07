@@ -167,9 +167,37 @@ if (has_capability('moodle/course:manageactivities', $context)) {
 
 echo html_writer::start_div('wordsort-game');
 
-//--------------------------------------------------
+// ------------------------------------------------------------
 // Start screen
-//--------------------------------------------------
+// ------------------------------------------------------------
+
+// Check whether the user has attempts left.
+$attemptcount = $DB->count_records(
+    'wordsort_attempts',
+    [
+        'wordsortid' => $wordsort->id,
+        'userid' => $USER->id,
+    ]
+);
+
+$hasattemptsleft = ($attemptcount < $wordsort->maxattempts);
+
+// Get the latest attempt number.
+$currentattempt = $DB->get_field_sql(
+    "SELECT MAX(attempt)
+       FROM {wordsort_attempts}
+      WHERE wordsortid = ?
+        AND userid = ?",
+    [$wordsort->id, $USER->id]
+);
+
+$currentattempt = $currentattempt ?: 0;
+
+// Calculate the next attempt.
+$nextattempt = $currentattempt + 1;
+
+// Check if the user still has attempts left.
+$hasattemptsleft = ($nextattempt <= $wordsort->maxattempts);
 
 echo html_writer::start_div(
     'wordsort-start-screen mt-4',
@@ -179,15 +207,16 @@ echo html_writer::start_div(
 );
 
 echo html_writer::start_div('card');
-
 echo html_writer::start_div('card-body text-center');
 
 // Game information.
 
 echo html_writer::div(
     '<strong>' .
-    get_string('attemptslabel', 'wordsort') .
+    get_string('attempt', 'mod_wordsort') .
     ':</strong> ' .
+    min($nextattempt, $wordsort->maxattempts) .
+    ' / ' .
     $wordsort->maxattempts,
     'mb-3'
 );
@@ -206,15 +235,22 @@ if ($wordsort->timingmode != 0) {
 }
 
 // Start button.
-
-echo html_writer::tag(
-    'button',
-    get_string('start', 'wordsort'),
-    [
-        'id' => 'wordsort-start',
-        'class' => 'btn btn-primary px-4 py-2'
-    ]
-);
+if ($hasattemptsleft) {
+    echo html_writer::tag(
+        'button',
+        get_string('start', 'wordsort'),
+        [
+            'id' => 'wordsort-start',
+            'class' => 'btn btn-primary px-4 py-2'
+        ]
+    );
+} else {
+    echo html_writer::tag(
+        'p',
+        get_string('nomoreattempts', 'wordsort'),
+        ['class' => 'text-danger']
+    );
+}
 
 echo html_writer::end_div(); // card-body
 
