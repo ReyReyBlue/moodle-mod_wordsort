@@ -77,7 +77,7 @@ $mform->addGroup(
     $timingoptions,
     'timingmodegroup',
     get_string('timingmode', 'wordsort'),
-    array('<br>'),
+    ['&nbsp;&nbsp;&nbsp;&nbsp;'],
     false
 );
 
@@ -161,7 +161,7 @@ $mform->addGroup(
     $feedbackoptions,
     'feedbackgroup',
     get_string('feedbackmode', 'wordsort'),
-    ['<br>'],
+    ['&nbsp;&nbsp;&nbsp;&nbsp;'],
     false
 );
 
