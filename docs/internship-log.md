@@ -161,9 +161,9 @@ ________________________________________________________________________________
 
 7 August 2026
 
-5 h +
+9 h
 
-Check text limit on title screen (done), Edit setting page is nicer to look at. Improve attempt counter on the start screen. Prevent starting when no attempts remain (done).
+Check text limit on title screen (done), Edit setting page is nicer to look at. Improve attempt counter on the start screen. Prevent starting when no attempts remain (done).Testing import and fixing problem.
 ___________________________________________________________________________________________
 
 
