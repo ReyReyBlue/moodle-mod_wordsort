@@ -168,9 +168,9 @@ ________________________________________________________________________________
 
 8 August 2026
 
-7 h +
+7 h + 5 h (troubleshooting and testing/repairing)
 
-Testing: Found that the activity did not have a "lock" screen after submitting and counting the attempts was not working as intended. 
+Testing: Found that the activity did not have a "lock" screen after submitting and counting the attempts was not working as intended. Testing and fixing the "try again" logic and "finish" button logic.
 ___________________________________________________________________________________________
 
 

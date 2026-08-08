@@ -122,6 +122,7 @@ class external extends external_api {
             'percentage' => new external_value(PARAM_FLOAT, 'Percentage score'),
             'timeused' => new external_value(PARAM_INT, 'Time used in seconds'),
             'answers' => new external_value(PARAM_RAW, 'Attempt answers as JSON'),
+            'finalsubmission' => new external_value(PARAM_BOOL, 'Whether the student has finished the activity'),
         ]);
     }
 
@@ -134,6 +135,7 @@ class external extends external_api {
      * @param float $percentage
      * @param int $timeused
      * @param string $answers
+     * @param bool $finalsubmission
      * @return array
      */
     public static function save_attempt(
@@ -143,9 +145,10 @@ class external extends external_api {
         int $totalwords,
         float $percentage,
         int $timeused,
-        string $answers
-    ) {        
-        
+        string $answers,
+        bool $finalsubmission
+        ) {
+
         global $DB, $USER;
 
         $params = self::validate_parameters(
@@ -158,6 +161,7 @@ class external extends external_api {
                 'percentage' => $percentage,
                 'timeused' => $timeused,
                 'answers' => $answers,
+                'finalsubmission' => $finalsubmission,
             ]
         );
 
@@ -173,7 +177,7 @@ class external extends external_api {
         $record->timeused = $params['timeused'];
         $record->answers = $params['answers'];
         $record->status = 'submitted';
-
+        $record->finalsubmission = $params['finalsubmission'] ? 1 : 0;
 
         $DB->update_record('wordsort_attempts', $record);
 

@@ -56,6 +56,8 @@ export const init = (
     const submissionTime = document.getElementById('wordsort-submission-time');
     const submissionAnswers = document.getElementById('wordsort-submission-answers');
     const submissionBestAttempt = document.getElementById('wordsort-submission-bestattempt');
+    const bestScore = Number(document.getElementById('wordsort-data').dataset.bestScore);
+    const bestTotal = Number(document.getElementById('wordsort-data').dataset.bestTotal);
             
     const mode = Number(timingmode);    
     const feedback = Number(feedbackMode);
@@ -233,7 +235,7 @@ export const init = (
 
         startScreen.style.display = 'block';
     }
-    
+
     function finishGame() {
 
         clearInterval(timerInterval);
@@ -255,11 +257,12 @@ export const init = (
         resultScore.textContent =
             `Score: ${correctAnswers}/${words.length}`;
 
-        const bestAttempt = getBestAttempt();
-
-        if (bestAttempt) {
+        if (bestScore > 0) {
             resultBestScore.textContent =
-                `Best score: ${bestAttempt.correct}/${words.length}`;
+                `Best score: ${bestScore}/${bestTotal}`;
+        } else {
+            resultBestScore.textContent =
+                `Best score: ${correctAnswers}/${words.length}`;
         }
 
         if (mode === 0) {
@@ -287,36 +290,52 @@ export const init = (
     // ----------------------
 
     function submitActivity() {
+
         submitButton.disabled = true;
-        const bestAttempt = getBestAttempt();
+
+        const currentCompletedAttempt = attempts[attempts.length - 1];
 
         Ajax.call([{
             methodname: 'mod_wordsort_save_attempt',
             args: {
                 attemptid: currentAttemptId,
                 wordsortid: wordsortid,
-                score: bestAttempt.correct,
+                score: currentCompletedAttempt.correct,
                 totalwords: words.length,
-                percentage: (bestAttempt.correct / words.length) * 100,
-                timeused: bestAttempt.time,
-                answers: JSON.stringify(bestAttempt.answers)
+                percentage: (currentCompletedAttempt.correct / words.length) * 100,
+                timeused: currentCompletedAttempt.time,
+                answers: JSON.stringify(currentCompletedAttempt.answers),
+                finalsubmission: true
             }
         }])[0].then(result => {
-        })
-        .catch(error => {
+
+            if (Number(feedbackMode) === 2) {
+
+                const bestAttempt = getBestAttempt();
+
+                showSubmissionSummary(bestAttempt);
+                renderSubmissionAnswers(currentCompletedAttempt.answers);
+
+                resultsScreen.style.display = 'none';
+                submissionScreen.style.display = 'block';
+
+            } else {
+
+                // No feedback: show the final locked screen.
+                resultsScreen.style.display = 'none';
+                submissionScreen.style.display = 'none';
+                startScreen.style.display = 'block';
+
+            }
+
+        }).catch(error => {
+
+            submitButton.disabled = false;
+            Notification.exception(error);
+
         });
-
-        if (Number(feedbackMode) === 2) {
-            showSubmissionSummary(bestAttempt);
-            renderSubmissionAnswers(bestAttempt.answers);
-
-            resultsScreen.style.display = 'none';
-            submissionScreen.style.display = 'block';
-        } else {
-            // Finish activity without submission review.
-        }
     }
-
+    
     function showSubmissionSummary(bestAttempt) {
 
         submissionBestScore.textContent =
@@ -424,7 +443,27 @@ export const init = (
 
         if (tryAgainButton) {
             tryAgainButton.addEventListener('click', () => {
-                resetGame();
+
+                const currentCompletedAttempt = attempts[attempts.length - 1];
+
+                Ajax.call([{
+                    methodname: 'mod_wordsort_save_attempt',
+                    args: {
+                        attemptid: currentAttemptId,
+                        wordsortid: wordsortid,
+                        score: currentCompletedAttempt.correct,
+                        totalwords: words.length,
+                        percentage: (currentCompletedAttempt.correct / words.length) * 100,
+                        timeused: currentCompletedAttempt.time,
+                        answers: JSON.stringify(currentCompletedAttempt.answers),
+                        finalsubmission: false
+                    }
+                }])[0].then(result => {
+
+                    resetGame();
+
+                }).catch(Notification.exception);
+
             });
         }
 

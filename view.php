@@ -68,15 +68,28 @@ $PAGE->requires->js_call_amd(
     ]
 );
 
-echo html_writer::tag(
-    'div',
-    '',
-    [
-        'id' => 'wordsort-data',
-        'data-words' => json_encode($jswords),
-        'style' => 'display:none;'
-    ]
-);
+    $bestattempt = $DB->get_record_sql(
+        "SELECT *
+        FROM {wordsort_attempts}
+        WHERE wordsortid = ?
+            AND userid = ?
+            AND status = 'submitted'
+        ORDER BY score DESC, id ASC",
+        [$wordsort->id, $USER->id],
+        IGNORE_MULTIPLE
+    );
+
+    echo html_writer::tag(
+        'div',
+        '',
+        [
+            'id' => 'wordsort-data',
+            'data-words' => json_encode($jswords),
+            'data-best-score' => $bestattempt ? $bestattempt->score : 0,
+            'data-best-total' => $bestattempt ? $bestattempt->totalwords : 0,
+            'style' => 'display:none;',
+        ]
+    );
 
 echo $OUTPUT->header();
 
@@ -180,20 +193,20 @@ $attemptcount = $DB->count_records(
     ]
 );
 
-// Check whether the student has already submitted the activity.
-$hassubmitted = $DB->record_exists(
+// Check whether the student has finally finished the activity.
+$hasfinalsubmission = $DB->record_exists(
     'wordsort_attempts',
     [
         'wordsortid' => $wordsort->id,
         'userid' => $USER->id,
-        'status' => 'submitted',
+        'finalsubmission' => 1,
     ]
 );
 
 // Student may start only if:
 // - the activity has not been submitted,
 // - and the maximum number of attempts has not been reached.
-$hasattemptsleft = !$hassubmitted && ($attemptcount < $wordsort->maxattempts);
+$hasattemptsleft = !$hasfinalsubmission && ($attemptcount < $wordsort->maxattempts);
 
 echo html_writer::start_div(
     'wordsort-start-screen mt-4',
@@ -239,7 +252,7 @@ if ($hasattemptsleft) {
         ]
     );
 
-} else if ($hassubmitted) {
+} else if ($hasfinalsubmission) {
     echo html_writer::div(
         get_string('activitysubmitted', 'wordsort'),
         'text-success mb-3'
