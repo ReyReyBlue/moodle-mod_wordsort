@@ -171,7 +171,7 @@ echo html_writer::start_div('wordsort-game');
 // Start screen
 // ------------------------------------------------------------
 
-// Check whether the user has attempts left.
+// Count attempts that have been started.
 $attemptcount = $DB->count_records(
     'wordsort_attempts',
     [
@@ -180,24 +180,20 @@ $attemptcount = $DB->count_records(
     ]
 );
 
-$hasattemptsleft = ($attemptcount < $wordsort->maxattempts);
-
-// Get the latest attempt number.
-$currentattempt = $DB->get_field_sql(
-    "SELECT MAX(attempt)
-       FROM {wordsort_attempts}
-      WHERE wordsortid = ?
-        AND userid = ?",
-    [$wordsort->id, $USER->id]
+// Check whether the student has already submitted the activity.
+$hassubmitted = $DB->record_exists(
+    'wordsort_attempts',
+    [
+        'wordsortid' => $wordsort->id,
+        'userid' => $USER->id,
+        'status' => 'submitted',
+    ]
 );
 
-$currentattempt = $currentattempt ?: 0;
-
-// Calculate the next attempt.
-$nextattempt = $currentattempt + 1;
-
-// Check if the user still has attempts left.
-$hasattemptsleft = ($nextattempt <= $wordsort->maxattempts);
+// Student may start only if:
+// - the activity has not been submitted,
+// - and the maximum number of attempts has not been reached.
+$hasattemptsleft = !$hassubmitted && ($attemptcount < $wordsort->maxattempts);
 
 echo html_writer::start_div(
     'wordsort-start-screen mt-4',
@@ -212,12 +208,10 @@ echo html_writer::start_div('card-body text-center');
 // Game information.
 
 echo html_writer::div(
-    '<strong>' .
-    get_string('attempt', 'mod_wordsort') .
-    ':</strong> ' .
-    min($nextattempt, $wordsort->maxattempts) .
-    ' / ' .
-    $wordsort->maxattempts,
+    get_string('attemptsused', 'mod_wordsort', [
+        'used' => $attemptcount,
+        'max' => $wordsort->maxattempts,
+    ]),
     'mb-3'
 );
 
@@ -244,6 +238,12 @@ if ($hasattemptsleft) {
             'class' => 'btn btn-primary px-4 py-2'
         ]
     );
+
+} else if ($hassubmitted) {
+    echo html_writer::div(
+        get_string('activitysubmitted', 'wordsort'),
+        'text-success mb-3'
+    );
 } else {
     echo html_writer::tag(
         'p',
@@ -263,11 +263,11 @@ echo html_writer::end_div(); // wordsort-start-screen
 //--------------------------------------------------
 
 echo html_writer::start_div(
-    'wordsort-activity-screen hidden',
+    'wordsort-activity-screen',
     [
-        'id' => 'wordsort-activity-screen'
+        'id' => 'wordsort-activity-screen',
+        'style' => 'display: none;'
     ]
-
 );
 
 echo html_writer::start_div('card');

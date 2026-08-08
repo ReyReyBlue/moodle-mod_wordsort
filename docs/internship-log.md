@@ -166,6 +166,13 @@ ________________________________________________________________________________
 Check text limit on title screen (done), Edit setting page is nicer to look at. Improve attempt counter on the start screen. Prevent starting when no attempts remain (done).Testing import and fixing problem.
 ___________________________________________________________________________________________
 
+8 August 2026
+
+7 h +
+
+Testing: Found that the activity did not have a "lock" screen after submitting and counting the attempts was not working as intended. 
+___________________________________________________________________________________________
+
 
 DO-DO List:
 

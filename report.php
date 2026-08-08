@@ -202,7 +202,14 @@ $details .= html_writer::start_tag('tbody');
                 'i/completion-manual-y',
                 get_string('submitted', 'mod_wordsort')
             ) . ' ' . get_string('submitted', 'mod_wordsort');
-        } else {
+
+        } else if ($attempt->status === 'inprogress') {
+            $status = $OUTPUT->pix_icon(
+                'i/completion-manual-n',
+                get_string('statusinprogress', 'mod_wordsort')
+            ) . ' ' . get_string('statusinprogress', 'mod_wordsort');
+
+        } else if ($attempt->status === 'abandoned') {
             $status = $OUTPUT->pix_icon(
                 'i/completion-auto-fail',
                 get_string('statusabandoned', 'mod_wordsort')

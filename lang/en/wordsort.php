@@ -48,7 +48,7 @@ $string['bulkwordsadded'] = '{$a} words were added.';
 $string['start'] = 'Start';
 $string['attemptsremaining'] = 'Attempts remaining';
 $string['timelimit'] = 'Time limit';
-$string['finished'] = 'Finished';
+$string['finished'] = 'Result';
 $string['score'] = 'Score';
 $string['teachertools'] = 'Teacher tools';
 $string['attempts'] = 'Attempts';
@@ -57,7 +57,7 @@ $string['timelimitlabel'] = 'Time limit';
 $string['notimelimit'] = 'No time limit';
 $string['nowords'] = 'No words have been added yet.';
 $string['tryagain'] = 'Try again';
-$string['submit'] = 'Submit';
+$string['submit'] = 'Finish and submit';
 $string['score'] = 'Score';
 $string['time'] = 'Time';
 $string['nowordsadded'] = 'No words have been added yet.';
@@ -138,3 +138,8 @@ $string['importsummary'] =
 $string['nomoreattempts'] = 'You have used all available attempts.';
 $string['categorymismatch'] =
 'Import failed. The CSV categories do not match the categories configured for this activity.';
+$string['activitysubmitted'] =
+    'Your results have been sent to your teacher. Have a nice day!';
+$string['attemptsused'] = 'You have tried: {$a->used}/{$a->max} times.';
+$string['activitysubmitted'] = 'Your results have been sent to your teacher. Have a nice day!';
+$string['statusinprogress'] = 'In progress';

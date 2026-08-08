@@ -94,5 +94,28 @@ function xmldb_wordsort_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2026072902, 'wordsort');
     }
 
+    // Add final submission field.
+    if ($oldversion < 2026080800) {
+
+        $table = new xmldb_table('wordsort_attempts');
+
+        $field = new xmldb_field(
+            'finalsubmission',
+            XMLDB_TYPE_INTEGER,
+            '1',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            '0',
+            'status'
+        );
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026080800, 'wordsort');
+    }
+
     return true;
 }

@@ -227,13 +227,13 @@ export const init = (
     }
 
     function resetGame() {
-
         resultsScreen.style.display = 'none';
-        activityScreen.style.display = 'block';
+        activityScreen.style.display = 'none';
+        submissionScreen.style.display = 'none';
 
-        startAttempt();
+        startScreen.style.display = 'block';
     }
-
+    
     function finishGame() {
 
         clearInterval(timerInterval);
