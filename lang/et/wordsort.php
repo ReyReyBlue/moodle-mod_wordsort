@@ -1,134 +1,124 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
+// Plugin specific information.
+
 $string['pluginname'] = 'Word Sort';
 $string['modulename'] = 'Word Sort';
-$string['modulenameplural'] = 'Word Sort activities';
-$string['pluginadministration'] = 'Word Sort administration';
-$string['gamesettings'] = 'Game settings';
-$string['category1'] = 'Category 1';
-$string['category2'] = 'Category 2';
-$string['timelimit'] = 'Time limit (seconds)';
-$string['maxattempts'] = 'Maximum attempts';
-$string['shuffleitems'] = 'Shuffle items';
-$string['immediatefeedback'] = 'Immediate feedback';
-$string['timingsettings'] = 'Timing';
-$string['timingmode'] = 'Timing mode';
-$string['notimer'] = 'No timer';
-$string['countdown'] = 'Countdown';
-$string['stopwatch'] = 'Stopwatch';
-$string['timevalue'] = 'Time limit / Target time (seconds)';
-$string['attemptsettings'] = 'Attempts';
-$string['activityoptions'] = 'Activity options';
-$string['shufflewords'] = 'Shuffle words';
-$string['feedbackmode'] = 'Feedback mode';
-$string['feedbackeachmove'] = 'After each move';
-$string['feedbacksubmit'] = 'Review answers after submission';
-$string['feedbacknone'] = 'No feedback';
-$string['categoryleft'] = 'Left category';
-$string['categoryright'] = 'Right category';
-$string['errorcategoryleftrequired'] = 'Left category is required.';
-$string['errorcategoryrightrequired'] = 'Right category is required.';
-$string['errorcategoriesequal'] = 'Left and right categories must be different.';
-$string['word'] = 'Word';
-$string['category'] = 'Category';
-$string['addword'] = 'Add word';
-$string['wordsaved'] = 'Word saved successfully.';
-$string['managewords'] = 'Manage words';
-$string['worddeleted'] = 'Word deleted.';
-$string['confirmdeleteword'] = 
-    'Are you sure you want to delete the word "{$a}"?';
-$string['deleteword'] = 'Delete word';
-$string['confirmdeleteword'] = 'Are you sure you want to delete the word "{$a}"?';
-$string['worddeleted'] = 'Word deleted.';
-$string['moveup'] = 'Move up';
-$string['movedown'] = 'Move down';
-$string['bulkaddwords'] = 'Bulk add';
-$string['bulkwordsadded'] = '{$a} words were added.';
-$string['start'] = 'Start';
-$string['attemptsremaining'] = 'Attempts remaining';
-$string['timelimit'] = 'Time limit';
-$string['finished'] = 'Finished';
-$string['score'] = 'Score';
-$string['teachertools'] = 'Teacher tools';
-$string['attempts'] = 'Attempts';
-$string['attemptslabel'] = 'Maximum attempts';
-$string['timelimitlabel'] = 'Time limit';
-$string['notimelimit'] = 'No time limit';
-$string['nowords'] = 'No words have been added yet.';
-$string['tryagain'] = 'Try again';
-$string['submit'] = 'Submit';
-$string['score'] = 'Score';
-$string['time'] = 'Time';
-$string['nowordsadded'] = 'No words have been added yet.';
-$string['finishedaddingwords'] = 'Finished adding words?';
-$string['previewactivity'] = 'Preview activity';
-$string['previewactivitydesc'] = 
-    'Preview the activity exactly as your students will see it.';
-$string['activitysetup'] =
-    'Word Sort setup';
-
-$string['activitysetupdesc'] =
-    'This activity is not ready for students yet. Complete the remaining setup steps below.';
-
-$string['categoriesconfigured'] =
-    'Categories configured';
-
-$string['wordsnotadded'] =
-    'Words have not been added yet
-    
-    Add your first word to begin building the activity.';
-
-$string['activitysetupnext'] =
-    'Next step: add at least one word.';
-$string['categories'] = 'Categories';
-$string['words'] = 'Words';
-$string['leftcategory'] = 'Left category';
-$string['rightcategory'] = 'Right category';
-$string['nextstep'] = 'Next step';
-$string['addfirstword'] = 'Add your first word to begin building the activity.';
-$string['submissionsummary'] = 'Submission summary';
-$string['bestscore'] = 'Best score';
-$string['attemptsused'] = 'Attempts used';
-$string['bestattempt'] = 'Best attempt';
-$string['youranswer'] = 'Your answer';
-$string['correctanswer'] = 'Correct answer';
-$string['word'] = 'Word';
-$string['result'] = 'Result';
-$string['correct'] = 'Correct';
-$string['incorrect'] = 'Incorrect';
-$string['viewattempts'] = 'View attempts';
-$string['attemptsreport'] = 'Student attempts';
-$string['wordsort:viewreports'] = 'View Word Sort reports';
-$string['status'] = 'Status';
-$string['statusinprogress'] = 'In progress';
-$string['statussubmitted'] = 'Submitted';
-$string['statusabandoned'] = 'Abandoned';
-$string['student'] = 'Student';
-$string['percentage'] = 'Percentage';
-$string['attempt'] = 'Attempt';
-$string['score'] = 'Score';
-$string['submitted'] = 'Submitted';
-$string['time'] = 'Time';
-$string['review'] = 'Review';
-$string['viewanswers'] = 'View answers';
-$string['attemptreviewtitle'] = 'Attempt {$a}';
-$string['attemptreview'] = 'Attempt review';
-$string['studentanswer'] = 'Student answer';
-$string['result'] = 'Result';
-$string['word'] = 'Word';
-$string['correct'] = 'Correct';
-$string['incorrect'] = 'Incorrect';
-$string['correctcategory'] = 'Correct category';
-$string['backtoreport'] = 'Back to report';
-$string['passed'] = 'Passed';
-$string['notpassed'] = 'Not passed';
-$string['bestscore'] = 'Best score';
-$string['details'] = 'Details';
-$string['grade'] = 'Grade';
-$string['exportwords'] = 'Export';
+$string['modulenameplural'] = 'Word Sort tegevused';
+$string['pluginadministration'] = 'Word Sort administreerimine';
+$string['activitysetup'] = 'Word Sort seadistamine';
+$string['wordsort:viewreports'] = 'Vaata Word Sort raporteid';
+$string['exportwords'] = 'Eksport';
 $string['importwords'] = 'Import';
-$string['csvfile'] = 'CSV file';
-$string['invalidcategory'] =
-    'Invalid category "{$a}" found in the CSV file.';
-$string['cannotreadcsv'] = 'Could not read the uploaded CSV file.';
+$string['csvfile'] = 'CSV fail';
+
+// Activity settings.
+$string['activityoptions'] = 'Tegevuse valikud';
+$string['shufflewords'] = 'Sega sõnad';
+$string['moveup'] = 'Liiguta üles';
+$string['movedown'] = 'Liiguta alla';
+$string['start'] = 'Alusta';
+$string['teachertools'] = 'Õpetaja tööriistad';
+$string['backtoreport'] = 'Tagasi raportisse';
+
+// Word
+$string['word'] = 'Sõna';
+$string['words'] = 'Sõnad';
+$string['addword'] = 'Lisa sõna';
+$string['wordsaved'] = 'Sõna edukalt salvestatud.';
+$string['managewords'] = 'Halda sõnu';
+$string['deleteword'] = 'Kustuta sõna';
+$string['confirmdeleteword'] = 'Kas oled kindel, et soovid sõna "{$a}" kustutada?';
+$string['worddeleted'] = 'Sõna kustutatud.';
+$string['bulkaddwords'] = 'Massiliselt lisamine';
+$string['bulkwordsadded'] = '{$a} sõnu lisatud.';
+
+// Attempts
+$string['attempt'] = 'Katse';
+$string['maxattempts'] = 'Maksimaalne katsete arv';
+$string['attemptsettings'] = 'Katsete seadistamine';
+$string['attempts'] = 'Katsed';
+$string['attemptsused'] = 'Kasutatud katseid';
+$string['bestattempt'] = 'Parim katse';
+$string['viewattempts'] = 'Vaata katseid';
+$string['attemptsreport'] = 'Õpilaste katsete raport';
+
+// Feedback
+$string['feedbackmode'] = 'tagasiside režiim';
+$string['feedbackeachmove'] = 'Iga liikumise järel';
+$string['feedbacksubmit'] = 'Pärast esitamist';
+$string['feedbacknone'] = 'Tagasisidet pole';
+
+// Categories
+$string['categoryleft'] = 'Vasak kategooria';
+$string['categoryright'] = 'Parem kategooria';
+$string['errorcategoryleftrequired'] = 'Vasak kategooria on nõutav';
+$string['errorcategoryrightrequired'] = 'Parem kategooria on nõutav';
+$string['errorcategoriesequal'] = 'Vasak ja parem kategooriad peavad olema erinevad';
+$string['category'] = 'Kategooria';
+$string['categories'] = 'Kategooriad';
+$string['leftcategory'] = 'Vasak kategooria';
+$string['rightcategory'] = 'Parem kategooria';
+$string['correctcategory'] = 'Õige kategooria';
+
+// Timing.
+$string['timingsettings'] = 'Aja seadistamine';
+$string['timingmode'] = 'Aja režiim';
+$string['notimer'] = 'Taimer puudub';
+$string['countdown'] = 'Aja tagasiloendus';
+$string['stopwatch'] = 'Stoppkell';
+$string['timevalue'] = 'Aja limiit / Sihtaeg (sekundites)';
+$string['timelimitlabel'] = 'Aja limiit';
+
+// Results and review.
+$string['finished'] = 'Lõpetatud';
+$string['tryagain'] = 'Proovi uuesti';
+$string['submit'] = 'Lõpeta';
+$string['score'] = 'Tulemus';
+$string['submissionsummary'] = 'Soorituse kokkuvõte';
+$string['bestscore'] = 'Parim tulemus';
+$string['youranswer'] = 'Sinu vastus';
+$string['correctanswer'] = 'Õige vastus';
+$string['status'] = 'Olek';
+$string['statusinprogress'] = 'Pooleli';
+$string['statusabandoned'] = 'Hüljatud';
+$string['student'] = 'Õpilane';
+$string['percentage'] = 'Protsent';
+$string['submitted'] = 'Esitatud';
+$string['review'] = 'Ülevaade';
+$string['viewanswers'] = 'Vaata vastuseid';
+$string['attemptreviewtitle'] = 'Katse {$a}';
+$string['attemptreview'] = 'Katse ülevaade';
+$string['studentanswer'] = 'Õpilase vastus';
+$string['result'] = 'Tulemus';
+$string['correct'] = 'Õige';
+$string['incorrect'] = 'Vale';
+$string['passed'] = 'Läbitud';
+$string['notpassed'] = 'Ei läbinud';
+$string['details'] = 'Detailid';
+$string['grade'] = 'Hinne';
+
+// Status messages.
+$string['nowordsadded'] = 'Sõnu pole veel lisatud.';
+$string['previewactivity'] = 'Tegevuse eelvaade';
+$string['previewactivitydesc'] = 'Vaata tegevuse eelvaadet täpselt nii, nagu seda näevad sinu õpilased.';
+$string['activitysetupdesc'] = 'See tegevus ei ole veel õpilaste jaoks valmis. Lõpeta järgmised seadistamise sammud allpool.';
+$string['categoriesconfigured'] = 'Seadistatud kategooriad';
+$string['wordsnotadded'] = 
+    'Sõnu pole veel lisatud. 
+    
+    Palun lisa sõnad, et õpilased saaksid seda tegevust teha.';
+$string['activitysetupnext'] = 'Järgmine samm: lisa vähemalt üks sõna.';
+$string['nextstep'] = 'Järgmine samm';
+$string['addfirstword'] = 'Lisa oma esimene sõna, et alustada tegevuse loomist.';
+$string['invalidcategory'] = 'Kehtetu kategooria "{$a}" leitud CSV failist.';
+$string['invalidcsv'] = 'Kehtetu CSV fail.';
+$string['cannotreadcsv'] = 'Ei saa lugeda üles laetud CSV faili.';
+$string['importsuccess'] = 'Sõnad edukalt imporditud.';
+$string['importsummary'] = 'Imporditud {$a->imported} sõna. Vahele jäetud {$a->skipped} topelt sõna.';
+$string['nomoreattempts'] = 'Oled kasutanud ära kõik saadaolevaid katsed.';
+$string['categorymismatch'] = 'Import ebaõnnestus. CSV kategooriad ei kattu selle tegevuse jaoks seadistatud kategooriatega.';
+$string['activitysubmitted'] = 'Sinu tulemused on saadetud õpetajale. Head päeva!';
+$string['attemptsused'] = 'Oled proovinud: {$a->used}/{$a->max} korda.';
+// End of file.

@@ -102,7 +102,7 @@ Configure settings
         │
         ▼
         import/export✅
-• Timer
+• Timer 
 • Attempts
 • Feedback
         │

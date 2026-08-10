@@ -173,13 +173,151 @@ ________________________________________________________________________________
 Testing: Found that the activity did not have a "lock" screen after submitting and counting the attempts was not working as intended. Testing and fixing the "try again" logic and "finish" button logic.
 ___________________________________________________________________________________________
 
+10 August 2026
 
-DO-DO List:
+4 h
 
-Use Moodle core language strings where appropriate.
-Mobile polish.
-Documentation.
-Final testing.
+Testing. 
+_ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _ - _
+1. No feedback — normal completion + Try again
+
+Feedback: No feedback   ✅
+Max attempts: 3 or 5    ✅
+Timer: none             ✅ 
+
+Test A — complete game → Try again
+Start attempt 1.
+    Play all words.             ✅  
+    On Result screen, verify:
+        Score is correct.       ✅
+        Best score is correct.  ✅
+        Try again is visible.   ✅
+        Finish is visible.      ✅
+    Press Try again.
+Verify you return to the Start screen.
+    Verify:
+        1/3 (or 1/5)                -/✅
+        Start button is visible     ✅
+        No lock message.            ✅
+
+Teacher view
+    While you are still on the Start screen:
+        Attempt 1    Submitted          ✅
+    Then press Start.
+        Teacher should now see:
+            Attempt 2    In progress    ✅
+            Attempt 1    Submitted      ✅
+
+This is an important test because it proves that submitted ≠ final.
+
+2. No feedback — Finish
+
+Continue with attempt 2.
+    Complete the game.                                      
+        Press Finish.                                                           ✅
+            No Submission summary should appear.    
+            You should immediately see the final screen:                        -/✅
+                You have tried: 2/3 times.                                      -/✅
+                Your results have been sent to your teacher. Have a nice day!   -/✅
+
+Leave the activity.
+    Open it again.
+        It must still show the final locked screen.     ✅
+
+Teacher view
+    You should see:
+        Attempt 2    Submitted    [score]       ✅
+        Attempt 1    Submitted    [score]       ✅
+
+And no new attempt should be created just by reopening the activity. ✅
+
+Results (1&2) - Start-screen transition occasionally displays the previous screen briefly before updating; final state is correct after refresh.
+
+3. partA: Feedback enabled (after each move) — Finish
+
+Complete an attempt and press Finish.   
+Expected:
+        Result   ✅
+       ↓
+        Finish  ✅
+
+The student should be able to see the answers during this session. ✅
+
+3. partB: Feedback enabled (after full test) — Finish
+
+Complete an attempt and press Finish.   
+Expected:
+        Finish
+        ↓
+        Submission summary / Review ✅
+
+The review should not become a permanent way to view the answers. The final locked screen should be what the student gets after reopening. ✅
+
+4. Feedback enabled — Try again - Finish
+
+Complete an attempt.
+
+Press:
+    Try again
+
+Expected:
+    Attempt 1 → Submitted   ✅
+            ↓
+    Start screen            ✅
+            ↓
+    Start                   ✅
+            ↓
+    Attempt 2 → In progress ✅
+
+It should not lock merely because the previous attempt was submitted.
+
+Final result is presented to student after pressing finish and not after try again. Sucess ✅ 
+
+5. Maximum attempts
+
+Max attempts = 3
+
+Then:
+
+Attempt 1 → Try again   ✅
+Attempt 2 → Try again   ✅
+Attempt 3 → Finish      ✅
+
+After Finish:
+
+You have tried: 3/3 times. ✅
+Your results have been sent to your teacher...
+
+6. Refresh during an active attempt
+
+Max attempts something like 5.                          ✅
+Start an attempt.                                       ✅
+Answer a few words, but do not finish.                  ✅
+Refresh the browser while the game is still active.     ✅
+Observe where the student lands.                        ✅
+Check the teacher report before pressing Start again.   ✅
+
+Expected teacher status:
+                    In progress     ✅
+Not Abandoned, not Submitted.
+
+Then student:
+                    Press Start.    ✅
+
+Because the previous attempt was genuinely unfinished, the old attempt should become Abandoned.
+A new attempt should become In progress.
+
+Teacher should then see:
+        Attempt 2 — In progress     ✅
+        Attempt 1 — Abandoned       ✅
+
+___________________________________________________________________________________________
+
+10 August 2026
+
+- h
+
+reviewing and blendind the moodle language string with current plugin.
 ___________________________________________________________________________________________
 
 
