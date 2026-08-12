@@ -320,4 +320,10 @@ ________________________________________________________________________________
 reviewing and blendind the moodle language string with current plugin. Ready to send to the instructor for reviewing.
 ___________________________________________________________________________________________
 
+12 August 2026
+
+16:00-17:00 (1 h)
+
+real-live testing gave errors. So starting to fix that.
+
 
