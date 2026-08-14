@@ -117,5 +117,28 @@ function xmldb_wordsort_upgrade($oldversion) {
         upgrade_mod_savepoint(true, 2026080800, 'wordsort');
     }
 
+    // Add score field.
+if ($oldversion < 2026081216) {
+
+    $table = new xmldb_table('wordsort_attempts');
+
+    $field = new xmldb_field(
+        'score',
+        XMLDB_TYPE_INTEGER,
+        '10',
+        null,
+        XMLDB_NOTNULL,
+        null,
+        '0',
+        'correctanswers'
+    );
+
+    if (!$dbman->field_exists($table, $field)) {
+        $dbman->add_field($table, $field);
+    }
+
+    upgrade_mod_savepoint(true, 2026081216, 'wordsort');
+}
+
     return true;
 }

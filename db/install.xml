@@ -58,6 +58,7 @@
                      <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true"/>
                      <FIELD NAME="attempt" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1"/>
                      <FIELD NAME="correctanswers" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
+                     <FIELD NAME="score" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                      <FIELD NAME="totalwords" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
                      <FIELD NAME="percentage" TYPE="number" LENGTH="5" DECIMALS="2" NOTNULL="true" DEFAULT="0"/>
                      <FIELD NAME="timeused" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"/>
