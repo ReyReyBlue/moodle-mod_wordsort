@@ -322,8 +322,20 @@ ________________________________________________________________________________
 
 12 August 2026
 
-16:00-17:00 (1 h)
+3 h
 
-real-live testing gave errors. So starting to fix that.
+real-live testing gave errors. So starting to fix that. Online testing moodle run out of security - i have to wait.
+___________________________________________________________________________________________
 
+13 August 2026
 
+10 h 
+
+Still trying to fix the redirect from view. It´s seems after checking every line and upgrades after upgrades - the problem might be in moodle test-enviroment itself.
+___________________________________________________________________________________________
+
+14 August 2026
+
+10:00 - 
+
+Cause quiz-mod is working in moodle-test enviroment, i´ll check what is our difference and implement those in mine, cause the code in mine is functioning, but it gets redirected, before it even opens. I was told, that maybe the problem is the versions of moodle in my docker and in real-test-enviroment - but they are actually the same versions. LTS 4.5.12.

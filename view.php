@@ -7,13 +7,34 @@ require('../../config.php');
 
 $id = required_param('id', PARAM_INT);
 
-$cm = get_coursemodule_from_id('wordsort', $id, 0, false, MUST_EXIST);
-$course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
-$wordsort = $DB->get_record('wordsort', ['id' => $cm->instance], '*', MUST_EXIST);
+$cm = get_coursemodule_from_id(
+    'wordsort',
+    $id,
+    0,
+    false,
+    MUST_EXIST
+);
 
+$course = $DB->get_record(
+    'course',
+    ['id' => $cm->course],
+    '*',
+    MUST_EXIST
+);
+
+$wordsort = $DB->get_record(
+    'wordsort',
+    ['id' => $cm->instance],
+    '*',
+    MUST_EXIST
+);
+
+// Check login and get context.
 require_login($course, true, $cm);
 
 $context = context_module::instance($cm->id);
+
+require_capability('mod/wordsort:view', $context);
 
 // Get words for this activity.
 $words = $DB->get_records(
@@ -22,17 +43,15 @@ $words = $DB->get_records(
     'sortorder ASC'
 );
 
-// Check if the activity is ready.
 $activityready = !empty($words);
 
-// Prepare words for JavaScript.
 $jswords = [];
 
 foreach ($words as $word) {
     $jswords[] = [
-    'word' => $word->word,
-    'correctside' => (int)$word->correctside,
-];
+        'word' => $word->word,
+        'correctside' => (int)$word->correctside,
+    ];
 }
 
 $firstword = reset($words);
@@ -43,7 +62,6 @@ $firstword = reset($words);
 
 $PAGE->set_url('/mod/wordsort/view.php', ['id' => $cm->id]);
 $PAGE->set_context($context);
-
 $PAGE->set_title(format_string($wordsort->name));
 $PAGE->set_heading(format_string($course->fullname));
 
@@ -68,16 +86,19 @@ $PAGE->requires->js_call_amd(
     ]
 );
 
-    $bestattempt = $DB->get_record_sql(
-        "SELECT *
-        FROM {wordsort_attempts}
-        WHERE wordsortid = ?
-            AND userid = ?
-            AND status = 'submitted'
-        ORDER BY score DESC, id ASC",
-        [$wordsort->id, $USER->id],
-        IGNORE_MULTIPLE
-    );
+$bestattempt = $DB->get_record_sql(
+    "SELECT *
+       FROM {wordsort_attempts}
+      WHERE wordsortid = ?
+        AND userid = ?
+        AND status = 'submitted'
+   ORDER BY score DESC, id ASC",
+    [$wordsort->id, $USER->id],
+    IGNORE_MULTIPLE
+);
+
+    // NOW start output.
+    echo $OUTPUT->header();
 
     echo html_writer::tag(
         'div',
@@ -90,8 +111,6 @@ $PAGE->requires->js_call_amd(
             'style' => 'display:none;',
         ]
     );
-
-echo $OUTPUT->header();
 
 if (!$activityready) {
 
@@ -232,7 +251,7 @@ if ($wordsort->timingmode != 0) {
 
     echo html_writer::div(
         '<strong>' .
-        get_string('timelimitlabel', 'wordsort') .
+        get_string('timelimitlabel', 'mod_wordsort') .
         ':</strong> ' .
         $wordsort->timevalue .
         ' ' .
@@ -245,7 +264,7 @@ if ($wordsort->timingmode != 0) {
 if ($hasattemptsleft) {
     echo html_writer::tag(
         'button',
-        get_string('start', 'wordsort'),
+        get_string('start', 'mod_wordsort'),
         [
             'id' => 'wordsort-start',
             'class' => 'btn btn-primary px-4 py-2'
@@ -254,13 +273,13 @@ if ($hasattemptsleft) {
 
 } else if ($hasfinalsubmission) {
     echo html_writer::div(
-        get_string('activitysubmitted', 'wordsort'),
+        get_string('activitysubmitted', 'mod_wordsort'),
         'text-success mb-3'
     );
 } else {
     echo html_writer::tag(
         'p',
-        get_string('nomoreattempts', 'wordsort'),
+        get_string('nomoreattempts', 'mod_wordsort'),
         ['class' => 'text-danger']
     );
 }
