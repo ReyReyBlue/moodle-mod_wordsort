@@ -88,7 +88,7 @@
 
 ## Sprint 7 – Testing
 
-- [ ] Functional testing
+- [x] Functional testing
 - [ ] Bug fixes
 - [ ] Final documentation
 

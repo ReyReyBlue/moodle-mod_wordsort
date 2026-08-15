@@ -118,27 +118,50 @@ function xmldb_wordsort_upgrade($oldversion) {
     }
 
     // Add score field.
-if ($oldversion < 2026081216) {
+    if ($oldversion < 2026081216) {
 
-    $table = new xmldb_table('wordsort_attempts');
+        $table = new xmldb_table('wordsort_attempts');
 
-    $field = new xmldb_field(
-        'score',
-        XMLDB_TYPE_INTEGER,
-        '10',
-        null,
-        XMLDB_NOTNULL,
-        null,
-        '0',
-        'correctanswers'
-    );
+        $field = new xmldb_field(
+            'score',
+            XMLDB_TYPE_INTEGER,
+            '10',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            '0',
+            'correctanswers'
+        );
 
-    if (!$dbman->field_exists($table, $field)) {
-        $dbman->add_field($table, $field);
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026081216, 'wordsort');
     }
 
-    upgrade_mod_savepoint(true, 2026081216, 'wordsort');
-}
+         // Ensure finalsubmission field exists.
+    if ($oldversion < 2026081217) {
+
+        $table = new xmldb_table('wordsort_attempts');
+
+        $field = new xmldb_field(
+            'finalsubmission',
+            XMLDB_TYPE_INTEGER,
+            '1',
+            null,
+            XMLDB_NOTNULL,
+            null,
+            '0',
+            'status'
+        );
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_mod_savepoint(true, 2026081217, 'wordsort');
+    }
 
     return true;
 }

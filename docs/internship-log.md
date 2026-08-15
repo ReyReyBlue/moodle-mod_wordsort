@@ -336,6 +336,17 @@ ________________________________________________________________________________
 
 14 August 2026
 
-10:00 - 
+12 h
 
 Cause quiz-mod is working in moodle-test enviroment, i´ll check what is our difference and implement those in mine, cause the code in mine is functioning, but it gets redirected, before it even opens. I was told, that maybe the problem is the versions of moodle in my docker and in real-test-enviroment - but they are actually the same versions. LTS 4.5.12.
+
+It appears i was missing a score field in install.xml file. Dumbass.
+
+Next problem: undefined error while finishinf attempts. Still working on with the finish button not saving and gives errors. 
+___________________________________________________________________________________________
+
+15 August 2026
+
+- h
+
+Ghost hunting. Ajax.

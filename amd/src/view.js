@@ -28,19 +28,16 @@ export const init = (
     let elapsed = 0;
     let attempts = [];
     let currentAttempt = 1;
-    let currentWords = [];
     let currentAnswers = [];
     let currentAttemptId = null;
 
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
     const resultsScreen = document.getElementById('wordsort-results-screen');
-    const resultAttempts = document.getElementById('wordsort-result-attempts');
     const resultAttempt = document.getElementById('wordsort-result-attempt');
     const resultBestScore = document.getElementById('wordsort-result-bestscore');
     const resultScore = document.getElementById('wordsort-result-score');
     const resultTime = document.getElementById('wordsort-result-time');
-    const resultButtons = document.getElementById('wordsort-result-buttons');
     const tryAgainButton = document.getElementById('wordsort-tryagain');
     const submitButton = document.getElementById('wordsort-submit');
     const wordElement = document.getElementById('wordsort-word');
@@ -49,7 +46,6 @@ export const init = (
     const rightButton = document.querySelector('.wordsort-choice-right');
     const startButton = document.getElementById('wordsort-start');
     const feedbackElement = document.getElementById('wordsort-feedback');
-    
     const submissionScreen = document.getElementById('wordsort-submission-screen');
     const submissionBestScore = document.getElementById('wordsort-submission-bestscore');
     const submissionAttempts = document.getElementById('wordsort-submission-attempts');
@@ -58,16 +54,19 @@ export const init = (
     const submissionBestAttempt = document.getElementById('wordsort-submission-bestattempt');
     const bestScore = Number(document.getElementById('wordsort-data').dataset.bestScore);
     const bestTotal = Number(document.getElementById('wordsort-data').dataset.bestTotal);
-            
-    const mode = Number(timingmode);    
+    const mode = Number(timingmode);
     const feedback = Number(feedbackMode);
-    
+
     if (mode === 1) {
         timerElement.textContent = `Countdown: ${timevalue}`;
     } else if (mode === 2) {
         timerElement.textContent = `Stopwatch: 0`;
     }
 
+/**
+     * Shuffles the elements in the given array.
+     * @param {Array} array - The array to shuffle.
+     */
     function shuffleWords(array) {
 
         for (let i = array.length - 1; i > 0; i--) {
@@ -78,6 +77,10 @@ export const init = (
         }
     }
 
+/**
+     * Displays the current word in the UI.
+     * @returns {void}
+     */
     function showWord() {
 
         if (!words.length) {
@@ -87,6 +90,10 @@ export const init = (
         wordElement.textContent = words[currentIndex].word;
     }
 
+/**
+     * Starts a new attempt at the word sorting game.
+     * @returns {void}
+     */
     function startAttempt() {
 
         if (shuffleEnabled) {
@@ -144,6 +151,11 @@ export const init = (
         showWord();
     }
 
+/**
+     * Checks the user's answer and updates the game state accordingly.
+     * @param {number} selectedSide - The side selected by the user.
+     * @returns {void}
+     */
     function checkAnswer(selectedSide) {
 
         if (currentIndex >= words.length) {
@@ -171,6 +183,11 @@ export const init = (
         }
     }
 
+/**
+     * Displays feedback to the user based on their answer.
+     * @param {boolean} isCorrect - Whether the user's answer was correct.
+     * @returns {void}
+     */
     function showFeedback(isCorrect) {
 
         feedbackElement.textContent =
@@ -184,6 +201,10 @@ export const init = (
         }, 1000);
     }
 
+/**
+     * Moves to the next word in the game.
+     * @returns {void}
+     */
     function nextWord() {
 
         currentIndex++;
@@ -195,8 +216,11 @@ export const init = (
             showWord();
     }
 
+/**
+ * Saves the current attempt to the list of attempts.
+ * @param {string} status - The status of the attempt.
+ */
     function saveAttempt(status) {
-        
         attempts.push({
             number: currentAttempt,
             correct: correctAnswers,
@@ -210,6 +234,10 @@ export const init = (
         currentAttempt++;
     }
 
+/**
+     * Gets the best attempt from the list of attempts.
+     * @returns {Object|null} The best attempt or null if no attempts exist.
+     */
     function getBestAttempt() {
 
         if (attempts.length === 0) {
@@ -228,6 +256,10 @@ export const init = (
         return bestAttempt;
     }
 
+/**
+     * Resets the game to its initial state.
+     * @returns {void}
+     */
     function resetGame() {
         resultsScreen.style.display = 'none';
         activityScreen.style.display = 'none';
@@ -236,6 +268,9 @@ export const init = (
         startScreen.style.display = 'block';
     }
 
+/**
+     * Finishes the game, saves the attempt, and displays the results screen.
+     */
     function finishGame() {
 
         clearInterval(timerInterval);
@@ -285,10 +320,10 @@ export const init = (
         }
     }
 
-    // ----------------------
-    // Submission
-    // ----------------------
-
+/**
+     * Submits the current activity and displays the submission summary.
+     * @returns {void}
+     */
     function submitActivity() {
 
         submitButton.disabled = true;
@@ -307,10 +342,9 @@ export const init = (
                 answers: JSON.stringify(currentCompletedAttempt.answers),
                 finalsubmission: true
             }
-        }])[0].then(result => {
+        }])[0].then(() => {
 
             if (Number(feedbackMode) === 2) {
-
                 const bestAttempt = getBestAttempt();
 
                 showSubmissionSummary(bestAttempt);
@@ -335,7 +369,12 @@ export const init = (
 
         });
     }
-    
+
+/**
+     * Displays the submission summary for the best attempt.
+     * @param {Object} bestAttempt - The best attempt object.
+     * @returns {void}
+     */
     function showSubmissionSummary(bestAttempt) {
 
         submissionBestScore.textContent =
@@ -343,7 +382,7 @@ export const init = (
 
         submissionAttempts.textContent =
             `Attempts used: ${attempts.length}/${maxAttempts}`;
-        
+
         submissionBestAttempt.textContent =
             `Best attempt: ${bestAttempt.number}/${attempts.length}`;
 
@@ -356,6 +395,11 @@ export const init = (
         }
     }
 
+/**
+     * Renders the submission answers in the review table.
+     * @param {Array} answers - The list of answers to display.
+     * @returns {void}
+     */
     function renderSubmissionAnswers(answers) {
 
         let html = `
@@ -398,13 +442,11 @@ export const init = (
 
         submissionAnswers.innerHTML = html;
     }
-        
 
     // ----------------------
     // Event listeners
     // ----------------------
-                
-        if (!startButton) {
+       if (!startButton) {
             return;
         }
 
@@ -458,7 +500,7 @@ export const init = (
                         answers: JSON.stringify(currentCompletedAttempt.answers),
                         finalsubmission: false
                     }
-                }])[0].then(result => {
+                }])[0].then(() => {
 
                     resetGame();
 
@@ -472,4 +514,4 @@ export const init = (
                 submitActivity();
             });
         }
-}
+};

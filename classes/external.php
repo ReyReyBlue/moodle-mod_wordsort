@@ -42,160 +42,154 @@ class external extends external_api {
      * @param int $wordsortid
      * @return array
      */
-    public static function start_attempt(int $wordsortid) {
+        public static function start_attempt(int $wordsortid) {
 
-        global $DB, $USER;
+            global $DB, $USER;
 
-        $params = self::validate_parameters(
-            self::start_attempt_parameters(),
-            [
-                'wordsortid' => $wordsortid,
-            ]
-        );
+            $params = self::validate_parameters(
+                self::start_attempt_parameters(),
+                [
+                    'wordsortid' => $wordsortid,
+                ]
+            );
 
-        // Mark any previous in-progress attempts as abandoned.
-        $inprogressattempts = $DB->get_records(
-            'wordsort_attempts',
-            [
-                'wordsortid' => $params['wordsortid'],
-                'userid' => $USER->id,
-                'status' => 'inprogress',
-            ]
-        );
+            // Mark previous in-progress attempts as abandoned.
+            $DB->set_field(
+                'wordsort_attempts',
+                'status',
+                'abandoned',
+                [
+                    'wordsortid' => $params['wordsortid'],
+                    'userid' => $USER->id,
+                    'status' => 'inprogress',
+                ]
+            );
 
-        foreach ($inprogressattempts as $attempt) {
-            $attempt->status = 'abandoned';
-            $DB->update_record('wordsort_attempts', $attempt);
+            // Count previous attempts for this student.
+            $attemptcount = $DB->count_records(
+                'wordsort_attempts',
+                [
+                    'wordsortid' => $params['wordsortid'],
+                    'userid' => $USER->id,
+                ]
+            );
+
+            $record = new \stdClass();
+            $record->wordsortid = $params['wordsortid'];
+            $record->userid = $USER->id;
+            $record->attempt = $attemptcount + 1;
+            $record->score = 0;
+            $record->totalwords = 0;
+            $record->percentage = 0;
+            $record->timeused = 0;
+            $record->timecreated = time();
+            $record->answers = null;
+            $record->status = 'inprogress';
+            $record->finalsubmission = 0;
+
+            $attemptid = $DB->insert_record('wordsort_attempts', $record);
+
+            return [
+                'attemptid' => $attemptid,
+                'attemptnumber' => $record->attempt,
+            ];
         }
 
+            /**
+         * Return values for start_attempt().
+         *
+         * @return external_single_structure
+         */
+        public static function start_attempt_returns() {
 
-        // Count previous attempts for this student in this activity.
-        $attemptcount = $DB->count_records('wordsort_attempts', [
-            'wordsortid' => $params['wordsortid'],
-            'userid' => $USER->id,
-        ]);
-
-        $record = new \stdClass();
-        $record->wordsortid = $params['wordsortid'];
-        $record->userid = $USER->id;
-        $record->attempt = $attemptcount + 1;
-        $record->score = 0;
-        $record->totalwords = 0;
-        $record->percentage = 0;
-        $record->timeused = 0;
-        $record->timecreated = time();
-        $record->answers = null;
-        $record->status = 'inprogress';
-
-        $attemptid = $DB->insert_record('wordsort_attempts', $record);
-
-        return [
-            'attemptid' => $attemptid,
-            'attemptnumber' => $record->attempt,
-        ];
-    }
+            return new external_single_structure([
+                'attemptid' => new external_value(PARAM_INT, 'Database ID'),
+                'attemptnumber' => new external_value(PARAM_INT, 'Attempt number'),
+            ]);
+        }
 
         /**
-     * Return values for start_attempt().
-     *
-     * @return external_single_structure
-     */
-    public static function start_attempt_returns() {
+         * Parameters for save_attempt().
+         *
+         * @return external_function_parameters
+         */
+            public static function save_attempt_parameters() {
+                return new external_function_parameters([
+                    'attemptid' => new external_value(PARAM_INT, 'Attempt ID'),
+                    'wordsortid' => new external_value(PARAM_INT, 'Word Sort activity ID'),
+                    'score' => new external_value(PARAM_INT, 'Student score'),
+                    'totalwords' => new external_value(PARAM_INT, 'Total number of words'),
+                    'percentage' => new external_value(PARAM_FLOAT, 'Percentage score'),
+                    'timeused' => new external_value(PARAM_INT, 'Time used in seconds'),
+                    'answers' => new external_value(PARAM_RAW, 'Attempt answers as JSON'),
+                    'finalsubmission' => new external_value(PARAM_BOOL, 'Whether the student has finished the activity'),
+                ]);
+            }
 
-        return new external_single_structure([
-            'attemptid' => new external_value(PARAM_INT, 'Database ID'),
-            'attemptnumber' => new external_value(PARAM_INT, 'Attempt number'),
-        ]);
-    }
+            /**
+             * Save a Word Sort attempt.
+             * 
+             * @param int $attemptid
+             * @param int $wordsortid
+             * @param int $score
+             * @param int $totalwords
+             * @param float $percentage
+             * @param int $timeused
+             * @param string $answers
+             * @param bool $finalsubmission
+             * @return array
+             */
 
-    /**
-     * Parameters for save_attempt().
-     *
-     * @return external_function_parameters
-     */
-    public static function save_attempt_parameters() {
-        return new external_function_parameters([
-            'attemptid' => new external_value(PARAM_INT, 'Attempt ID'),
-            'wordsortid' => new external_value(PARAM_INT, 'Word Sort activity ID'),
-            'score' => new external_value(PARAM_INT, 'Student score'),
-            'totalwords' => new external_value(PARAM_INT, 'Total number of words'),
-            'percentage' => new external_value(PARAM_FLOAT, 'Percentage score'),
-            'timeused' => new external_value(PARAM_INT, 'Time used in seconds'),
-            'answers' => new external_value(PARAM_RAW, 'Attempt answers as JSON'),
-            'finalsubmission' => new external_value(PARAM_BOOL, 'Whether the student has finished the activity'),
-        ]);
-    }
-
-    /**
-     * Save a Word Sort attempt.
-     *
-     * @param int $wordsortid
-     * @param int $score
-     * @param int $totalwords
-     * @param float $percentage
-     * @param int $timeused
-     * @param string $answers
-     * @param bool $finalsubmission
-     * @return array
-     */
-    public static function save_attempt(
-        int $attemptid,
-        int $wordsortid,
-        int $score,
-        int $totalwords,
-        float $percentage,
-        int $timeused,
-        string $answers,
-        bool $finalsubmission
+        public static function save_attempt(
+            $attemptid,
+            $wordsortid,
+            $score,
+            $totalwords,
+            $percentage,
+            $timeused,
+            $answers,
+            $finalsubmission
         ) {
 
-        global $DB, $USER;
+            global $DB, $USER;
+            error_log('WORDSORT: save_attempt START');
 
-        $params = self::validate_parameters(
-            self::save_attempt_parameters(),
-            [
-                'attemptid' => $attemptid,
-                'wordsortid' => $wordsortid,
-                'score' => $score,
-                'totalwords' => $totalwords,
-                'percentage' => $percentage,
-                'timeused' => $timeused,
-                'answers' => $answers,
-                'finalsubmission' => $finalsubmission,
-            ]
-        );
+            $params = self::validate_parameters(
+                self::save_attempt_parameters(),
+                [
+                    'attemptid' => $attemptid,
+                    'wordsortid' => $wordsortid,
+                    'score' => $score,
+                    'totalwords' => $totalwords,
+                    'percentage' => $percentage,
+                    'timeused' => $timeused,
+                    'answers' => $answers,
+                    'finalsubmission' => $finalsubmission,
+                ]
+            );
 
-        $record = $DB->get_record(
-            'wordsort_attempts',
-            ['id' => $params['attemptid']],
-            '*',
-            MUST_EXIST
-        );
-        $record->score = $params['score'];
-        $record->totalwords = $params['totalwords'];
-        $record->percentage = $params['percentage'];
-        $record->timeused = $params['timeused'];
-        $record->answers = $params['answers'];
-        $record->status = 'submitted';
-        $record->finalsubmission = $params['finalsubmission'] ? 1 : 0;
+            $record = $DB->get_record(
+                'wordsort_attempts',
+                ['id' => $params['attemptid']],
+                '*',
+                MUST_EXIST
+            );
 
-        $DB->update_record('wordsort_attempts', $record);
+            $record->score = $params['score'];
+            $record->totalwords = $params['totalwords'];
+            $record->percentage = $params['percentage'];
+            $record->timeused = $params['timeused'];
+            $record->answers = $params['answers'];
+            $record->status = 'submitted';
+            $record->finalsubmission = $params['finalsubmission'] ? 1 : 0;
 
-        $wordsort = $DB->get_record('wordsort', [
-            'id' => $params['wordsortid']
-        ], '*', MUST_EXIST);
+            $DB->update_record('wordsort_attempts', $record);
 
-        wordsort_update_grades(
-            $wordsort,
-            $USER->id,
-            $params['percentage']
-        );
-
-        return [
-            'success' => true,
-        ];
-    }
-
+            error_log('WORDSORT: save_attempt BEFORE RETURN');
+            return [
+                'success' => true,
+            ];
+        }
     /**
      * Return structure for save_attempt().
      *
@@ -209,4 +203,5 @@ class external extends external_api {
             ),
         ]);
     }
+
 }
