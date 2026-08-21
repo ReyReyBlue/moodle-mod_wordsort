@@ -354,7 +354,7 @@ ________________________________________________________________________________
 
 21 August 2026
 
-3 h
+8 h
 
-leitud puuduv keeleriba.
+Found the missing lang string. Undefined is still the bad word/error i keep getting.
 ___________________________________________________________________________________________
