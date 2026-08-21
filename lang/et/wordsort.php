@@ -86,6 +86,7 @@ $string['statusabandoned'] = 'Hüljatud';
 $string['student'] = 'Õpilane';
 $string['percentage'] = 'Protsent';
 $string['submitted'] = 'Esitatud';
+$string['statussubmitted'] = 'Esitatud';
 $string['review'] = 'Ülevaade';
 $string['viewanswers'] = 'Vaata vastuseid';
 $string['attemptreviewtitle'] = 'Katse {$a}';

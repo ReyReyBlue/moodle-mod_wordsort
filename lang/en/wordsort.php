@@ -86,6 +86,7 @@ $string['statusabandoned'] = 'Abandoned';
 $string['student'] = 'Student';
 $string['percentage'] = 'Percentage';
 $string['submitted'] = 'Submitted';
+$string['statussubmitted'] = 'Submitted';
 $string['review'] = 'Review';
 $string['viewanswers'] = 'View answers';
 $string['attemptreviewtitle'] = 'Attempt {$a}';
