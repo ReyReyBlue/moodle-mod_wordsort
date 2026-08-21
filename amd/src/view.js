@@ -34,6 +34,7 @@ export const init = (
     const startScreen = document.getElementById('wordsort-start-screen');
     const activityScreen = document.getElementById('wordsort-activity-screen');
     const resultsScreen = document.getElementById('wordsort-results-screen');
+    const attemptsUsedElement = document.getElementById('wordsort-attempts-used');
     const resultAttempt = document.getElementById('wordsort-result-attempt');
     const resultBestScore = document.getElementById('wordsort-result-bestscore');
     const resultScore = document.getElementById('wordsort-result-score');
@@ -461,6 +462,15 @@ export const init = (
 
                 currentAttemptId = result.attemptid;
                 currentAttempt = result.attemptnumber;
+
+                if (attemptsUsedElement) {
+                    const template = attemptsUsedElement.dataset.attemptsTemplate;
+                    const maxAttempts = attemptsUsedElement.dataset.maxattempts;
+
+                    attemptsUsedElement.textContent = template
+                        .replace('{$a->used}', currentAttempt)
+                        .replace('{$a->max}', maxAttempts);
+                }
 
                 startScreen.style.display = 'none';
                 activityScreen.style.display = 'block';

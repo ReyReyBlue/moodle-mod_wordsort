@@ -244,7 +244,12 @@ echo html_writer::div(
         'used' => $attemptcount,
         'max' => $wordsort->maxattempts,
     ]),
-    'mb-3'
+    'mb-3',
+    [
+        'id' => 'wordsort-attempts-used',
+        'data-maxattempts' => $wordsort->maxattempts,
+        'data-attempts-template' => get_string('attemptsused', 'mod_wordsort'),
+    ]
 );
 
 if ($wordsort->timingmode != 0) {
