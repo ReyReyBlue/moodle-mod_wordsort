@@ -265,8 +265,12 @@ if ($wordsort->timingmode != 0) {
     );
 }
 
-// Start button.
+// Start button or activity status.
+
+echo html_writer::start_div('', ['id' => 'wordsort-start-action']);
+
 if ($hasattemptsleft) {
+
     echo html_writer::tag(
         'button',
         get_string('start', 'mod_wordsort'),
@@ -277,17 +281,23 @@ if ($hasattemptsleft) {
     );
 
 } else if ($hasfinalsubmission) {
+
     echo html_writer::div(
         get_string('activitysubmitted', 'mod_wordsort'),
         'text-success mb-3'
     );
+
 } else {
+
     echo html_writer::tag(
         'p',
         get_string('nomoreattempts', 'mod_wordsort'),
         ['class' => 'text-danger']
     );
+
 }
+
+echo html_writer::end_div();
 
 echo html_writer::end_div(); // card-body
 

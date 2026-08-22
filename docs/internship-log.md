@@ -358,3 +358,10 @@ ________________________________________________________________________________
 
 Found the missing lang string. Undefined is still the bad word/error i keep getting.
 ___________________________________________________________________________________________
+
+22 August 2026
+
+-h
+
+The finish screen want´s refresh and the review icons are showing wrongly.
+___________________________________________________________________________________________

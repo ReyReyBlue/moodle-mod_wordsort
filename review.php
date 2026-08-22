@@ -122,7 +122,7 @@ foreach ($answers as $answer) {
         $studentanswer = $wordsort->categoryright;
     }
 
-    if ($answer->correct) {
+    if ((int)$answer->selected === (int)$answer->correct) {
         $result = $OUTPUT->pix_icon(
             'i/grade_correct',
             get_string('correct', 'mod_wordsort')

@@ -419,7 +419,8 @@ export const init = (
         answers.forEach(answer => {
 
             const result =
-                answer.selected === answer.correct ? '✅' : '❌';
+                Number(answer.selected) === Number(answer.correct) ? '✅' : '❌';
+
             const selectedText =
                 Number(answer.selected) === 0 ? categoryLeft : categoryRight;
 
