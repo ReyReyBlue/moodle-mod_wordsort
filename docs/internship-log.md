@@ -363,5 +363,5 @@ ________________________________________________________________________________
 
 -h
 
-The finish screen want´s refresh and the review icons are showing wrongly.
+The finish screen want´s refresh and the review icons are showing wrongly. But I am sure, this time the plugin is ready. Welcome Beta!
 ___________________________________________________________________________________________

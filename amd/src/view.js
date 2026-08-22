@@ -32,6 +32,7 @@ export const init = (
     let currentAttemptId = null;
 
     const startScreen = document.getElementById('wordsort-start-screen');
+    const startAction = document.getElementById('wordsort-start-action');
     const activityScreen = document.getElementById('wordsort-activity-screen');
     const resultsScreen = document.getElementById('wordsort-results-screen');
     const attemptsUsedElement = document.getElementById('wordsort-attempts-used');
@@ -360,6 +361,11 @@ export const init = (
                 resultsScreen.style.display = 'none';
                 submissionScreen.style.display = 'none';
                 startScreen.style.display = 'block';
+
+                if (startAction) {
+                    startAction.innerHTML =
+                        `<div class="text-success mb-3">${startAction.dataset.submittedMessage}</div>`;
+                }
 
             }
 

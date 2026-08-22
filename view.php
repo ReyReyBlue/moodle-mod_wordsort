@@ -267,37 +267,40 @@ if ($wordsort->timingmode != 0) {
 
 // Start button or activity status.
 
-echo html_writer::start_div('', ['id' => 'wordsort-start-action']);
+echo html_writer::start_div('', [
+    'id' => 'wordsort-start-action',
+    'data-submitted-message' => get_string('activitysubmitted', 'mod_wordsort'),
+]);
 
-if ($hasattemptsleft) {
+    if ($hasattemptsleft) {
 
-    echo html_writer::tag(
-        'button',
-        get_string('start', 'mod_wordsort'),
-        [
-            'id' => 'wordsort-start',
-            'class' => 'btn btn-primary px-4 py-2'
-        ]
-    );
+        echo html_writer::tag(
+            'button',
+            get_string('start', 'mod_wordsort'),
+            [
+                'id' => 'wordsort-start',
+                'class' => 'btn btn-primary px-4 py-2'
+            ]
+        );
 
-} else if ($hasfinalsubmission) {
+    } else if ($hasfinalsubmission) {
 
-    echo html_writer::div(
-        get_string('activitysubmitted', 'mod_wordsort'),
-        'text-success mb-3'
-    );
+        echo html_writer::div(
+            get_string('activitysubmitted', 'mod_wordsort'),
+            'text-success mb-3'
+        );
 
-} else {
+    } else {
 
-    echo html_writer::tag(
-        'p',
-        get_string('nomoreattempts', 'mod_wordsort'),
-        ['class' => 'text-danger']
-    );
+        echo html_writer::tag(
+            'p',
+            get_string('nomoreattempts', 'mod_wordsort'),
+            ['class' => 'text-danger']
+        );
 
-}
+    }
 
-echo html_writer::end_div();
+echo html_writer::end_div(); // start button
 
 echo html_writer::end_div(); // card-body
 
