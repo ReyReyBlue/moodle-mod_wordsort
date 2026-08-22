@@ -361,7 +361,7 @@ ________________________________________________________________________________
 
 22 August 2026
 
--h
+5 h
 
 The finish screen want´s refresh and the review icons are showing wrongly. But I am sure, this time the plugin is ready. Welcome Beta!
 ___________________________________________________________________________________________
