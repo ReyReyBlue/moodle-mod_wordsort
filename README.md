@@ -54,7 +54,7 @@ The student's score, answers and attempt information are saved for the teacher.
 
 ## Documentation
 
-Additional project and technical documentation is available in the `docs` directory of the source repository.
+Additional project and technical documentation is maintained in the project's GitHub repository.
 
 ## Supported Moodle versions
 

@@ -376,5 +376,7 @@ ________________________________________________________________________________
 
 28 August 2026
 
-Backup/restore is added - as this is mantitory for moodle plugins (and no one told me before)
+9 h
+
+Backup/restore is added - as this is mantitory for moodle plugins (and no one told me before). Full audit, before launching in moodle marketplace.
 
