@@ -23,7 +23,7 @@ Word Sort is a Moodle activity module where students quickly sort words into one
 
 ## Installation
 
-1. Download the latest release of Word Sort.
+1. Download the Word Sort plugin package from Moodle Marketplace or from the project's GitHub repository.
 2. Install the plugin through Moodle's plugin installation interface.
 3. Follow the Moodle prompts to complete the installation.
 4. Create a Word Sort activity in a course.
