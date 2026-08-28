@@ -53,6 +53,19 @@ class external extends external_api {
                 ]
             );
 
+            $cm = get_coursemodule_from_instance(
+                'wordsort',
+                $params['wordsortid'],
+                0,
+                true,
+                MUST_EXIST
+            );
+
+            $context = \context_module::instance($cm->id);
+
+            self::validate_context($context);
+            require_capability('mod/wordsort:view', $context);
+
             // Mark previous in-progress attempts as abandoned.
             $DB->set_field(
                 'wordsort_attempts',
@@ -168,9 +181,26 @@ class external extends external_api {
                 ]
             );
 
+            $cm = get_coursemodule_from_instance(
+                'wordsort',
+                $params['wordsortid'],
+                0,
+                true,
+                MUST_EXIST
+            );
+
+            $context = \context_module::instance($cm->id);
+
+            self::validate_context($context);
+            require_capability('mod/wordsort:view', $context);
+
             $record = $DB->get_record(
                 'wordsort_attempts',
-                ['id' => $params['attemptid']],
+                [
+                    'id' => $params['attemptid'],
+                    'wordsortid' => $params['wordsortid'],
+                    'userid' => $USER->id,
+                ],
                 '*',
                 MUST_EXIST
             );

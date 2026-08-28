@@ -1,4 +1,13 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License.
+//
+// @package    mod_wordsort
+// @copyright 2026 Reelika Pihl
+// @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
 defined('MOODLE_INTERNAL') || die();
 
 // Plugin specific information.
@@ -39,7 +48,6 @@ $string['attempt'] = 'Attempt';
 $string['maxattempts'] = 'Maximum attempts';
 $string['attemptsettings'] = 'Attempts';
 $string['attempts'] = 'Attempts';
-$string['attemptsused'] = 'Attempts used';
 $string['bestattempt'] = 'Best attempt';
 $string['viewattempts'] = 'View attempts';
 $string['attemptsreport'] = 'Student attempts report';
@@ -106,10 +114,7 @@ $string['previewactivity'] = 'Preview activity';
 $string['previewactivitydesc'] = 'Preview the activity exactly as your students will see it.';
 $string['activitysetupdesc'] = 'This activity is not ready for students yet. Complete the remaining setup steps below.';
 $string['categoriesconfigured'] = 'Categories configured';
-$string['wordsnotadded'] = 
-    'Words have not been added yet
-    
-    Please add the words so that the students can do this activity.';
+$string['wordsnotadded'] = 'Words have not been added yet. Please add the words so that the students can do this activity.';
 $string['activitysetupnext'] = 'Next step: add at least one word.';
 $string['nextstep'] = 'Next step';
 $string['addfirstword'] = 'Add your first word to begin building the activity.';
@@ -122,4 +127,20 @@ $string['nomoreattempts'] = 'You have used all available attempts.';
 $string['categorymismatch'] = 'Import failed. The CSV categories do not match the categories configured for this activity.';
 $string['activitysubmitted'] = 'Your results have been sent to your teacher. Have a nice day!';
 $string['attemptsused'] = 'You have tried: {$a->used}/{$a->max} times.';
+
+// Privacy
+
+$string['privacy:metadata:wordsort_attempts'] = 'Word Sort stores student attempt information, including scores, answers and timing data.';
+$string['privacy:metadata:wordsort_attempts:userid'] = 'The ID of the user who made the attempt.';
+$string['privacy:metadata:wordsort_attempts:attempt'] = 'The attempt number.';
+$string['privacy:metadata:wordsort_attempts:score'] = 'The score achieved in the attempt.';
+$string['privacy:metadata:wordsort_attempts:totalwords'] = 'The total number of words in the attempt.';
+$string['privacy:metadata:wordsort_attempts:percentage'] = 'The percentage score achieved in the attempt.';
+$string['privacy:metadata:wordsort_attempts:timeused'] = 'The amount of time used for the attempt.';
+$string['privacy:metadata:wordsort_attempts:timecreated'] = 'The time when the attempt was created.';
+$string['privacy:metadata:wordsort_attempts:answers'] = 'The answers submitted during the attempt.';
+$string['privacy:metadata:wordsort_attempts:status'] = 'The status of the attempt.';
+$string['privacy:metadata:wordsort_attempts:finalsubmission'] = 'Whether the attempt was submitted as final.';
+$string['privacy:attempts'] = 'Word Sort attempts';
+
 // End of file.

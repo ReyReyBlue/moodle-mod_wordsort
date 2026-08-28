@@ -27,7 +27,10 @@ echo $OUTPUT->heading(get_string('review', 'mod_wordsort'));
 
     $attempt = $DB->get_record(
         'wordsort_attempts',
-        ['id' => $attemptid],
+        [
+            'id' => $attemptid,
+            'wordsortid' => $wordsort->id,
+        ],
         '*',
         MUST_EXIST
     );

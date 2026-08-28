@@ -1,4 +1,13 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License.
+//
+// @package    mod_wordsort
+// @copyright 2026 Reelika Pihl
+// @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
 defined('MOODLE_INTERNAL') || die();
 
 // Plugin specific information.
@@ -32,20 +41,19 @@ $string['deleteword'] = 'Kustuta sõna';
 $string['confirmdeleteword'] = 'Kas oled kindel, et soovid sõna "{$a}" kustutada?';
 $string['worddeleted'] = 'Sõna kustutatud.';
 $string['bulkaddwords'] = 'Massiliselt lisamine';
-$string['bulkwordsadded'] = '{$a} sõnu lisatud.';
+$string['bulkwordsadded'] = 'Lisatud {$a} sõna.';
 
 // Attempts
 $string['attempt'] = 'Katse';
 $string['maxattempts'] = 'Maksimaalne katsete arv';
 $string['attemptsettings'] = 'Katsete seadistamine';
 $string['attempts'] = 'Katsed';
-$string['attemptsused'] = 'Kasutatud katseid';
 $string['bestattempt'] = 'Parim katse';
 $string['viewattempts'] = 'Vaata katseid';
 $string['attemptsreport'] = 'Õpilaste katsete raport';
 
 // Feedback
-$string['feedbackmode'] = 'tagasiside režiim';
+$string['feedbackmode'] = 'Tagasiside režiim';
 $string['feedbackeachmove'] = 'Iga liikumise järel';
 $string['feedbacksubmit'] = 'Pärast esitamist';
 $string['feedbacknone'] = 'Tagasisidet pole';
@@ -53,9 +61,9 @@ $string['feedbacknone'] = 'Tagasisidet pole';
 // Categories
 $string['categoryleft'] = 'Vasak kategooria';
 $string['categoryright'] = 'Parem kategooria';
-$string['errorcategoryleftrequired'] = 'Vasak kategooria on nõutav';
-$string['errorcategoryrightrequired'] = 'Parem kategooria on nõutav';
-$string['errorcategoriesequal'] = 'Vasak ja parem kategooriad peavad olema erinevad';
+$string['errorcategoryleftrequired'] = 'Vasak kategooria on nõutav.';
+$string['errorcategoryrightrequired'] = 'Parem kategooria on nõutav.';
+$string['errorcategoriesequal'] = 'Vasak ja parem kategooria peavad olema erinevad.';
 $string['category'] = 'Kategooria';
 $string['categories'] = 'Kategooriad';
 $string['leftcategory'] = 'Vasak kategooria';
@@ -106,20 +114,33 @@ $string['previewactivity'] = 'Tegevuse eelvaade';
 $string['previewactivitydesc'] = 'Vaata tegevuse eelvaadet täpselt nii, nagu seda näevad sinu õpilased.';
 $string['activitysetupdesc'] = 'See tegevus ei ole veel õpilaste jaoks valmis. Lõpeta järgmised seadistamise sammud allpool.';
 $string['categoriesconfigured'] = 'Seadistatud kategooriad';
-$string['wordsnotadded'] = 
-    'Sõnu pole veel lisatud. 
-    
-    Palun lisa sõnad, et õpilased saaksid seda tegevust teha.';
+$string['wordsnotadded'] = 'Sõnu pole veel lisatud. Palun lisa sõnad, et õpilased saaksid seda tegevust teha.';
 $string['activitysetupnext'] = 'Järgmine samm: lisa vähemalt üks sõna.';
 $string['nextstep'] = 'Järgmine samm';
 $string['addfirstword'] = 'Lisa oma esimene sõna, et alustada tegevuse loomist.';
-$string['invalidcategory'] = 'Kehtetu kategooria "{$a}" leitud CSV failist.';
+$string['invalidcategory'] = 'CSV-failist leiti kehtetu kategooria "{$a}".';
 $string['invalidcsv'] = 'Kehtetu CSV fail.';
-$string['cannotreadcsv'] = 'Ei saa lugeda üles laetud CSV faili.';
+$string['cannotreadcsv'] = 'Üles laaditud CSV-faili ei saanud lugeda.';
 $string['importsuccess'] = 'Sõnad edukalt imporditud.';
-$string['importsummary'] = 'Imporditud {$a->imported} sõna. Vahele jäetud {$a->skipped} topelt sõna.';
-$string['nomoreattempts'] = 'Oled kasutanud ära kõik saadaolevaid katsed.';
+$string['importsummary'] = 'Imporditud {$a->imported} sõna. Vahele jäetud {$a->skipped} duplikaati.';
+$string['nomoreattempts'] = 'Oled kasutanud ära kõik saadaolevad katsed.';
 $string['categorymismatch'] = 'Import ebaõnnestus. CSV kategooriad ei kattu selle tegevuse jaoks seadistatud kategooriatega.';
 $string['activitysubmitted'] = 'Sinu tulemused on saadetud õpetajale. Head päeva!';
 $string['attemptsused'] = 'Oled proovinud: {$a->used}/{$a->max} korda.';
+
+//Privaatsus
+
+$string['privacy:metadata:wordsort_attempts'] = 'Word Sort salvestab õpilase katsete andmeid, sealhulgas tulemusi, vastuseid ja ajakasutuse andmeid.';
+$string['privacy:metadata:wordsort_attempts:userid'] = 'Kasutaja ID, kes katse sooritas.';
+$string['privacy:metadata:wordsort_attempts:attempt'] = 'Katse number.';
+$string['privacy:metadata:wordsort_attempts:score'] = 'Katsel saavutatud punktisumma.';
+$string['privacy:metadata:wordsort_attempts:totalwords'] = 'Katses olevate sõnade koguarv.';
+$string['privacy:metadata:wordsort_attempts:percentage'] = 'Katsel saavutatud protsentuaalne tulemus.';
+$string['privacy:metadata:wordsort_attempts:timeused'] = 'Katse sooritamiseks kasutatud aeg.';
+$string['privacy:metadata:wordsort_attempts:timecreated'] = 'Katse loomise aeg.';
+$string['privacy:metadata:wordsort_attempts:answers'] = 'Katse käigus esitatud vastused.';
+$string['privacy:metadata:wordsort_attempts:status'] = 'Katse olek.';
+$string['privacy:metadata:wordsort_attempts:finalsubmission'] = 'Näitab, kas katse esitati lõplikult.';
+$string['privacy:attempts'] = 'Word Sort katsed';
+
 // End of file.

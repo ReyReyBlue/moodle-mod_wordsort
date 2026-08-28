@@ -70,6 +70,13 @@ function wordsort_delete_instance($id) {
         return false;
     }
 
+    // Delete student attempts.
+    $DB->delete_records('wordsort_attempts', ['wordsortid' => $wordsort->id]);
+
+    // Delete words belonging to this activity.
+    $DB->delete_records('wordsort_words', ['wordsortid' => $wordsort->id]);
+
+    // Delete the activity itself.
     $DB->delete_records('wordsort', ['id' => $wordsort->id]);
 
     return true;

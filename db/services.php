@@ -18,7 +18,8 @@ $functions = [
         'description' => 'Start a Word Sort attempt.',
         'type'        => 'write',
         'ajax'        => true,
-],
+        'capabilities' => 'mod/wordsort:view',
+    ],
 
     'mod_wordsort_save_attempt' => [
         'classname'   => 'mod_wordsort\external',
@@ -26,5 +27,6 @@ $functions = [
         'description' => 'Save a Word Sort attempt.',
         'type'        => 'write',
         'ajax'        => true,
+        'capabilities' => 'mod/wordsort:view',
     ],
 ];
