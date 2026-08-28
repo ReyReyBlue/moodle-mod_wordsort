@@ -365,3 +365,11 @@ ________________________________________________________________________________
 
 The finish screen want´s refresh and the review icons are showing wrongly. But I am sure, this time the plugin is ready. Welcome Beta!
 ___________________________________________________________________________________________
+
+28 August 2026
+
+4 h Final QA / regression testing
+
+Final quality assurance and regression testing of the Word Sort Moodle activity in the client's Moodle environment. Tested activity configuration, gameplay, answer handling, timing modes, feedback, attempt management, final submission, review results and teacher reporting. Identified and corrected issues with final-submission state handling and review-result indicators, followed by regression testing of the affected functionality. 
+
+

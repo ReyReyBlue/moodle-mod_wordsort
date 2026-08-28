@@ -1,36 +1,69 @@
 # Word Sort
 
-Moodle'i tegevusmoodul, mis kutsub õpilasi üles kiiresti ülesandeid ühte kahest õpetaja määratud kategooriast liigitama.
+Word Sort is a Moodle activity module where students quickly sort words into one of two teacher-defined categories.
 
-## Funktsioonid
+## Features
 
-- Kaks konfigureeritavat kategooriat
-- Ajastatud mäng
-- Mitu katset
-- Valikuline "shuffle"
-- Kohene tagasiside
-- Õpetaja aruanded
-- Moodle'i hinneteraamatu integratsioon
+- Two configurable categories
+- Countdown or stopwatch timing
+- Optional shuffle of words
+- Configurable maximum number of attempts
+- Immediate feedback during the game
+- Optional feedback after completing an attempt
+- Results and scores available to teachers
+- Review of individual student answers
+- Moodle gradebook integration
+- Mobile-friendly left/right interaction
 
-## Staatus
+## Requirements
 
-Aktiivses arenduses
+- Moodle 4.5 or later
+- PHP 8.2 or later
+- A Moodle-supported database
 
-## Nõuded
+## Installation
 
-- Moodle 4.5+
-- PHP 8.2+
-- MariaDB
+1. Download the latest release of Word Sort.
+2. Install the plugin through Moodle's plugin installation interface.
+3. Follow the Moodle prompts to complete the installation.
+4. Create a Word Sort activity in a course.
 
-## Projekti dokumentatsioon
+## Usage
 
-Vaata kausta `docs`:
-- Architecture
-- Database design
-- Requirements
-- Roadmap
-- Design decisions
+### Teacher
 
-## Litsents
+Create a Word Sort activity and configure:
 
-Määratakse hiljem...
+- Category 1
+- Category 2
+- Timing mode
+- Time limit, when applicable
+- Maximum attempts
+- Word order/shuffling
+- Feedback options
+
+### Student
+
+The student is shown one word at a time and selects one of the two categories.
+
+On desktop, the student clicks the left or right category.
+
+On mobile, the activity supports left/right interaction.
+
+The student's score, answers and attempt information are saved for the teacher.
+
+## Documentation
+
+Additional project and technical documentation is available in the `docs` directory of the source repository.
+
+## Supported Moodle versions
+
+Word Sort is currently developed and tested with Moodle 4.5 and later.
+
+## Status
+
+Beta.
+
+## License
+
+GNU General Public License v3 or later.
