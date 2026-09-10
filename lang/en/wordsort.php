@@ -21,6 +21,7 @@ $string['wordsort:viewreports'] = 'View Word Sort reports';
 $string['exportwords'] = 'Export';
 $string['importwords'] = 'Import';
 $string['csvfile'] = 'CSV file';
+$string['wordsort:addinstance'] = 'Add a new Word Sort activity';
 
 // Activity settings.
 $string['activityoptions'] = 'Activity options';

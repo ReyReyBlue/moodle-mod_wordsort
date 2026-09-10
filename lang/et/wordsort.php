@@ -21,6 +21,7 @@ $string['wordsort:viewreports'] = 'Vaata Word Sort raporteid';
 $string['exportwords'] = 'Eksport';
 $string['importwords'] = 'Import';
 $string['csvfile'] = 'CSV fail';
+$string['wordsort:addinstance'] = 'Lisa uus Word Sort tegevus';
 
 // Activity settings.
 $string['activityoptions'] = 'Tegevuse valikud';
